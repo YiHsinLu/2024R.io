@@ -1,0 +1,26 @@
+{
+  "index.qmd": {
+    "index.html": "daeb64e0"
+  },
+  "about.qmd": {
+    "about.html": "941fbff5"
+  },
+  "diary.qmd": {
+    "diary.html": "e1498ad0"
+  },
+  "UTUC/utuc_database.qmd": {
+    "utuc_database.html": "7b55d190"
+  },
+  "UTUC/Example1.qmd": {
+    "Example1.html": "66210b9c"
+  },
+  "Robot.qmd": {
+    "Robot.html": "c6074b48"
+  },
+  "Robot.knit.md": {
+    "Robot.knit.html": "6afbce7d"
+  },
+  "Rtutorial.qmd": {
+    "Rtutorial.html": "ccd2ef72"
+  }
+}

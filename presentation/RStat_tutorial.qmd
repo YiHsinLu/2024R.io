@@ -1,0 +1,481 @@
+---
+title: "**Basic Statistical Analysis with R**"
+format:
+  revealjs:
+    slide-number: true
+    chalkboard: 
+      buttons: false
+    preview-links: auto
+    theme: simple
+    logo: https://upload.wikimedia.org/wikipedia/commons/d/d0/RStudio_logo_flat.svg
+author: "*Yi-Hsin Lu*"
+date: "2024-07-10"
+---
+
+## Outline
+
+- R
+- Prob. and Stat.
+- Data with R
+- Stat. with R
+
+
+# R
+
+- [R-4.4.1](https://cran.r-project.org/bin/windows/base/)
+- [RStudio](https://posit.co/downloads/)
+- [R online compiler](https://www.mycompiler.io/new/r)
+
+::: footer
+[R cookbook](https://rc2e.com/)
+:::
+
+## Get Start
+
+![](fig/Rstudio_start.jpg)
+
+## Example 1
+
+$$
+\small\text{Let } x = \pi,\;y=10,\text{ then evaluate }x+y,\;x-y,\;xy,\text{ and }\frac{x}{y}.
+$$
+
+```{r echo=TRUE}
+x <- pi
+y <- 10
+x+y
+x-y
+x*y
+x/y
+```
+
+:::footer
+binary operation ($+,-,\times,\div$)
+:::
+
+## Example 2
+
+$$
+\small\text{Let } f(x)=e^{-x^2/2},\;\forall x\in(-2,2). \text{ Sketch the curve of } f.
+$$
+```{r echo=TRUE}
+f <- function(x){exp(-x^2/2)}
+curve(f, from = -2, to = 2)
+```
+
+::: footer
+`function()` and `curve()`
+:::
+
+## Example 3
+
+$$
+\small\text{Find the mean, standard deviation, and variance.}
+$$
+
+```{r echo=TRUE}
+Height <- c(177, 186, 153, 168, 172) #vector
+mean(Height)
+sqrt(var(Height))
+var(Height)
+```
+
+- Remark
+  + mean $\left[ \mu\right]$ and variance $\left[ \sigma^2 = \frac{1}{n}\sum_{i=1}^{n}(x_i-\mu)^2\right]$
+
+:::footer
+`mean()`, `var()`, and `sqrt()`
+:::
+
+## Packages
+
+- `install.packages()`
+
+```{r eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE}
+install.packages("dplyr")
+```
+
+![](fig/InstallPackage.jpg)
+
+- `library()`
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+library(dplyr)# use package
+```
+
+# Probabilities and Statistics
+
+- Probabilities
+- Statistics
+- Mathematical Statistics
+- Biostatistics
+
+:::footer
+[A Modern Introduction to Probability and Statistics](https://cis.temple.edu/~latecki/Courses/CIS2033-Spring13/Modern_intro_probability_statistics_Dekking05.pdf)
+:::
+
+## Probability Space
+
+$$
+\Large\left(\color{red}{\Omega}, \mathscr{F},P\right)
+$$
+
+- **Three Axiom**
+  + $0\leq P(A)\leq 1,\;\forall A$
+  + $P(\color{red}{\Omega}) = 1$
+  + $P(\bigcup_{i=1}^n A_i)=\sum_{i=1}^n P(A_i), \text{where }A_i\cap A_j=\varnothing,\;\forall i,j$
+
+## Random Variable
+
+$$
+X\sim\text{Distribution()}
+$$
+
+- Event $\rightarrow$ Value
+- Discrete
+  + $X\sim B(n,p)$
+- Continuous
+  + $X\sim\exp(\lambda)$
+  + $X\sim N(\mu,\sigma^2)$
+  + $X\sim t_\alpha$
+
+## Binomial
+
+$$
+\Large X\sim B(n,p)
+$$
+
+- Probability Mass Function (pmf.)
+
+$$
+f_X(x) = \binom{n}{x}\;p^xq^{n-x},\;\forall x = 1, \cdots, n
+$$
+
+- $X$: #(1), then $X\sim B(2,\frac{1}{6})$
+
+## Exponential
+
+- $X\sim\exp(\lambda)$
+
+- Probability Density Function (pdf.) $f_X(x) = \lambda e^{-\lambda x}$
+```{r}
+f <- function(x, lambda = 1){lambda*exp(-lambda*x)}
+curve(f,from = 0, to = 5, col = 1)
+curve(f(x,2),from = 0, to = 5, col = 2, add = TRUE)
+curve(f(x,.5),from = 0, to = 5, col = 3, add = TRUE)
+```
+
+
+## Normal
+
+$$
+\Large X\sim N(\mu, \sigma^2)
+$$
+
+$$
+f_X(x) = \cfrac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}},\;\forall\;x\in\mathbb{R}
+$$
+
+## t-distribution
+
+- $X\sim t_n$
+- $t_n\overset{d}{=}\color{red}{N(0,1)}\;$ as $\;n\rightarrow\infty$
+
+```{r}
+curve(dt(x,df=1),from=-4,to=4,col="#000000",ylim=c(0,0.4))
+curve(dt(x,df=2),from=-4,to=4,col="#240000",add=T)
+curve(dt(x,df=3),from=-4,to=4,col="#460000",add=T)
+curve(dt(x,df=4),from=-4,to=4,col="#690000",add=T)
+curve(dt(x,df=5),from=-4,to=4,col="#800000",add=T)
+curve(dt(x,df=8),from=-4,to=4,col="#990000",add=T)
+curve(dt(x,df=10),from=-4,to=4,col="#bb0000",add=T)
+curve(dt(x,df=50),from=-4,to=4,col="#cc0000",add=T)
+curve(dt(x,df=91),from=-4,to=4,col="#dd0000",add=T)
+curve(dt(x,df=100),from=-4,to=4,col="#ee0000",add=T)
+curve(dnorm(x,0,1),from=-4,to=4,col="#ff0000",add=T)
+```
+
+# Data with R
+
+## Random Sample
+
+$$
+\mathcal{X}=(X_1, X_2,\cdots, X_{100}),\;\forall\;X_i\overset{iid}{\sim} N(160,10)
+$$
+
+```{r echo=TRUE}
+set.seed(19970608)#random
+x <- rnorm(n = 100, mean = 160, sd = sqrt(10))
+sort(x, decreasing = FALSE)
+```
+
+## Histogram
+
+```{r echo=TRUE}
+hist(x, nclass = 20)
+```
+
+## Data table
+
+```{r echo=TRUE}
+library(kableExtra)
+df <- read.csv(file = "csv/df.csv", fileEncoding = "Big5")
+kable(df)
+```
+
+## New Data (Male)
+
+```{r echo=TRUE}
+library(randomNames)
+set.seed(19970608)
+New_df.M <- data.frame(Name = randomNames(n = 68, gender = 0, which.names = "first"),
+                       Height = rnorm(68, 175, 10),
+                       Weight = rnorm(68, 70, 10),
+                       Gender = rep("M", 68),
+                       Age = sample(20:40, size = 68, replace = TRUE))
+New_df.M
+```
+
+## New Data (Female)
+
+```{r echo=TRUE}
+library(randomNames)
+set.seed(19970607)
+New_df.F <- data.frame(Name = randomNames(n = 28, gender = 1, which.names = "first"),
+                       Height = rnorm(28, 160, 10),
+                       Weight = rnorm(28, 50, 10),
+                       Gender = rep("F", 28),
+                       Age = sample(20:40, size = 28, replace = TRUE))
+New_df.F
+```
+## New Data (n = 100)
+
+```{r echo=TRUE}
+New_df <- rbind(df, New_df.M, New_df.F) #cbind()
+New_df
+```
+
+## Data edit
+
+```{r echo=TRUE}
+library(dplyr)
+New_df <- New_df%>%
+  mutate(BMI = Weight/(Height/100)^2)%>%
+  transform(Gender = as.factor(Gender),
+            BMI = round(BMI, digits = 1))
+New_df
+```
+
+## Data Info.
+
+```{r echo=TRUE}
+summary(New_df)
+```
+
+## Data search
+
+```{r echo=TRUE}
+New_df%>%filter(BMI<13)
+```
+```{r echo=TRUE}
+New_df%>%filter(Height>190)
+```
+
+```{r echo=TRUE}
+New_df%>%filter(Age==28)
+```
+
+# Statistics with R
+
+## One-sample Student's t Test
+
+$$
+H_0: \mu=170
+$$
+$$
+H_1: \mu\neq 170
+$$
+
+```{r echo=TRUE}
+t.test(New_df$Height, mu=170)
+```
+## One-sample Student's t Test
+
+$$
+H_0: \mu>170
+$$
+$$
+H_1: \mu\leq 170
+$$
+
+```{r echo=TRUE}
+t.test(New_df$Height, mu=170, alternative = "greater")
+#alternative = "less", when H_0:\mu<170 
+```
+
+
+## Two-sample Student's t Test
+
+$$
+H_0: \mu_1<\mu_2\;\text{ vs }\;H_1: \mu_1\geq\mu_2
+$$
+
+```{r echo=TRUE}
+BMI_M <- New_df%>%filter(Gender=="M")
+BMI_M <- sample(BMI_M$BMI, 30, replace = F)
+BMI_F <- New_df%>%filter(Gender=="F")
+BMI_F <- BMI_F$BMI
+# test
+t.test(BMI_M, BMI_F, alternative = "less")
+```
+# Model with R
+
+## General Linear Model (Regression){.tabset}
+
+$$
+Y = \beta_0+\beta_1X+\varepsilon\;,\;\text{where }\;\varepsilon\sim N(0,1)
+$$
+```{r echo=TRUE}
+glm1 <- glm(Height~Weight, data = New_df)
+summary(glm1)
+```
+
+
+## Regression Plot
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+library(plotly)
+
+est_beta <- glm1$coefficients
+New_est <- data.frame(Height = est_beta[1]+est_beta[2]*New_df$Weight,
+                      Weight = New_df$Weight)
+
+plot_ly(New_df,
+        x = ~Weight,
+        y = ~Height,
+        text = New_df$Name,
+        type = 'scatter',
+        alpha = 0.65,
+        mode = 'markers',
+        name = 'Weight-Height')%>% 
+  add_trace(data = New_est,
+            x = ~Weight,
+            y = ~Height,
+            name = 'Regression Fit',
+            mode = 'lines')
+```
+
+## Regression Plot (Code)
+
+```{r echo=TRUE, eval=FALSE, message=FALSE, warning=FALSE, include=TRUE}
+library(plotly)
+
+est_beta <- glm1$coefficients
+New_est <- data.frame(Height = est_beta[1]+est_beta[2]*New_df$Weight,
+                      Weight = New_df$Weight)
+
+plot_ly(New_df,
+        x = ~Weight,
+        y = ~Height,
+        text = New_df$Name,
+        type = 'scatter',
+        alpha = 0.65,
+        mode = 'markers',
+        name = 'Weight-Height')%>% 
+  add_trace(data = New_est,
+            x = ~Weight,
+            y = ~Height,
+            name = 'Regression Fit',
+            mode = 'lines')
+```
+
+## Regression Plot (Gender)
+
+```{r echo=FALSE,warning=FALSE, message=FALSE}
+library(plotly)
+
+est_beta <- glm1$coefficients
+New_est <- data.frame(Height = est_beta[1]+est_beta[2]*New_df$Weight,
+                      Weight = New_df$Weight)
+
+plot_ly(New_df,
+        x = ~Weight,
+        y = ~Height,
+        text = New_df$Name,
+        color = ~New_df$Gender,
+        type = 'scatter',
+        alpha = 0.65,
+        mode = 'markers',
+        name = 'Weight-Height')%>% 
+  add_trace(data = New_est,
+            x = ~Weight,
+            y = ~Height,
+            name = 'Regression Fit',
+            mode = 'lines')
+```
+
+## Regression Plot (Age)
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+library(plotly)
+
+est_beta <- glm1$coefficients
+New_est <- data.frame(Height = est_beta[1]+est_beta[2]*New_df$Weight,
+                      Weight = New_df$Weight)
+
+plot_ly(New_df,
+        x = ~Weight,
+        y = ~Height,
+        text = New_df$Name,
+        color = ~New_df$Age,
+        type = 'scatter',
+        alpha = 0.65,
+        mode = 'markers',
+        name = 'Weight-Height')%>% 
+  add_trace(data = New_est,
+            x = ~Weight,
+            y = ~Height,
+            name = 'Regression Fit',
+            mode = 'lines')
+```
+
+# Thank You for Your Attention!
+
+
+# Appendix
+
+## Statistical meaning for linear model
+
+- Model: $Y=X\beta+\varepsilon$, for $\varepsilon\sim N(0,1)$
+- Estimate $\beta_0$, $\beta_1$
+
+$$
+Y = \begin{pmatrix}
+Y_1\\
+\vdots\\
+Y_n
+\end{pmatrix}
+,\;
+X = \begin{pmatrix}
+1 & X_1\\
+\vdots & \vdots\\
+1 & X_n
+\end{pmatrix}
+,\;\text{and }\;
+\beta = \begin{pmatrix}
+\beta_0\\
+\beta_1
+\end{pmatrix}
+$$
+
+- $\hat{\beta} = \begin{pmatrix} \hat{\beta_0}\\ \hat{\beta_1} \end{pmatrix}$ is LSE of $\beta$
+
+## LSE (Least Squared Estimation)
+
+- Estimation of $Y$: $\hat{Y}=X\hat{\beta}$
+- Solve $\hat{\beta}$ from $Y-X\hat{\beta}=0$
+- We have:
+
+$$
+\hat{\beta} = (X^TX)^{-1}X^TY
+$$

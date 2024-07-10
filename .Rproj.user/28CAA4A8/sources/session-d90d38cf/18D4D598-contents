@@ -1,0 +1,32 @@
+project:
+  type: website
+
+website:
+  title: "Yi-Hsin"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: diary.qmd
+        text: D
+      - href: Rtutorial.qmd
+        text: R
+        
+    right:
+      - icon: github
+        href: https://github.com/YiHsinLu
+      - icon: person-circle
+        href: https://yihsinlu.github.io/yhlu.io/Website/index.html
+    
+
+
+format:
+  html:
+    theme: 
+      light: mode_light.scss
+      dark: mode_dark.scss
+    css: styles.css
+    toc: true
+
+editor: visual
+
