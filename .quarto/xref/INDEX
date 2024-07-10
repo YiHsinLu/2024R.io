@@ -22,5 +22,8 @@
   },
   "Rtutorial.qmd": {
     "Rtutorial.html": "ccd2ef72"
+  },
+  "presentation/RStat_tutorial.qmd": {
+    "RStat_tutorial.html": "d4dc909a"
   }
 }

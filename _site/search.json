@@ -341,5 +341,229 @@
     "title": "Basic Statistical Analysis with R",
     "section": "5.5 Statistical meaning",
     "text": "5.5 Statistical meaning\n\nModel: \\(Y=X\\beta+\\varepsilon\\), for \\(\\varepsilon\\sim N(0,1)\\)\nEstimate \\(\\beta_0\\), \\(\\beta_1\\)\n\n\\[\nY = \\begin{pmatrix}\nY_1\\\\\n\\vdots\\\\\nY_n\n\\end{pmatrix}\n,\\;\nX = \\begin{pmatrix}\n1 & X_1\\\\\n\\vdots & \\vdots\\\\\n1 & X_n\n\\end{pmatrix}\n,\\;\\text{and }\\;\n\\beta = \\begin{pmatrix}\n\\beta_0\\\\\n\\beta_1\n\\end{pmatrix}\n\\]\n\n\\(\\hat{\\beta} = \\begin{pmatrix} \\hat{\\beta_0}\\\\ \\hat{\\beta_1} \\end{pmatrix}\\) is LSE of \\(\\beta\\)\n\n\n5.5.1 LSE\n\nLSE (Least Squared Estimation)\nEstimation of \\(Y\\): \\(\\hat{Y}=X\\hat{\\beta}\\)\nSolve \\(\\hat{\\beta}\\) from \\(Y-X\\hat{\\beta}=0\\)\nWe have:\n\n\\[\n\\hat{\\beta} = (X^TX)^{-1}X^TY\n\\]"
+  },
+  {
+    "objectID": "presentation/RStat_tutorial.html",
+    "href": "presentation/RStat_tutorial.html",
+    "title": "Basic Statistical Analysis with R",
+    "section": "",
+    "text": "R\nProb. and Stat.\nData with R\nStat. with R"
+  },
+  {
+    "objectID": "presentation/RStat_tutorial.html#outline",
+    "href": "presentation/RStat_tutorial.html#outline",
+    "title": "Basic Statistical Analysis with R",
+    "section": "",
+    "text": "R\nProb. and Stat.\nData with R\nStat. with R"
+  },
+  {
+    "objectID": "presentation/RStat_tutorial.html#get-start",
+    "href": "presentation/RStat_tutorial.html#get-start",
+    "title": "Basic Statistical Analysis with R",
+    "section": "Get Start",
+    "text": "Get Start"
+  },
+  {
+    "objectID": "presentation/RStat_tutorial.html#example-1",
+    "href": "presentation/RStat_tutorial.html#example-1",
+    "title": "Basic Statistical Analysis with R",
+    "section": "Example 1",
+    "text": "Example 1\n\\[\n\\small\\text{Let } x = \\pi,\\;y=10,\\text{ then evaluate }x+y,\\;x-y,\\;xy,\\text{ and }\\frac{x}{y}.\n\\]\n\nx &lt;- pi\ny &lt;- 10\nx+y\n\n[1] 13.14159\n\nx-y\n\n[1] -6.858407\n\nx*y\n\n[1] 31.41593\n\nx/y\n\n[1] 0.3141593\n\n\n\nbinary operation (\\(+,-,\\times,\\div\\))"
+  },
+  {
+    "objectID": "presentation/RStat_tutorial.html#example-2",
+    "href": "presentation/RStat_tutorial.html#example-2",
+    "title": "Basic Statistical Analysis with R",
+    "section": "Example 2",
+    "text": "Example 2\n\\[\n\\small\\text{Let } f(x)=e^{-x^2/2},\\;\\forall x\\in(-2,2). \\text{ Sketch the curve of } f.\n\\]\n\nf &lt;- function(x){exp(-x^2/2)}\ncurve(f, from = -2, to = 2)\n\n\n\n\n\n\n\n\n\nfunction() and curve()"
+  },
+  {
+    "objectID": "presentation/RStat_tutorial.html#example-3",
+    "href": "presentation/RStat_tutorial.html#example-3",
+    "title": "Basic Statistical Analysis with R",
+    "section": "Example 3",
+    "text": "Example 3\n\\[\n\\small\\text{Find the mean, standard deviation, and variance.}\n\\]\n\nHeight &lt;- c(177, 186, 153, 168, 172) #vector\nmean(Height)\n\n[1] 171.2\n\nsqrt(var(Height))\n\n[1] 12.19426\n\nvar(Height)\n\n[1] 148.7\n\n\n\nRemark\n\nmean \\(\\left[ \\mu\\right]\\) and variance \\(\\left[ \\sigma^2 = \\frac{1}{n}\\sum_{i=1}^{n}(x_i-\\mu)^2\\right]\\)\n\n\n\nmean(), var(), and sqrt()"
+  },
+  {
+    "objectID": "presentation/RStat_tutorial.html#packages",
+    "href": "presentation/RStat_tutorial.html#packages",
+    "title": "Basic Statistical Analysis with R",
+    "section": "Packages",
+    "text": "Packages\n\ninstall.packages()\n\n\ninstall.packages(\"dplyr\")\n\n\n\nlibrary()\n\n\nlibrary(dplyr)# use package"
+  },
+  {
+    "objectID": "presentation/RStat_tutorial.html#probability-space",
+    "href": "presentation/RStat_tutorial.html#probability-space",
+    "title": "Basic Statistical Analysis with R",
+    "section": "Probability Space",
+    "text": "Probability Space\n\\[\n\\Large\\left(\\color{red}{\\Omega}, \\mathscr{F},P\\right)\n\\]\n\nThree Axiom\n\n\\(0\\leq P(A)\\leq 1,\\;\\forall A\\)\n\\(P(\\color{red}{\\Omega}) = 1\\)\n\\(P(\\bigcup_{i=1}^n A_i)=\\sum_{i=1}^n P(A_i), \\text{where }A_i\\cap A_j=\\varnothing,\\;\\forall i,j\\)"
+  },
+  {
+    "objectID": "presentation/RStat_tutorial.html#random-variable",
+    "href": "presentation/RStat_tutorial.html#random-variable",
+    "title": "Basic Statistical Analysis with R",
+    "section": "Random Variable",
+    "text": "Random Variable\n\\[\nX\\sim\\text{Distribution()}\n\\]\n\nEvent \\(\\rightarrow\\) Value\nDiscrete\n\n\\(X\\sim B(n,p)\\)\n\nContinuous\n\n\\(X\\sim\\exp(\\lambda)\\)\n\\(X\\sim N(\\mu,\\sigma^2)\\)\n\\(X\\sim t_\\alpha\\)"
+  },
+  {
+    "objectID": "presentation/RStat_tutorial.html#binomial",
+    "href": "presentation/RStat_tutorial.html#binomial",
+    "title": "Basic Statistical Analysis with R",
+    "section": "Binomial",
+    "text": "Binomial\n\\[\n\\Large X\\sim B(n,p)\n\\]\n\nProbability Mass Function (pmf.)\n\n\\[\nf_X(x) = \\binom{n}{x}\\;p^xq^{n-x},\\;\\forall x = 1, \\cdots, n\n\\]\n\n\\(X\\): #(1), then \\(X\\sim B(2,\\frac{1}{6})\\)"
+  },
+  {
+    "objectID": "presentation/RStat_tutorial.html#exponential",
+    "href": "presentation/RStat_tutorial.html#exponential",
+    "title": "Basic Statistical Analysis with R",
+    "section": "Exponential",
+    "text": "Exponential\n\n\\(X\\sim\\exp(\\lambda)\\)\nProbability Density Function (pdf.) \\(f_X(x) = \\lambda e^{-\\lambda x}\\)\n\n\nf &lt;- function(x, lambda = 1){lambda*exp(-lambda*x)}\ncurve(f,from = 0, to = 5, col = 1)\ncurve(f(x,2),from = 0, to = 5, col = 2, add = TRUE)\ncurve(f(x,.5),from = 0, to = 5, col = 3, add = TRUE)"
+  },
+  {
+    "objectID": "presentation/RStat_tutorial.html#normal",
+    "href": "presentation/RStat_tutorial.html#normal",
+    "title": "Basic Statistical Analysis with R",
+    "section": "Normal",
+    "text": "Normal\n\\[\n\\Large X\\sim N(\\mu, \\sigma^2)\n\\]\n\\[\nf_X(x) = \\cfrac{1}{\\sqrt{2\\pi}\\sigma}e^{-\\frac{(x-\\mu)^2}{2\\sigma^2}},\\;\\forall\\;x\\in\\mathbb{R}\n\\]"
+  },
+  {
+    "objectID": "presentation/RStat_tutorial.html#t-distribution",
+    "href": "presentation/RStat_tutorial.html#t-distribution",
+    "title": "Basic Statistical Analysis with R",
+    "section": "t-distribution",
+    "text": "t-distribution\n\n\\(X\\sim t_n\\)\n\\(t_n\\overset{d}{=}\\color{red}{N(0,1)}\\;\\) as \\(\\;n\\rightarrow\\infty\\)\n\n\ncurve(dt(x,df=1),from=-4,to=4,col=\"#000000\",ylim=c(0,0.4))\ncurve(dt(x,df=2),from=-4,to=4,col=\"#240000\",add=T)\ncurve(dt(x,df=3),from=-4,to=4,col=\"#460000\",add=T)\ncurve(dt(x,df=4),from=-4,to=4,col=\"#690000\",add=T)\ncurve(dt(x,df=5),from=-4,to=4,col=\"#800000\",add=T)\ncurve(dt(x,df=8),from=-4,to=4,col=\"#990000\",add=T)\ncurve(dt(x,df=10),from=-4,to=4,col=\"#bb0000\",add=T)\ncurve(dt(x,df=50),from=-4,to=4,col=\"#cc0000\",add=T)\ncurve(dt(x,df=91),from=-4,to=4,col=\"#dd0000\",add=T)\ncurve(dt(x,df=100),from=-4,to=4,col=\"#ee0000\",add=T)\ncurve(dnorm(x,0,1),from=-4,to=4,col=\"#ff0000\",add=T)"
+  },
+  {
+    "objectID": "presentation/RStat_tutorial.html#random-sample",
+    "href": "presentation/RStat_tutorial.html#random-sample",
+    "title": "Basic Statistical Analysis with R",
+    "section": "Random Sample",
+    "text": "Random Sample\n\\[\n\\mathcal{X}=(X_1, X_2,\\cdots, X_{100}),\\;\\forall\\;X_i\\overset{iid}{\\sim} N(160,10)\n\\]\n\nset.seed(19970608)#random\nx &lt;- rnorm(n = 100, mean = 160, sd = sqrt(10))\nsort(x, decreasing = FALSE)\n\n  [1] 150.2045 150.3638 151.9515 152.4867 153.2311 153.9550 155.0583 155.1287\n  [9] 155.4500 155.8637 156.0542 156.3821 156.4040 156.6807 156.8222 156.9162\n [17] 156.9413 157.3930 157.4179 157.4487 157.4901 157.5814 157.6270 157.8093\n [25] 158.1321 158.1779 158.1841 158.2011 158.3338 158.4286 158.5381 158.5747\n [33] 158.6128 158.6130 158.6211 158.7004 158.8500 158.9164 158.9294 158.9382\n [41] 158.9697 159.0128 159.0373 159.3363 159.4597 159.5536 159.6015 159.7461\n [49] 159.8022 159.8833 159.8919 159.9494 159.9613 159.9639 160.1277 160.2413\n [57] 160.2432 160.2516 160.2878 160.4307 160.5644 160.5740 160.7001 160.8122\n [65] 160.8769 160.8916 160.9366 160.9986 161.0055 161.0284 161.0291 161.2953\n [73] 161.3876 161.4904 161.5726 161.6253 161.6258 161.6970 161.7136 161.8119\n [81] 162.3868 162.4849 162.5548 162.6081 163.2007 163.2842 163.4371 163.7381\n [89] 163.8430 163.8762 164.2689 164.4121 164.4778 165.3108 165.5170 165.9530\n [97] 166.4605 167.1191 167.4459 168.5680"
+  },
+  {
+    "objectID": "presentation/RStat_tutorial.html#histogram",
+    "href": "presentation/RStat_tutorial.html#histogram",
+    "title": "Basic Statistical Analysis with R",
+    "section": "Histogram",
+    "text": "Histogram\n\nhist(x, nclass = 20)"
+  },
+  {
+    "objectID": "presentation/RStat_tutorial.html#data-table",
+    "href": "presentation/RStat_tutorial.html#data-table",
+    "title": "Basic Statistical Analysis with R",
+    "section": "Data table",
+    "text": "Data table\n\nlibrary(kableExtra)\n\n\nAttaching package: 'kableExtra'\n\n\nThe following object is masked from 'package:dplyr':\n\n    group_rows\n\ndf &lt;- read.csv(file = \"csv/df.csv\", fileEncoding = \"Big5\")\nkable(df)\n\n\n\n\nName\nHeight\nWeight\nGender\nAge\n\n\n\n\nSam Lu\n177\n82\nM\n28\n\n\nLan Huang\n159\n45\nF\n21\n\n\nYuji Nishida\n187\n89\nM\n24\n\n\nElaine Liao\n164\n53\nF\n27"
+  },
+  {
+    "objectID": "presentation/RStat_tutorial.html#new-data-male",
+    "href": "presentation/RStat_tutorial.html#new-data-male",
+    "title": "Basic Statistical Analysis with R",
+    "section": "New Data (Male)",
+    "text": "New Data (Male)\n\nlibrary(randomNames)\n\nWarning: package 'randomNames' was built under R version 4.4.1\n\nset.seed(19970608)\nNew_df.M &lt;- data.frame(Name = randomNames(n = 68, gender = 0, which.names = \"first\"),\n                       Height = rnorm(68, 175, 10),\n                       Weight = rnorm(68, 70, 10),\n                       Gender = rep(\"M\", 68),\n                       Age = sample(20:40, size = 68, replace = TRUE))\nNew_df.M\n\n         Name   Height   Weight Gender Age\n1      K'Yeir 169.0641 71.25260      M  24\n2        Todd 161.5081 72.95488      M  24\n3     Grayson 156.8791 63.20119      M  23\n4        Sean 162.5517 71.09409      M  21\n5   John Jack 183.2003 80.62568      M  27\n6      Arnold 180.6811 57.20870      M  36\n7   Alexander 166.0615 76.05074      M  32\n8      Martin 164.8190 65.83416      M  27\n9       Caleb 165.7444 60.00731      M  22\n10       Fahd 168.9666 70.29166      M  26\n11    Richard 151.2488 59.51451      M  27\n12    Maisoon 172.0869 54.96665      M  40\n13      Wyatt 178.2969 84.39411      M  25\n14    Gabriel 181.5490 62.28819      M  28\n15      Arjun 164.6829 58.11602      M  34\n16      Iyaad 181.8277 66.93043      M  40\n17   Krishnan 173.3551 53.77996      M  35\n18    Shannon 169.3024 81.05558      M  25\n19    Mateaki 174.1858 68.84617      M  21\n20       Troy 181.4995 60.89021      M  30\n21     Justin 177.4832 58.76640      M  32\n22      Tommy 190.4390 73.40946      M  34\n23  Francisco 163.9545 75.14024      M  40\n24     Aditya 170.4974 57.16677      M  24\n25     German 168.4081 65.17194      M  36\n26    Shabaan 171.7217 81.85284      M  34\n27     Josiah 180.1860 61.18464      M  40\n28     Robert 174.5392 73.94088      M  35\n29     Daniel 194.5053 60.68860      M  25\n30   Nicholas 178.9981 52.59500      M  32\n31     Ubaida 163.9013 70.35374      M  34\n32     Joseph 177.8806 58.91115      M  27\n33      Malik 182.9758 60.63631      M  33\n34     Justin 172.9407 72.85916      M  30\n35       Ross 172.8970 70.93185      M  35\n36     Darius 178.3733 72.74777      M  36\n37     Jordan 198.7593 67.42554      M  21\n38      Jacob 193.8253 64.82768      M  26\n39      Allen 176.4536 84.59021      M  28\n40     Samuel 175.0794 64.06805      M  32\n41   Cristian 166.3076 59.14488      M  31\n42    Charles 185.5982 60.73456      M  31\n43      David 166.5796 56.39837      M  37\n44     Joshua 175.1916 62.62665      M  28\n45     Junaid 158.8254 65.18550      M  22\n46    Addison 188.4633 66.23809      M  26\n47      Tyler 179.9128 86.12639      M  31\n48   Muntasir 179.4149 83.41502      M  27\n49       Kyle 153.0340 56.79890      M  20\n50     Idrees 165.5594 80.75742      M  27\n51    Saurabh 192.0460 76.51732      M  40\n52    Michael 176.0576 63.67879      M  37\n53      Brett 170.9268 53.69865      M  33\n54    Stephen 172.1640 69.99810      M  34\n55     Jawaad 179.7093 70.25252      M  40\n56     Joseph 169.6818 96.97541      M  22\n57     Kaalim 185.6864 90.81831      M  37\n58    Shaheed 165.1097 85.74759      M  34\n59  Hyun Seok 178.3962 66.90712      M  37\n60   Jonathan 179.9638 80.33960      M  30\n61       Evan 169.2892 73.40476      M  24\n62    Wilbert 182.3091 76.55616      M  30\n63     Joseph 181.6480 71.25410      M  35\n64     Daniel 178.1894 84.61618      M  31\n65     Rifaah 173.0566 79.72135      M  38\n66 Badruddeen 172.9889 60.29281      M  37\n67      Blake 175.4729 63.45875      M  25\n68    Michael 163.4561 58.07225      M  39"
+  },
+  {
+    "objectID": "presentation/RStat_tutorial.html#new-data-female",
+    "href": "presentation/RStat_tutorial.html#new-data-female",
+    "title": "Basic Statistical Analysis with R",
+    "section": "New Data (Female)",
+    "text": "New Data (Female)\n\nlibrary(randomNames)\nset.seed(19970607)\nNew_df.F &lt;- data.frame(Name = randomNames(n = 28, gender = 1, which.names = \"first\"),\n                       Height = rnorm(28, 160, 10),\n                       Weight = rnorm(28, 50, 10),\n                       Gender = rep(\"F\", 28),\n                       Age = sample(20:40, size = 28, replace = TRUE))\nNew_df.F\n\n        Name   Height   Weight Gender Age\n1   Manuella 176.8755 70.50918      F  34\n2      Eliza 158.4561 34.13702      F  37\n3      Katie 147.7548 50.47963      F  34\n4       Joan 160.1891 46.59308      F  21\n5     Hasana 165.6633 37.71016      F  24\n6  Queenisha 170.1549 47.21380      F  25\n7     Alyssa 164.2040 72.39072      F  33\n8      April 166.2919 36.28761      F  31\n9       Musu 155.7780 51.83896      F  35\n10     Sarah 181.0950 34.55192      F  27\n11    Hannah 148.1705 54.88439      F  21\n12     Alina 156.2318 38.12627      F  38\n13   Wajeeha 156.8470 33.25690      F  25\n14    Leslie 160.5540 42.68231      F  38\n15   Saaliha 153.0666 50.46320      F  21\n16   Tahaani 141.8334 43.47029      F  29\n17    Rainey 182.5422 52.79097      F  31\n18    Alyssa 172.1579 62.05662      F  24\n19       Hae 169.3396 44.76316      F  28\n20  Sabriyya 158.7216 60.41923      F  31\n21   Kathryn 162.0836 61.23471      F  22\n22    Hayley 169.4214 43.50545      F  39\n23      Rubi 168.2295 51.72027      F  33\n24 Alexandra 174.9692 40.51046      F  37\n25       Ana 145.6248 35.12445      F  33\n26  Shayonna 173.2791 33.49761      F  37\n27    Daisha 153.9036 49.12283      F  27\n28     Peggy 169.4468 54.75503      F  22"
+  },
+  {
+    "objectID": "presentation/RStat_tutorial.html#new-data-n-100",
+    "href": "presentation/RStat_tutorial.html#new-data-n-100",
+    "title": "Basic Statistical Analysis with R",
+    "section": "New Data (n = 100)",
+    "text": "New Data (n = 100)\n\nNew_df &lt;- rbind(df, New_df.M, New_df.F) #cbind()\nNew_df\n\n            Name   Height   Weight Gender Age\n1         Sam Lu 177.0000 82.00000      M  28\n2      Lan Huang 159.0000 45.00000      F  21\n3   Yuji Nishida 187.0000 89.00000      M  24\n4    Elaine Liao 164.0000 53.00000      F  27\n5         K'Yeir 169.0641 71.25260      M  24\n6           Todd 161.5081 72.95488      M  24\n7        Grayson 156.8791 63.20119      M  23\n8           Sean 162.5517 71.09409      M  21\n9      John Jack 183.2003 80.62568      M  27\n10        Arnold 180.6811 57.20870      M  36\n11     Alexander 166.0615 76.05074      M  32\n12        Martin 164.8190 65.83416      M  27\n13         Caleb 165.7444 60.00731      M  22\n14          Fahd 168.9666 70.29166      M  26\n15       Richard 151.2488 59.51451      M  27\n16       Maisoon 172.0869 54.96665      M  40\n17         Wyatt 178.2969 84.39411      M  25\n18       Gabriel 181.5490 62.28819      M  28\n19         Arjun 164.6829 58.11602      M  34\n20         Iyaad 181.8277 66.93043      M  40\n21      Krishnan 173.3551 53.77996      M  35\n22       Shannon 169.3024 81.05558      M  25\n23       Mateaki 174.1858 68.84617      M  21\n24          Troy 181.4995 60.89021      M  30\n25        Justin 177.4832 58.76640      M  32\n26         Tommy 190.4390 73.40946      M  34\n27     Francisco 163.9545 75.14024      M  40\n28        Aditya 170.4974 57.16677      M  24\n29        German 168.4081 65.17194      M  36\n30       Shabaan 171.7217 81.85284      M  34\n31        Josiah 180.1860 61.18464      M  40\n32        Robert 174.5392 73.94088      M  35\n33        Daniel 194.5053 60.68860      M  25\n34      Nicholas 178.9981 52.59500      M  32\n35        Ubaida 163.9013 70.35374      M  34\n36        Joseph 177.8806 58.91115      M  27\n37         Malik 182.9758 60.63631      M  33\n38        Justin 172.9407 72.85916      M  30\n39          Ross 172.8970 70.93185      M  35\n40        Darius 178.3733 72.74777      M  36\n41        Jordan 198.7593 67.42554      M  21\n42         Jacob 193.8253 64.82768      M  26\n43         Allen 176.4536 84.59021      M  28\n44        Samuel 175.0794 64.06805      M  32\n45      Cristian 166.3076 59.14488      M  31\n46       Charles 185.5982 60.73456      M  31\n47         David 166.5796 56.39837      M  37\n48        Joshua 175.1916 62.62665      M  28\n49        Junaid 158.8254 65.18550      M  22\n50       Addison 188.4633 66.23809      M  26\n51         Tyler 179.9128 86.12639      M  31\n52      Muntasir 179.4149 83.41502      M  27\n53          Kyle 153.0340 56.79890      M  20\n54        Idrees 165.5594 80.75742      M  27\n55       Saurabh 192.0460 76.51732      M  40\n56       Michael 176.0576 63.67879      M  37\n57         Brett 170.9268 53.69865      M  33\n58       Stephen 172.1640 69.99810      M  34\n59        Jawaad 179.7093 70.25252      M  40\n60        Joseph 169.6818 96.97541      M  22\n61        Kaalim 185.6864 90.81831      M  37\n62       Shaheed 165.1097 85.74759      M  34\n63     Hyun Seok 178.3962 66.90712      M  37\n64      Jonathan 179.9638 80.33960      M  30\n65          Evan 169.2892 73.40476      M  24\n66       Wilbert 182.3091 76.55616      M  30\n67        Joseph 181.6480 71.25410      M  35\n68        Daniel 178.1894 84.61618      M  31\n69        Rifaah 173.0566 79.72135      M  38\n70    Badruddeen 172.9889 60.29281      M  37\n71         Blake 175.4729 63.45875      M  25\n72       Michael 163.4561 58.07225      M  39\n73      Manuella 176.8755 70.50918      F  34\n74         Eliza 158.4561 34.13702      F  37\n75         Katie 147.7548 50.47963      F  34\n76          Joan 160.1891 46.59308      F  21\n77        Hasana 165.6633 37.71016      F  24\n78     Queenisha 170.1549 47.21380      F  25\n79        Alyssa 164.2040 72.39072      F  33\n80         April 166.2919 36.28761      F  31\n81          Musu 155.7780 51.83896      F  35\n82         Sarah 181.0950 34.55192      F  27\n83        Hannah 148.1705 54.88439      F  21\n84         Alina 156.2318 38.12627      F  38\n85       Wajeeha 156.8470 33.25690      F  25\n86        Leslie 160.5540 42.68231      F  38\n87       Saaliha 153.0666 50.46320      F  21\n88       Tahaani 141.8334 43.47029      F  29\n89        Rainey 182.5422 52.79097      F  31\n90        Alyssa 172.1579 62.05662      F  24\n91           Hae 169.3396 44.76316      F  28\n92      Sabriyya 158.7216 60.41923      F  31\n93       Kathryn 162.0836 61.23471      F  22\n94        Hayley 169.4214 43.50545      F  39\n95          Rubi 168.2295 51.72027      F  33\n96     Alexandra 174.9692 40.51046      F  37\n97           Ana 145.6248 35.12445      F  33\n98      Shayonna 173.2791 33.49761      F  37\n99        Daisha 153.9036 49.12283      F  27\n100        Peggy 169.4468 54.75503      F  22"
+  },
+  {
+    "objectID": "presentation/RStat_tutorial.html#data-edit",
+    "href": "presentation/RStat_tutorial.html#data-edit",
+    "title": "Basic Statistical Analysis with R",
+    "section": "Data edit",
+    "text": "Data edit\n\nlibrary(dplyr)\nNew_df &lt;- New_df%&gt;%\n  mutate(BMI = Weight/(Height/100)^2)%&gt;%\n  transform(Gender = as.factor(Gender),\n            BMI = round(BMI, digits = 1))\nNew_df\n\n            Name   Height   Weight Gender Age  BMI\n1         Sam Lu 177.0000 82.00000      M  28 26.2\n2      Lan Huang 159.0000 45.00000      F  21 17.8\n3   Yuji Nishida 187.0000 89.00000      M  24 25.5\n4    Elaine Liao 164.0000 53.00000      F  27 19.7\n5         K'Yeir 169.0641 71.25260      M  24 24.9\n6           Todd 161.5081 72.95488      M  24 28.0\n7        Grayson 156.8791 63.20119      M  23 25.7\n8           Sean 162.5517 71.09409      M  21 26.9\n9      John Jack 183.2003 80.62568      M  27 24.0\n10        Arnold 180.6811 57.20870      M  36 17.5\n11     Alexander 166.0615 76.05074      M  32 27.6\n12        Martin 164.8190 65.83416      M  27 24.2\n13         Caleb 165.7444 60.00731      M  22 21.8\n14          Fahd 168.9666 70.29166      M  26 24.6\n15       Richard 151.2488 59.51451      M  27 26.0\n16       Maisoon 172.0869 54.96665      M  40 18.6\n17         Wyatt 178.2969 84.39411      M  25 26.5\n18       Gabriel 181.5490 62.28819      M  28 18.9\n19         Arjun 164.6829 58.11602      M  34 21.4\n20         Iyaad 181.8277 66.93043      M  40 20.2\n21      Krishnan 173.3551 53.77996      M  35 17.9\n22       Shannon 169.3024 81.05558      M  25 28.3\n23       Mateaki 174.1858 68.84617      M  21 22.7\n24          Troy 181.4995 60.89021      M  30 18.5\n25        Justin 177.4832 58.76640      M  32 18.7\n26         Tommy 190.4390 73.40946      M  34 20.2\n27     Francisco 163.9545 75.14024      M  40 28.0\n28        Aditya 170.4974 57.16677      M  24 19.7\n29        German 168.4081 65.17194      M  36 23.0\n30       Shabaan 171.7217 81.85284      M  34 27.8\n31        Josiah 180.1860 61.18464      M  40 18.8\n32        Robert 174.5392 73.94088      M  35 24.3\n33        Daniel 194.5053 60.68860      M  25 16.0\n34      Nicholas 178.9981 52.59500      M  32 16.4\n35        Ubaida 163.9013 70.35374      M  34 26.2\n36        Joseph 177.8806 58.91115      M  27 18.6\n37         Malik 182.9758 60.63631      M  33 18.1\n38        Justin 172.9407 72.85916      M  30 24.4\n39          Ross 172.8970 70.93185      M  35 23.7\n40        Darius 178.3733 72.74777      M  36 22.9\n41        Jordan 198.7593 67.42554      M  21 17.1\n42         Jacob 193.8253 64.82768      M  26 17.3\n43         Allen 176.4536 84.59021      M  28 27.2\n44        Samuel 175.0794 64.06805      M  32 20.9\n45      Cristian 166.3076 59.14488      M  31 21.4\n46       Charles 185.5982 60.73456      M  31 17.6\n47         David 166.5796 56.39837      M  37 20.3\n48        Joshua 175.1916 62.62665      M  28 20.4\n49        Junaid 158.8254 65.18550      M  22 25.8\n50       Addison 188.4633 66.23809      M  26 18.6\n51         Tyler 179.9128 86.12639      M  31 26.6\n52      Muntasir 179.4149 83.41502      M  27 25.9\n53          Kyle 153.0340 56.79890      M  20 24.3\n54        Idrees 165.5594 80.75742      M  27 29.5\n55       Saurabh 192.0460 76.51732      M  40 20.7\n56       Michael 176.0576 63.67879      M  37 20.5\n57         Brett 170.9268 53.69865      M  33 18.4\n58       Stephen 172.1640 69.99810      M  34 23.6\n59        Jawaad 179.7093 70.25252      M  40 21.8\n60        Joseph 169.6818 96.97541      M  22 33.7\n61        Kaalim 185.6864 90.81831      M  37 26.3\n62       Shaheed 165.1097 85.74759      M  34 31.5\n63     Hyun Seok 178.3962 66.90712      M  37 21.0\n64      Jonathan 179.9638 80.33960      M  30 24.8\n65          Evan 169.2892 73.40476      M  24 25.6\n66       Wilbert 182.3091 76.55616      M  30 23.0\n67        Joseph 181.6480 71.25410      M  35 21.6\n68        Daniel 178.1894 84.61618      M  31 26.6\n69        Rifaah 173.0566 79.72135      M  38 26.6\n70    Badruddeen 172.9889 60.29281      M  37 20.1\n71         Blake 175.4729 63.45875      M  25 20.6\n72       Michael 163.4561 58.07225      M  39 21.7\n73      Manuella 176.8755 70.50918      F  34 22.5\n74         Eliza 158.4561 34.13702      F  37 13.6\n75         Katie 147.7548 50.47963      F  34 23.1\n76          Joan 160.1891 46.59308      F  21 18.2\n77        Hasana 165.6633 37.71016      F  24 13.7\n78     Queenisha 170.1549 47.21380      F  25 16.3\n79        Alyssa 164.2040 72.39072      F  33 26.8\n80         April 166.2919 36.28761      F  31 13.1\n81          Musu 155.7780 51.83896      F  35 21.4\n82         Sarah 181.0950 34.55192      F  27 10.5\n83        Hannah 148.1705 54.88439      F  21 25.0\n84         Alina 156.2318 38.12627      F  38 15.6\n85       Wajeeha 156.8470 33.25690      F  25 13.5\n86        Leslie 160.5540 42.68231      F  38 16.6\n87       Saaliha 153.0666 50.46320      F  21 21.5\n88       Tahaani 141.8334 43.47029      F  29 21.6\n89        Rainey 182.5422 52.79097      F  31 15.8\n90        Alyssa 172.1579 62.05662      F  24 20.9\n91           Hae 169.3396 44.76316      F  28 15.6\n92      Sabriyya 158.7216 60.41923      F  31 24.0\n93       Kathryn 162.0836 61.23471      F  22 23.3\n94        Hayley 169.4214 43.50545      F  39 15.2\n95          Rubi 168.2295 51.72027      F  33 18.3\n96     Alexandra 174.9692 40.51046      F  37 13.2\n97           Ana 145.6248 35.12445      F  33 16.6\n98      Shayonna 173.2791 33.49761      F  37 11.2\n99        Daisha 153.9036 49.12283      F  27 20.7\n100        Peggy 169.4468 54.75503      F  22 19.1"
+  },
+  {
+    "objectID": "presentation/RStat_tutorial.html#data-info.",
+    "href": "presentation/RStat_tutorial.html#data-info.",
+    "title": "Basic Statistical Analysis with R",
+    "section": "Data Info.",
+    "text": "Data Info.\n\nsummary(New_df)\n\n     Name               Height          Weight      Gender      Age       \n Length:100         Min.   :141.8   Min.   :33.26   F:30   Min.   :20.00  \n Class :character   1st Qu.:164.2   1st Qu.:53.76   M:70   1st Qu.:25.00  \n Mode  :character   Median :171.9   Median :62.46          Median :31.00  \n                    Mean   :171.1   Mean   :62.89          Mean   :30.21  \n                    3rd Qu.:178.5   3rd Qu.:72.78          3rd Qu.:35.00  \n                    Max.   :198.8   Max.   :96.98          Max.   :40.00  \n      BMI       \n Min.   :10.50  \n 1st Qu.:18.38  \n Median :21.40  \n Mean   :21.48  \n 3rd Qu.:24.93  \n Max.   :33.70"
+  },
+  {
+    "objectID": "presentation/RStat_tutorial.html#data-search",
+    "href": "presentation/RStat_tutorial.html#data-search",
+    "title": "Basic Statistical Analysis with R",
+    "section": "Data search",
+    "text": "Data search\n\nNew_df%&gt;%filter(BMI&lt;13)\n\n      Name   Height   Weight Gender Age  BMI\n1    Sarah 181.0950 34.55192      F  27 10.5\n2 Shayonna 173.2791 33.49761      F  37 11.2\n\n\n\nNew_df%&gt;%filter(Height&gt;190)\n\n     Name   Height   Weight Gender Age  BMI\n1   Tommy 190.4390 73.40946      M  34 20.2\n2  Daniel 194.5053 60.68860      M  25 16.0\n3  Jordan 198.7593 67.42554      M  21 17.1\n4   Jacob 193.8253 64.82768      M  26 17.3\n5 Saurabh 192.0460 76.51732      M  40 20.7\n\n\n\nNew_df%&gt;%filter(Age==28)\n\n     Name   Height   Weight Gender Age  BMI\n1  Sam Lu 177.0000 82.00000      M  28 26.2\n2 Gabriel 181.5490 62.28819      M  28 18.9\n3   Allen 176.4536 84.59021      M  28 27.2\n4  Joshua 175.1916 62.62665      M  28 20.4\n5     Hae 169.3396 44.76316      F  28 15.6"
+  },
+  {
+    "objectID": "presentation/RStat_tutorial.html#one-sample-students-t-test",
+    "href": "presentation/RStat_tutorial.html#one-sample-students-t-test",
+    "title": "Basic Statistical Analysis with R",
+    "section": "One-sample Student’s t Test",
+    "text": "One-sample Student’s t Test\n\\[\nH_0: \\mu=170\n\\] \\[\nH_1: \\mu\\neq 170\n\\]\n\nt.test(New_df$Height, mu=170)\n\n\n    One Sample t-test\n\ndata:  New_df$Height\nt = 0.9556, df = 99, p-value = 0.3416\nalternative hypothesis: true mean is not equal to 170\n95 percent confidence interval:\n 168.8563 173.2688\nsample estimates:\nmean of x \n 171.0625"
+  },
+  {
+    "objectID": "presentation/RStat_tutorial.html#one-sample-students-t-test-1",
+    "href": "presentation/RStat_tutorial.html#one-sample-students-t-test-1",
+    "title": "Basic Statistical Analysis with R",
+    "section": "One-sample Student’s t Test",
+    "text": "One-sample Student’s t Test\n\\[\nH_0: \\mu&gt;170\n\\] \\[\nH_1: \\mu\\leq 170\n\\]\n\nt.test(New_df$Height, mu=170, alternative = \"greater\")\n\n\n    One Sample t-test\n\ndata:  New_df$Height\nt = 0.9556, df = 99, p-value = 0.1708\nalternative hypothesis: true mean is greater than 170\n95 percent confidence interval:\n 169.2163      Inf\nsample estimates:\nmean of x \n 171.0625 \n\n#alternative = \"less\", when H_0:\\mu&lt;170"
+  },
+  {
+    "objectID": "presentation/RStat_tutorial.html#two-sample-students-t-test",
+    "href": "presentation/RStat_tutorial.html#two-sample-students-t-test",
+    "title": "Basic Statistical Analysis with R",
+    "section": "Two-sample Student’s t Test",
+    "text": "Two-sample Student’s t Test\n\\[\nH_0: \\mu_1&lt;\\mu_2\\;\\text{ vs }\\;H_1: \\mu_1\\geq\\mu_2\n\\]\n\nBMI_M &lt;- New_df%&gt;%filter(Gender==\"M\")\nBMI_M &lt;- sample(BMI_M$BMI, 30, replace = F)\nBMI_F &lt;- New_df%&gt;%filter(Gender==\"F\")\nBMI_F &lt;- BMI_F$BMI\n# test\nt.test(BMI_M, BMI_F, alternative = \"less\")\n\n\n    Welch Two Sample t-test\n\ndata:  BMI_M and BMI_F\nt = 3.7572, df = 57.764, p-value = 0.9998\nalternative hypothesis: true difference in means is less than 0\n95 percent confidence interval:\n     -Inf 5.818209\nsample estimates:\nmean of x mean of y \n 22.17333  18.14667"
+  },
+  {
+    "objectID": "presentation/RStat_tutorial.html#general-linear-model-regression",
+    "href": "presentation/RStat_tutorial.html#general-linear-model-regression",
+    "title": "Basic Statistical Analysis with R",
+    "section": "General Linear Model (Regression)",
+    "text": "General Linear Model (Regression)\n\\[\nY = \\beta_0+\\beta_1X+\\varepsilon\\;,\\;\\text{where }\\;\\varepsilon\\sim N(0,1)\n\\]\n\nglm1 &lt;- glm(Height~Weight, data = New_df)\nsummary(glm1)\n\n\nCall:\nglm(formula = Height ~ Weight, data = New_df)\n\nCoefficients:\n             Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 150.72221    4.57094  32.974  &lt; 2e-16 ***\nWeight        0.32341    0.07086   4.564 1.46e-05 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n(Dispersion parameter for gaussian family taken to be 103.0028)\n\n    Null deviance: 12240  on 99  degrees of freedom\nResidual deviance: 10094  on 98  degrees of freedom\nAIC: 751.24\n\nNumber of Fisher Scoring iterations: 2"
+  },
+  {
+    "objectID": "presentation/RStat_tutorial.html#regression-plot",
+    "href": "presentation/RStat_tutorial.html#regression-plot",
+    "title": "Basic Statistical Analysis with R",
+    "section": "Regression Plot",
+    "text": "Regression Plot"
+  },
+  {
+    "objectID": "presentation/RStat_tutorial.html#regression-plot-code",
+    "href": "presentation/RStat_tutorial.html#regression-plot-code",
+    "title": "Basic Statistical Analysis with R",
+    "section": "Regression Plot (Code)",
+    "text": "Regression Plot (Code)\n\nlibrary(plotly)\n\nest_beta &lt;- glm1$coefficients\nNew_est &lt;- data.frame(Height = est_beta[1]+est_beta[2]*New_df$Weight,\n                      Weight = New_df$Weight)\n\nplot_ly(New_df,\n        x = ~Weight,\n        y = ~Height,\n        text = New_df$Name,\n        type = 'scatter',\n        alpha = 0.65,\n        mode = 'markers',\n        name = 'Weight-Height')%&gt;% \n  add_trace(data = New_est,\n            x = ~Weight,\n            y = ~Height,\n            name = 'Regression Fit',\n            mode = 'lines')"
+  },
+  {
+    "objectID": "presentation/RStat_tutorial.html#regression-plot-gender",
+    "href": "presentation/RStat_tutorial.html#regression-plot-gender",
+    "title": "Basic Statistical Analysis with R",
+    "section": "Regression Plot (Gender)",
+    "text": "Regression Plot (Gender)"
+  },
+  {
+    "objectID": "presentation/RStat_tutorial.html#regression-plot-age",
+    "href": "presentation/RStat_tutorial.html#regression-plot-age",
+    "title": "Basic Statistical Analysis with R",
+    "section": "Regression Plot (Age)",
+    "text": "Regression Plot (Age)"
+  },
+  {
+    "objectID": "presentation/RStat_tutorial.html#statistical-meaning-for-linear-model",
+    "href": "presentation/RStat_tutorial.html#statistical-meaning-for-linear-model",
+    "title": "Basic Statistical Analysis with R",
+    "section": "Statistical meaning for linear model",
+    "text": "Statistical meaning for linear model\n\nModel: \\(Y=X\\beta+\\varepsilon\\), for \\(\\varepsilon\\sim N(0,1)\\)\nEstimate \\(\\beta_0\\), \\(\\beta_1\\)\n\n\\[\nY = \\begin{pmatrix}\nY_1\\\\\n\\vdots\\\\\nY_n\n\\end{pmatrix}\n,\\;\nX = \\begin{pmatrix}\n1 & X_1\\\\\n\\vdots & \\vdots\\\\\n1 & X_n\n\\end{pmatrix}\n,\\;\\text{and }\\;\n\\beta = \\begin{pmatrix}\n\\beta_0\\\\\n\\beta_1\n\\end{pmatrix}\n\\]\n\n\\(\\hat{\\beta} = \\begin{pmatrix} \\hat{\\beta_0}\\\\ \\hat{\\beta_1} \\end{pmatrix}\\) is LSE of \\(\\beta\\)"
+  },
+  {
+    "objectID": "presentation/RStat_tutorial.html#lse-least-squared-estimation",
+    "href": "presentation/RStat_tutorial.html#lse-least-squared-estimation",
+    "title": "Basic Statistical Analysis with R",
+    "section": "LSE (Least Squared Estimation)",
+    "text": "LSE (Least Squared Estimation)\n\nEstimation of \\(Y\\): \\(\\hat{Y}=X\\hat{\\beta}\\)\nSolve \\(\\hat{\\beta}\\) from \\(Y-X\\hat{\\beta}=0\\)\nWe have:\n\n\\[\n\\hat{\\beta} = (X^TX)^{-1}X^TY\n\\]"
   }
 ]
