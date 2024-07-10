@@ -158,7 +158,7 @@
     "href": "Rtutorial.html",
     "title": "Basic Statistical Analysis with R",
     "section": "",
-    "text": "In this tutorial, we start with simple R code, and we then introduce basic statistics and probabilities. Utilizing R code and packages to learn statistics methods is the core of this webpage."
+    "text": "In this tutorial, we start with simple R code, and we then introduce basic statistics and probabilities. Utilizing R code and packages to learn statistics methods is the core of this webpage. (here’s the presentation)"
   },
   {
     "objectID": "Rtutorial.html#get-start",
@@ -353,8 +353,8 @@
     "objectID": "presentation/RStat_tutorial.html#outline",
     "href": "presentation/RStat_tutorial.html#outline",
     "title": "Basic Statistical Analysis with R",
-    "section": "",
-    "text": "R\nProb. and Stat.\nData with R\nStat. with R"
+    "section": "Outline",
+    "text": "Outline\n\nR\nProb. and Stat.\nData with R\nStat. with R"
   },
   {
     "objectID": "presentation/RStat_tutorial.html#get-start",
@@ -375,7 +375,7 @@
     "href": "presentation/RStat_tutorial.html#example-2",
     "title": "Basic Statistical Analysis with R",
     "section": "Example 2",
-    "text": "Example 2\n\\[\n\\small\\text{Let } f(x)=e^{-x^2/2},\\;\\forall x\\in(-2,2). \\text{ Sketch the curve of } f.\n\\]\n\nf &lt;- function(x){exp(-x^2/2)}\ncurve(f, from = -2, to = 2)\n\n\n\n\n\n\n\n\n\nfunction() and curve()"
+    "text": "Example 2\n\\[\n\\small\\text{Let } f(x)=e^{-x^2/2},\\;\\forall x\\in(-2,2). \\text{ Sketch the curve of } f.\n\\]\n\nf &lt;- function(x){exp(-x^2/2)}\ncurve(f, from = -2, to = 2)\n\n\n\nfunction() and curve()"
   },
   {
     "objectID": "presentation/RStat_tutorial.html#example-3",
@@ -417,7 +417,7 @@
     "href": "presentation/RStat_tutorial.html#exponential",
     "title": "Basic Statistical Analysis with R",
     "section": "Exponential",
-    "text": "Exponential\n\n\\(X\\sim\\exp(\\lambda)\\)\nProbability Density Function (pdf.) \\(f_X(x) = \\lambda e^{-\\lambda x}\\)\n\n\nf &lt;- function(x, lambda = 1){lambda*exp(-lambda*x)}\ncurve(f,from = 0, to = 5, col = 1)\ncurve(f(x,2),from = 0, to = 5, col = 2, add = TRUE)\ncurve(f(x,.5),from = 0, to = 5, col = 3, add = TRUE)"
+    "text": "Exponential\n\n\\(X\\sim\\exp(\\lambda)\\)\nProbability Density Function (pdf.) \\(f_X(x) = \\lambda e^{-\\lambda x}\\)"
   },
   {
     "objectID": "presentation/RStat_tutorial.html#normal",
@@ -431,7 +431,7 @@
     "href": "presentation/RStat_tutorial.html#t-distribution",
     "title": "Basic Statistical Analysis with R",
     "section": "t-distribution",
-    "text": "t-distribution\n\n\\(X\\sim t_n\\)\n\\(t_n\\overset{d}{=}\\color{red}{N(0,1)}\\;\\) as \\(\\;n\\rightarrow\\infty\\)\n\n\ncurve(dt(x,df=1),from=-4,to=4,col=\"#000000\",ylim=c(0,0.4))\ncurve(dt(x,df=2),from=-4,to=4,col=\"#240000\",add=T)\ncurve(dt(x,df=3),from=-4,to=4,col=\"#460000\",add=T)\ncurve(dt(x,df=4),from=-4,to=4,col=\"#690000\",add=T)\ncurve(dt(x,df=5),from=-4,to=4,col=\"#800000\",add=T)\ncurve(dt(x,df=8),from=-4,to=4,col=\"#990000\",add=T)\ncurve(dt(x,df=10),from=-4,to=4,col=\"#bb0000\",add=T)\ncurve(dt(x,df=50),from=-4,to=4,col=\"#cc0000\",add=T)\ncurve(dt(x,df=91),from=-4,to=4,col=\"#dd0000\",add=T)\ncurve(dt(x,df=100),from=-4,to=4,col=\"#ee0000\",add=T)\ncurve(dnorm(x,0,1),from=-4,to=4,col=\"#ff0000\",add=T)"
+    "text": "t-distribution\n\n\\(X\\sim t_n\\)\n\\(t_n\\overset{d}{=}\\color{red}{N(0,1)}\\;\\) as \\(\\;n\\rightarrow\\infty\\)"
   },
   {
     "objectID": "presentation/RStat_tutorial.html#random-sample",
@@ -452,14 +452,14 @@
     "href": "presentation/RStat_tutorial.html#data-table",
     "title": "Basic Statistical Analysis with R",
     "section": "Data table",
-    "text": "Data table\n\nlibrary(kableExtra)\n\n\nAttaching package: 'kableExtra'\n\n\nThe following object is masked from 'package:dplyr':\n\n    group_rows\n\ndf &lt;- read.csv(file = \"csv/df.csv\", fileEncoding = \"Big5\")\nkable(df)\n\n\n\n\nName\nHeight\nWeight\nGender\nAge\n\n\n\n\nSam Lu\n177\n82\nM\n28\n\n\nLan Huang\n159\n45\nF\n21\n\n\nYuji Nishida\n187\n89\nM\n24\n\n\nElaine Liao\n164\n53\nF\n27"
+    "text": "Data table\n\nlibrary(kableExtra)\ndf &lt;- read.csv(file = \"csv/df.csv\", fileEncoding = \"Big5\")\nkable(df)\n\n\n\n\nName\nHeight\nWeight\nGender\nAge\n\n\n\n\nSam Lu\n177\n82\nM\n28\n\n\nLan Huang\n159\n45\nF\n21\n\n\nYuji Nishida\n187\n89\nM\n24\n\n\nElaine Liao\n164\n53\nF\n27"
   },
   {
     "objectID": "presentation/RStat_tutorial.html#new-data-male",
     "href": "presentation/RStat_tutorial.html#new-data-male",
     "title": "Basic Statistical Analysis with R",
     "section": "New Data (Male)",
-    "text": "New Data (Male)\n\nlibrary(randomNames)\n\nWarning: package 'randomNames' was built under R version 4.4.1\n\nset.seed(19970608)\nNew_df.M &lt;- data.frame(Name = randomNames(n = 68, gender = 0, which.names = \"first\"),\n                       Height = rnorm(68, 175, 10),\n                       Weight = rnorm(68, 70, 10),\n                       Gender = rep(\"M\", 68),\n                       Age = sample(20:40, size = 68, replace = TRUE))\nNew_df.M\n\n         Name   Height   Weight Gender Age\n1      K'Yeir 169.0641 71.25260      M  24\n2        Todd 161.5081 72.95488      M  24\n3     Grayson 156.8791 63.20119      M  23\n4        Sean 162.5517 71.09409      M  21\n5   John Jack 183.2003 80.62568      M  27\n6      Arnold 180.6811 57.20870      M  36\n7   Alexander 166.0615 76.05074      M  32\n8      Martin 164.8190 65.83416      M  27\n9       Caleb 165.7444 60.00731      M  22\n10       Fahd 168.9666 70.29166      M  26\n11    Richard 151.2488 59.51451      M  27\n12    Maisoon 172.0869 54.96665      M  40\n13      Wyatt 178.2969 84.39411      M  25\n14    Gabriel 181.5490 62.28819      M  28\n15      Arjun 164.6829 58.11602      M  34\n16      Iyaad 181.8277 66.93043      M  40\n17   Krishnan 173.3551 53.77996      M  35\n18    Shannon 169.3024 81.05558      M  25\n19    Mateaki 174.1858 68.84617      M  21\n20       Troy 181.4995 60.89021      M  30\n21     Justin 177.4832 58.76640      M  32\n22      Tommy 190.4390 73.40946      M  34\n23  Francisco 163.9545 75.14024      M  40\n24     Aditya 170.4974 57.16677      M  24\n25     German 168.4081 65.17194      M  36\n26    Shabaan 171.7217 81.85284      M  34\n27     Josiah 180.1860 61.18464      M  40\n28     Robert 174.5392 73.94088      M  35\n29     Daniel 194.5053 60.68860      M  25\n30   Nicholas 178.9981 52.59500      M  32\n31     Ubaida 163.9013 70.35374      M  34\n32     Joseph 177.8806 58.91115      M  27\n33      Malik 182.9758 60.63631      M  33\n34     Justin 172.9407 72.85916      M  30\n35       Ross 172.8970 70.93185      M  35\n36     Darius 178.3733 72.74777      M  36\n37     Jordan 198.7593 67.42554      M  21\n38      Jacob 193.8253 64.82768      M  26\n39      Allen 176.4536 84.59021      M  28\n40     Samuel 175.0794 64.06805      M  32\n41   Cristian 166.3076 59.14488      M  31\n42    Charles 185.5982 60.73456      M  31\n43      David 166.5796 56.39837      M  37\n44     Joshua 175.1916 62.62665      M  28\n45     Junaid 158.8254 65.18550      M  22\n46    Addison 188.4633 66.23809      M  26\n47      Tyler 179.9128 86.12639      M  31\n48   Muntasir 179.4149 83.41502      M  27\n49       Kyle 153.0340 56.79890      M  20\n50     Idrees 165.5594 80.75742      M  27\n51    Saurabh 192.0460 76.51732      M  40\n52    Michael 176.0576 63.67879      M  37\n53      Brett 170.9268 53.69865      M  33\n54    Stephen 172.1640 69.99810      M  34\n55     Jawaad 179.7093 70.25252      M  40\n56     Joseph 169.6818 96.97541      M  22\n57     Kaalim 185.6864 90.81831      M  37\n58    Shaheed 165.1097 85.74759      M  34\n59  Hyun Seok 178.3962 66.90712      M  37\n60   Jonathan 179.9638 80.33960      M  30\n61       Evan 169.2892 73.40476      M  24\n62    Wilbert 182.3091 76.55616      M  30\n63     Joseph 181.6480 71.25410      M  35\n64     Daniel 178.1894 84.61618      M  31\n65     Rifaah 173.0566 79.72135      M  38\n66 Badruddeen 172.9889 60.29281      M  37\n67      Blake 175.4729 63.45875      M  25\n68    Michael 163.4561 58.07225      M  39"
+    "text": "New Data (Male)\n\nlibrary(randomNames)\nset.seed(19970608)\nNew_df.M &lt;- data.frame(Name = randomNames(n = 68, gender = 0, which.names = \"first\"),\n                       Height = rnorm(68, 175, 10),\n                       Weight = rnorm(68, 70, 10),\n                       Gender = rep(\"M\", 68),\n                       Age = sample(20:40, size = 68, replace = TRUE))\nNew_df.M\n\n         Name   Height   Weight Gender Age\n1      K'Yeir 169.0641 71.25260      M  24\n2        Todd 161.5081 72.95488      M  24\n3     Grayson 156.8791 63.20119      M  23\n4        Sean 162.5517 71.09409      M  21\n5   John Jack 183.2003 80.62568      M  27\n6      Arnold 180.6811 57.20870      M  36\n7   Alexander 166.0615 76.05074      M  32\n8      Martin 164.8190 65.83416      M  27\n9       Caleb 165.7444 60.00731      M  22\n10       Fahd 168.9666 70.29166      M  26\n11    Richard 151.2488 59.51451      M  27\n12    Maisoon 172.0869 54.96665      M  40\n13      Wyatt 178.2969 84.39411      M  25\n14    Gabriel 181.5490 62.28819      M  28\n15      Arjun 164.6829 58.11602      M  34\n16      Iyaad 181.8277 66.93043      M  40\n17   Krishnan 173.3551 53.77996      M  35\n18    Shannon 169.3024 81.05558      M  25\n19    Mateaki 174.1858 68.84617      M  21\n20       Troy 181.4995 60.89021      M  30\n21     Justin 177.4832 58.76640      M  32\n22      Tommy 190.4390 73.40946      M  34\n23  Francisco 163.9545 75.14024      M  40\n24     Aditya 170.4974 57.16677      M  24\n25     German 168.4081 65.17194      M  36\n26    Shabaan 171.7217 81.85284      M  34\n27     Josiah 180.1860 61.18464      M  40\n28     Robert 174.5392 73.94088      M  35\n29     Daniel 194.5053 60.68860      M  25\n30   Nicholas 178.9981 52.59500      M  32\n31     Ubaida 163.9013 70.35374      M  34\n32     Joseph 177.8806 58.91115      M  27\n33      Malik 182.9758 60.63631      M  33\n34     Justin 172.9407 72.85916      M  30\n35       Ross 172.8970 70.93185      M  35\n36     Darius 178.3733 72.74777      M  36\n37     Jordan 198.7593 67.42554      M  21\n38      Jacob 193.8253 64.82768      M  26\n39      Allen 176.4536 84.59021      M  28\n40     Samuel 175.0794 64.06805      M  32\n41   Cristian 166.3076 59.14488      M  31\n42    Charles 185.5982 60.73456      M  31\n43      David 166.5796 56.39837      M  37\n44     Joshua 175.1916 62.62665      M  28\n45     Junaid 158.8254 65.18550      M  22\n46    Addison 188.4633 66.23809      M  26\n47      Tyler 179.9128 86.12639      M  31\n48   Muntasir 179.4149 83.41502      M  27\n49       Kyle 153.0340 56.79890      M  20\n50     Idrees 165.5594 80.75742      M  27\n51    Saurabh 192.0460 76.51732      M  40\n52    Michael 176.0576 63.67879      M  37\n53      Brett 170.9268 53.69865      M  33\n54    Stephen 172.1640 69.99810      M  34\n55     Jawaad 179.7093 70.25252      M  40\n56     Joseph 169.6818 96.97541      M  22\n57     Kaalim 185.6864 90.81831      M  37\n58    Shaheed 165.1097 85.74759      M  34\n59  Hyun Seok 178.3962 66.90712      M  37\n60   Jonathan 179.9638 80.33960      M  30\n61       Evan 169.2892 73.40476      M  24\n62    Wilbert 182.3091 76.55616      M  30\n63     Joseph 181.6480 71.25410      M  35\n64     Daniel 178.1894 84.61618      M  31\n65     Rifaah 173.0566 79.72135      M  38\n66 Badruddeen 172.9889 60.29281      M  37\n67      Blake 175.4729 63.45875      M  25\n68    Michael 163.4561 58.07225      M  39"
   },
   {
     "objectID": "presentation/RStat_tutorial.html#new-data-female",

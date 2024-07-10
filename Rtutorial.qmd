@@ -8,29 +8,27 @@ output:
     df_print: paged
 ---
 
+------------------------------------------------------------------------
 
+In this tutorial, we start with simple R code, and we then introduce basic statistics and probabilities. Utilizing R code and packages to learn statistics methods is the core of this webpage. (here's the [presentation](https://yihsinlu.github.io/2024R.io/presentation/RStat_tutorial.html))
 
-****
+-   R
 
-In this tutorial, we start with simple R code, and we then introduce basic statistics and probabilities. Utilizing R code and packages to learn statistics methods is the core of this webpage.
+-   Probability and Statistics
 
-* R
+-   Data with R
 
-* Probability and Statistics
+-   Statistics with R
 
-* Data with R
+-   Model with R
 
-* Statistics with R
-
-* Model with R
-
-****
+------------------------------------------------------------------------
 
 ### **WHY?**
 
 Why is it important to learn **statistics**, and why do we use **R** for data analysis? In the current era characterized by big data, extensive information, and artificial intelligence (AI), statistical models form the cornerstone of AI and machine learning. Statistics provide a comprehensive framework for explaining outcomes, parameters, and nearly all aspects of these models. By utilizing R, a powerful statistical computing language, researchers can efficiently analyze and interpret complex datasets, thereby advancing the field of data science.
 
-****
+------------------------------------------------------------------------
 
 # **1 R**
 
@@ -39,7 +37,7 @@ J.D. Long, P. Teetor ([2019](https://rc2e.com/)) present a R cookbook by bookdow
 ## **1.1 Get Start**
 
 The R studio page display 4 windows unless nav-bar, The upper left window is the opening file, I prefer utilize `.Rmd` (R mark down). As Fig 1., we code between the area and see the result below. You also could type the code behide `>` on lower left window, and click enter to run the code. Two right windows illustrate the variable, function, and packages, we will introduce how they work later.
- 
+
 ![**Fig 1.**](fig/Rstudio_start.jpg)
 
 ## **1.2 Variables**
@@ -68,7 +66,7 @@ chr
 
 ### **1.2.3 vector**
 
-* Be careful the variable name, such as `c` is a function fro creating vectors.
+-   Be careful the variable name, such as `c` is a function fro creating vectors.
 
 ```{r}
 V1 <- c(1:10)
@@ -78,7 +76,6 @@ V2
 ```
 
 ### **1.2.4 function**
-
 
 $$
 f(x)=x^2+2x+1\text{, and find } f(\pi).
@@ -140,13 +137,13 @@ df <- data.frame(Name = c("Sam", "Yuji", "Lan", "Elaine"),
 df
 ```
 
-****
+------------------------------------------------------------------------
 
 # **2 Probabilities and Statistics**
 
-* [Textbook](https://cis.temple.edu/~latecki/Courses/CIS2033-Spring13/Modern_intro_probability_statistics_Dekking05.pdf)
+-   [Textbook](https://cis.temple.edu/~latecki/Courses/CIS2033-Spring13/Modern_intro_probability_statistics_Dekking05.pdf)
 
-****
+------------------------------------------------------------------------
 
 ## **2.1 Probability Space**
 
@@ -154,49 +151,49 @@ $$
 \Large (\Omega, \mathscr{F}, P)
 $$
 
-* $\Omega$: Sample space, all of the occurring events.
+-   $\Omega$: Sample space, all of the occurring events.
 
-* $\mathscr{F}$: $\sigma$-algebra, hard to explained, simply define $\Omega\in\mathscr{F}$, fixed the math.
+-   $\mathscr{F}$: $\sigma$-algebra, hard to explained, simply define $\Omega\in\mathscr{F}$, fixed the math.
 
-* $P$: probability measure, the value of the occurring event, and between 0 and 1.
+-   $P$: probability measure, the value of the occurring event, and between 0 and 1.
 
-****
+------------------------------------------------------------------------
 
 ### **2.1.1 simply example**
 
 Probability space of tossing a fair coin, then:
 
-* $\Omega = \{H,T\}$
+-   $\Omega = \{H,T\}$
 
-* $\mathscr{F} = \{H,T\}$
+-   $\mathscr{F} = \{H,T\}$
 
-* $P(\{H\})=P(\{T\})=\frac{1}{2}$
+-   $P(\{H\})=P(\{T\})=\frac{1}{2}$
 
-****
+------------------------------------------------------------------------
 
 ### **2.1.2 Probability Measure**
 
-* **Three Axiom**
+-   **Three Axiom**
 
-  - $0\leq P(A)\leq 1,\;\forall A$
-  
-  - $P(\Omega) = 1$
-  
-  - $P(\bigcup_{i=1}^n A_i)=\sum_{i=1}^n P(A_i), \text{where }A_i\cap A_j=\varnothing,\;\forall i,j$
+    -   $0\leq P(A)\leq 1,\;\forall A$
+
+    -   $P(\Omega) = 1$
+
+    -   $P(\bigcup_{i=1}^n A_i)=\sum_{i=1}^n P(A_i), \text{where }A_i\cap A_j=\varnothing,\;\forall i,j$
 
 ## **2.2 Discrete Random Variable**
 
-* Use X,Y,Z,... define random variables, and x,y,z,.. define values.
+-   Use X,Y,Z,... define random variables, and x,y,z,.. define values.
 
-* Random Variables $X$ includes all possible outcomes.
+-   Random Variables $X$ includes all possible outcomes.
 
-* Probability is denoted by $P(X=x)=f(x)$.
+-   Probability is denoted by $P(X=x)=f(x)$.
 
-* Mean: $E(X) = \sum_{x=1}^nx_if(x) = \mu$
+-   Mean: $E(X) = \sum_{x=1}^nx_if(x) = \mu$
 
-* variance:$Var(X) = \sum_{x=1}^n(x-\mu)^2f(x)= E(X-E(X))^2=E(X^2)-(E(X))^2$
+-   variance:$Var(X) = \sum_{x=1}^n(x-\mu)^2f(x)= E(X-E(X))^2=E(X^2)-(E(X))^2$
 
-****
+------------------------------------------------------------------------
 
 ### **2.2.1 Binomial**
 
@@ -204,35 +201,35 @@ $$
 \Large X\sim B(n,p)
 $$
 
-- $n$ and $p$ are parameters of distribution
+-   $n$ and $p$ are parameters of distribution
 
-- $n$: n times for trail
+-   $n$: n times for trail
 
-- $p$: probability of event for each trail
+-   $p$: probability of event for each trail
 
-- Probability Mass Function (pmf):
+-   Probability Mass Function (pmf):
 
 $$
 f_X(x) = \binom{n}{x}\;p^xq^{n-x},\;\forall x = 1, \cdots, n
 $$
 
-****
+------------------------------------------------------------------------
 
 ## **2.3 Continuous Random Variable**
 
-* Probability is denoted by $P(X\leq x)=\int_{-\infty}^xf(x)dx$, then $P(X=x)=0$
+-   Probability is denoted by $P(X\leq x)=\int_{-\infty}^xf(x)dx$, then $P(X=x)=0$
 
-* Mean: $E(X) = \int_\mathbb{R}xf_X(x)dx = \mu$
+-   Mean: $E(X) = \int_\mathbb{R}xf_X(x)dx = \mu$
 
-* variance:$Var(X) = \int_\mathbb{R}(x-\mu)^2f_X(x)dx = E(X-E(X))^2=E(X^2)-(E(X))^2$
+-   variance:$Var(X) = \int_\mathbb{R}(x-\mu)^2f_X(x)dx = E(X-E(X))^2=E(X^2)-(E(X))^2$
 
-****
+------------------------------------------------------------------------
 
 ### **2.3.1 Exponential**
 
-* $X\sim\exp(\lambda)$
+-   $X\sim\exp(\lambda)$
 
-* Probability Density Function (pdf.) $f_X(x) = \lambda e^{-\lambda x}$
+-   Probability Density Function (pdf.) $f_X(x) = \lambda e^{-\lambda x}$
 
 ```{r}
 f <- function(x, lambda = 1){lambda*exp(-lambda*x)}
@@ -241,7 +238,7 @@ curve(f(x,2),from = 0, to = 5, col = 2, add = TRUE)
 curve(f(x,.5),from = 0, to = 5, col = 3, add = TRUE)
 ```
 
-****
+------------------------------------------------------------------------
 
 ### **2.3.2 Normal**
 
@@ -253,15 +250,13 @@ $$
 f_X(x) = \cfrac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}},\;\forall\;x\in\mathbb{R}
 $$
 
-
-****
-
+------------------------------------------------------------------------
 
 ### **2.3.3 t-distribution**
 
-* $X\sim t_n$
+-   $X\sim t_n$
 
-* $t_n\overset{d}{=}\color{red}{N(0,1)}\;$ as $\;n\rightarrow\infty$
+-   $t_n\overset{d}{=}\color{red}{N(0,1)}\;$ as $\;n\rightarrow\infty$
 
 ```{r}
 curve(dt(x,df=1),from=-4,to=4,col="#000000",ylim=c(0,0.4))
@@ -277,13 +272,11 @@ curve(dt(x,df=100),from=-4,to=4,col="#ee0000",add=T)
 curve(dnorm(x,0,1),from=-4,to=4,col="#ff0000",add=T)
 ```
 
-****
-
+------------------------------------------------------------------------
 
 # **3 Data with R**
 
-****
-
+------------------------------------------------------------------------
 
 ## **3.1 Random Sample**
 
@@ -297,8 +290,7 @@ x <- rnorm(n = 100, mean = 160, sd = sqrt(10))
 sort(x, decreasing = FALSE)
 ```
 
-****
-
+------------------------------------------------------------------------
 
 ## **3.2 Histogram**
 
@@ -306,8 +298,7 @@ sort(x, decreasing = FALSE)
 hist(x, nclass = 20)
 ```
 
-****
-
+------------------------------------------------------------------------
 
 ## **3.3 Data table**
 
@@ -317,8 +308,7 @@ df <- read.csv(file = "csv/df.csv", fileEncoding = "Big5")
 kable(df)
 ```
 
-****
-
+------------------------------------------------------------------------
 
 ## **3.4 New Data (Male)**
 
@@ -333,8 +323,7 @@ New_df.M <- data.frame(Name = randomNames(n = 68, gender = 0, which.names = "fir
 New_df.M
 ```
 
-****
-
+------------------------------------------------------------------------
 
 ## **3.5 New Data (Female)**
 
@@ -349,7 +338,7 @@ New_df.F <- data.frame(Name = randomNames(n = 28, gender = 1, which.names = "fir
 New_df.F
 ```
 
-****
+------------------------------------------------------------------------
 
 ## **3.6 New Data (n = 100)**
 
@@ -358,8 +347,7 @@ New_df <- rbind(df, New_df.M, New_df.F) #cbind()
 New_df
 ```
 
-****
-
+------------------------------------------------------------------------
 
 ## **3.7 Data editing**
 
@@ -372,8 +360,7 @@ New_df <- New_df%>%
 New_df
 ```
 
-****
-
+------------------------------------------------------------------------
 
 ## **3.8 Data Information**
 
@@ -381,14 +368,14 @@ New_df
 summary(New_df)
 ```
 
-****
-
+------------------------------------------------------------------------
 
 ## **3.9 Data searching**
 
 ```{r echo=TRUE}
 New_df%>%filter(BMI<13)
 ```
+
 ```{r echo=TRUE}
 New_df%>%filter(Height>190)
 ```
@@ -397,20 +384,17 @@ New_df%>%filter(Height>190)
 New_df%>%filter(Age==28)
 ```
 
-****
-
+------------------------------------------------------------------------
 
 # **4 Statistics with R**
 
-****
-
+------------------------------------------------------------------------
 
 ## **4.1 One-sample Student's t Test**
 
 $$
 H_0: \mu=170
-$$
-$$
+$$ $$
 H_1: \mu\neq 170
 $$
 
@@ -418,15 +402,13 @@ $$
 t.test(New_df$Height, mu=170)
 ```
 
-****
-
+------------------------------------------------------------------------
 
 ## **4.2 One-sample Student's t Test**
 
 $$
 H_0: \mu>170
-$$
-$$
+$$ $$
 H_1: \mu\leq 170
 $$
 
@@ -435,9 +417,7 @@ t.test(New_df$Height, mu=170, alternative = "greater")
 #alternative = "less", when H_0:\mu<170 
 ```
 
-
-****
-
+------------------------------------------------------------------------
 
 ## **4.3 Two-sample Student's t Test**
 
@@ -454,13 +434,11 @@ BMI_F <- BMI_F$BMI
 t.test(BMI_M, BMI_F, alternative = "less")
 ```
 
-****
-
+------------------------------------------------------------------------
 
 # **5 Model with R**
 
-****
-
+------------------------------------------------------------------------
 
 ## **5.1 Linear Model**
 
@@ -473,9 +451,7 @@ glm1 <- glm(Height~Weight, data = New_df)
 summary(glm1)
 ```
 
-
-****
-
+------------------------------------------------------------------------
 
 ## **5.2 Regression Plot**
 
@@ -501,8 +477,7 @@ plot_ly(New_df,
             mode = 'lines')
 ```
 
-****
-
+------------------------------------------------------------------------
 
 ## **5.3 Regression Plot (Gender)**
 
@@ -529,8 +504,7 @@ plot_ly(New_df,
             mode = 'lines')
 ```
 
-****
-
+------------------------------------------------------------------------
 
 ## **5.4 Regression Plot (Age)**
 
@@ -557,15 +531,13 @@ plot_ly(New_df,
             mode = 'lines')
 ```
 
-
-****
-
+------------------------------------------------------------------------
 
 ## **5.5 Statistical meaning**
 
-* Model: $Y=X\beta+\varepsilon$, for $\varepsilon\sim N(0,1)$
+-   Model: $Y=X\beta+\varepsilon$, for $\varepsilon\sim N(0,1)$
 
-* Estimate $\beta_0$, $\beta_1$
+-   Estimate $\beta_0$, $\beta_1$
 
 $$
 Y = \begin{pmatrix}
@@ -586,17 +558,17 @@ X = \begin{pmatrix}
 \end{pmatrix}
 $$
 
-* $\hat{\beta} = \begin{pmatrix} \hat{\beta_0}\\ \hat{\beta_1} \end{pmatrix}$ is LSE of $\beta$
+-   $\hat{\beta} = \begin{pmatrix} \hat{\beta_0}\\ \hat{\beta_1} \end{pmatrix}$ is LSE of $\beta$
 
 ### **5.5.1 LSE**
 
-* LSE (Least Squared Estimation)
+-   LSE (Least Squared Estimation)
 
-* Estimation of $Y$: $\hat{Y}=X\hat{\beta}$
+-   Estimation of $Y$: $\hat{Y}=X\hat{\beta}$
 
-* Solve $\hat{\beta}$ from $Y-X\hat{\beta}=0$
+-   Solve $\hat{\beta}$ from $Y-X\hat{\beta}=0$
 
-* We have:
+-   We have:
 
 $$
 \hat{\beta} = (X^TX)^{-1}X^TY
