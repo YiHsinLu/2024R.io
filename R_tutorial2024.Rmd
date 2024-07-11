@@ -697,3 +697,37 @@ $$
 
 
 ****
+
+# **6 QA**
+
+****
+
+## **6.1 ERROR**
+
+****
+
+### 6.1.1 error: can not find the object 'x'
+
+Here's the problem for undefined variable 'x'.
+
+****
+### 6.6.2 error: the function 'f' not found.
+
+Check the function exists or the package with this function should be installed. Please use `?f` to find the function detail. If you use the function `f` in package called `Basic`, then install the package and run the code `library("Basic")`. You then use the function.
+
+****
+### 6.6.3 wrong data type
+
+Sometimes, the package require numeric only, you could use `as.numeric()` to change its type and utilize `class()` to check its type.
+
+```{r class.output="code-output"}
+c1 <- c(1,2,5,7,"1","6")
+
+# turn into numeric
+c1 <- as.numeric(c1)
+
+#check
+class(c1)
+```
+
+****
