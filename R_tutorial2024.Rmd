@@ -673,14 +673,27 @@ $$
 
 ### **5.5.1 LSE**
 
-* LSE (Least Squared Estimation)
+* LSE (Least Squared Estimation) to estimate $\beta$
 
 * Estimation of $Y$: $\hat{Y}=X\hat{\beta}$
 
-* Solve $\hat{\beta}$ from $Y-X\hat{\beta}=0$
+* Minimized:
+
+$$
+(Y-X\hat{\beta})^T(Y-X\hat{\beta})
+$$
+
+* Solve: (maximum and minimum for the function while the derivative equal to 0.)
+
+$$
+\cfrac{\partial}{\partial\hat{\beta}} (Y-X\hat{\beta})^T(Y-X\hat{\beta})=0
+$$
 
 * We have:
 
 $$
 \hat{\beta} = (X^TX)^{-1}X^TY
 $$
+
+
+****
