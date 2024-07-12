@@ -222,11 +222,97 @@ df
 
 ****
 
-## **1.3 Loop**
+## **1.3 If Else**
+
+### **1.3.1 condition**
+
+As we known, there is a variable type called logic, `TRUE` and `FALSE`.
+
+* x==y: Is $x=y$?
+* x!=y: Is $x\neq y$?
+* x>=y: Is $x\geq y$? (x<=y: Is $x\leq y$?)
+* x, y can be integer and character.
+
+```{r class.output="code-output"}
+1==2
+1!=2
+1>=2
+1<=2
+```
+```{r class.output="code-output"}
+x <- "apple"
+
+x=="banana"
+x!="banana"
+```
+
+* check the character in a string
+* use the function `grepl`
+* ex: Is "a" in the string "apple"?
+
+```{r class.output="code-output"}
+x <- "apple"
+
+grepl("a", x)
+```
+
+### **1.3.2 if**
+
+* `if(condition){do}`
+* `do`: if the condition is true, then do!
+
+
+```{r class.output="code-output"}
+
+x <- 100
+y <- 110
+
+if(x!=y){
+  print("x is not equal to y.")
+}
+
+```
+
+```{r class.output="code-output"}
+
+x <- 100
+y <- 100
+
+if(x!=y){
+  print("x is not equal to y.")
+}else{
+  print("x is equal to y.")
+}
+
+```
+```{r class.output="code-output"}
+
+x <- 100
+y <- 110
+z <- 120
+
+if(x==y){
+  print("x is equal to y.")
+}else if(x==z){
+  print("x is equal to z.")
+}else{
+  print("x is equal to y and z.")
+}
+
+```
+
+****
+
+## **1.4 Loop**
 
 When you repeat the same things many times.
 
-### **1.3.1 for**
+### **1.4.1 for**
+
+* use `for(i in vector)`
+* `i`: the variable in the loop
+* `vector`: the collection of variables for each loop
+* ex: I want build a "101" vector.
 
 ```{r class.output="code-output"}
 buliding <- c()
@@ -236,6 +322,27 @@ for(Floor in 1:101){
 }
 
 buliding
+```
+
+* ex: evaluate $1\times2\times3\times\cdots\times100$.
+
+```{r class.output="code-output"}
+Multiple_100 <- 1
+
+for(i in 1:100){
+  Multiple_100 <- Multiple_100*i
+}
+Multiple_100
+```
+
+* ex: print the name list
+
+```{r class.output="code-output"}
+Name_list <- c("Sam", "Lan", "Elaine", "Yuji", "Yuki")
+
+for(i in Name_list){
+  print(i)
+}
 ```
 
 ****
@@ -320,9 +427,9 @@ $$
 
 * Probability is denoted by $P(X\leq x)=\int_{-\infty}^xf(x)dx$, then $P(X=x)=0$
 
-* Mean: $E(X) = \int_\mathbb {r class.output="code-output"}xf_X(x)dx = \mu$
+* Mean: $E(X) = \int_\mathbb{r}xf_X(x)dx = \mu$
 
-* variance:$Var(X) = \int_\mathbb {r class.output="code-output"}(x-\mu)^2f_X(x)dx = E(X-E(X))^2=E(X^2)-(E(X))^2$
+* variance:$Var(X) = \int_\mathbb{r}(x-\mu)^2f_X(x)dx = E(X-E(X))^2=E(X^2)-(E(X))^2$
 
 ****
 
