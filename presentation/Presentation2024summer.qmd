@@ -1,0 +1,39 @@
+---
+title: "**Basic Statistical Analysis with R**"
+format:
+  revealjs:
+    slide-number: true
+    chalkboard: 
+      buttons: false
+    preview-links: auto
+    theme: simple
+    logo: https://upload.wikimedia.org/wikipedia/commons/d/d0/RStudio_logo_flat.svg
+author: "*Yi-Hsin Lu*"
+date: "2024-07-15"
+---
+
+# R can?
+
+## Swiss Bank
+
+```{r echo=TRUE}
+library(MixGHD)
+data('banknote')
+```
+
+## Outline
+
+- R
+- Prob. and Stat.
+- Data with R
+- Stat. with R
+
+::: footer
+[R tutorial](https://yihsinlu.github.io/2024R.io/R_tutorial2024.html)
+:::
+
+# R
+
+- [R-4.4.1](https://cran.r-project.org/bin/windows/base/)
+- [RStudio](https://posit.co/downloads/)
+- [R online compiler](https://www.mycompiler.io/new/r)
