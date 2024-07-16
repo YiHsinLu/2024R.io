@@ -9,7 +9,9 @@ website:
       - href: index.qmd
         text: Home
       - href: https://yihsinlu.github.io/yhlu.io/Website/index.html
-        text: MyWeb
+        text: YiHsin's Page
+      - href: Contact.qmd
+        text: Contact Me
       - href: https://github.com/YiHsinLu
         text: Github
       - href: diary.qmd
