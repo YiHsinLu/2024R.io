@@ -17,12 +17,66 @@ date: "2024-07-24"
 ## Swiss Bank
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(kableExtra)
+library(dplyr)
 load("Rdata/202407016.RData")
 ```
+```{r}
+banknote%>%
+  kable()%>%
+  scroll_box(height = "500px")
+```
+
+## Swiss Bank
+
+::: {.panel-tabset .small}
+
+### Length
 
 ```{r}
-swissbank_pca
+hist(banknote$Length)
 ```
+
+### Left
+
+```{r}
+hist(banknote$Left)
+```
+
+### Right
+
+```{r}
+hist(banknote$Right)
+```
+
+### Top
+
+```{r}
+hist(banknote$Top)
+```
+
+### Bottom
+
+```{r}
+hist(banknote$Bottom)
+```
+
+### Diagonal
+
+```{r}
+hist(banknote$Diagonal)
+```
+
+:::
+
+## Swiss Bank
+
+```{r}
+library(ggplot2)
+ggplot(banknote, aes(Diagonal, Bottom, colour = Status)) + 
+  geom_point()
+```
+
 
 ## Outline
 
@@ -37,7 +91,7 @@ swissbank_pca
 
 # R
 
-- [R-4.4.1](https://cran.r-project.org/bin/windows/base/)
+- [R](https://cran.r-project.org/bin/windows/base/)
 - [RStudio](https://posit.co/downloads/)
 - [R online compiler](https://www.mycompiler.io/new/r)
 
