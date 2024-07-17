@@ -1,0 +1,68 @@
+```{r message=FALSE, warning=FALSE, include=FALSE}
+library(dplyr)
+library(ggplot2)
+library(plotly)
+library(ggrepel)
+library(ggforce)
+library(glmnet)
+library(survival)
+library(rms)
+library(MASS)
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+library(tableone)
+library(kableExtra)
+library(tidyverse)
+library(data.table)
+library(knitr)
+library(kableExtra)
+library(naniar)
+library(curl)
+library(tableone)
+library(MatchIt)
+library(WeightIt)
+library(survey)
+library(PSweight)
+library(cobalt)
+library(broom)
+library(PSweight)
+library(glmnet)
+library(survminer)
+library(CalibrationCurves)
+library(pmcalibration)
+library(prodlim)
+library(lava)
+library(riskRegression)
+library(pec)
+library(finalfit)
+library(ggfortify)
+library(ggpubr)
+library(GGally)
+library(mltools)
+library(jaccard)
+library(qvalue)
+library(MixGHD)
+data('banknote')
+```
+
+```{r}
+pcaDf = prcomp(t(banknote[,-1]),
+               center = TRUE,
+               retx = T)
+
+visualpca = pcaDf$rotation[,1:3]
+
+colnames(visualpca) = c('pc1', 'pc2', 'pc3')
+visualpca = as.data.frame(visualpca)
+
+visualpca = transform(visualpca, 
+                      pc1 = as.numeric(pc1),
+                      pc2 = as.numeric(pc2),
+                      pc3 = as.numeric(pc3))
+```
+
+```{r}
+swissbank_pca <- plot_ly(data = visualpca, x = ~pc1, y = ~pc2, color = banknote$Status)
+```
+

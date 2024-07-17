@@ -215,5 +215,61 @@
     "title": "Contact Me",
     "section": "",
     "text": "Yi-Hsin Lu / 呂一昕\n\n\nLINE: yihsinlu0223\nEMAIL: yhsamlu@gmail.com\nSKI+: Yi-Hsin"
+  },
+  {
+    "objectID": "presentation/Presentation2024summer.html#swiss-bank",
+    "href": "presentation/Presentation2024summer.html#swiss-bank",
+    "title": "Basic Statistical Analysis with R",
+    "section": "Swiss Bank",
+    "text": "Swiss Bank"
+  },
+  {
+    "objectID": "presentation/Presentation2024summer.html#outline",
+    "href": "presentation/Presentation2024summer.html#outline",
+    "title": "Basic Statistical Analysis with R",
+    "section": "Outline",
+    "text": "Outline\n\nR\nProb. and Stat.\nData with R\nStat. with R\n\n\nR tutorial"
+  },
+  {
+    "objectID": "presentation/Presentation2024summer.html#swiss-banknote",
+    "href": "presentation/Presentation2024summer.html#swiss-banknote",
+    "title": "Basic Statistical Analysis with R",
+    "section": "Swiss Banknote",
+    "text": "Swiss Banknote"
+  },
+  {
+    "objectID": "presentation/Presentation2024summer.html#get-start",
+    "href": "presentation/Presentation2024summer.html#get-start",
+    "title": "Basic Statistical Analysis with R",
+    "section": "Get Start",
+    "text": "Get Start"
+  },
+  {
+    "objectID": "presentation/Presentation2024summer.html#example-1",
+    "href": "presentation/Presentation2024summer.html#example-1",
+    "title": "Basic Statistical Analysis with R",
+    "section": "Example 1",
+    "text": "Example 1\n\\[\n\\small\\text{Let } x = \\pi,\\;y=10,\\text{ then evaluate }x+y,\\;x-y,\\;xy,\\text{ and }\\frac{x}{y}.\n\\]\n\nx &lt;- pi\ny &lt;- 10\nx+y\n\n[1] 13.14159\n\nx-y\n\n[1] -6.858407\n\nx*y\n\n[1] 31.41593\n\nx/y\n\n[1] 0.3141593\n\n\n\nbinary operation (\\(+,-,\\times,\\div\\))"
+  },
+  {
+    "objectID": "presentation/Presentation2024summer.html#example-2",
+    "href": "presentation/Presentation2024summer.html#example-2",
+    "title": "Basic Statistical Analysis with R",
+    "section": "Example 2",
+    "text": "Example 2\n\\[\n\\small\\text{Let } f(x)=e^{-x^2/2},\\;\\forall x\\in(-2,2). \\text{ Sketch the curve of } f.\n\\]\n\nf &lt;- function(x){exp(-x^2/2)}\ncurve(f, from = -2, to = 2)\n\n\n\nfunction() and curve()"
+  },
+  {
+    "objectID": "presentation/Presentation2024summer.html#example-3",
+    "href": "presentation/Presentation2024summer.html#example-3",
+    "title": "Basic Statistical Analysis with R",
+    "section": "Example 3",
+    "text": "Example 3\n\\[\n\\small\\text{Find the mean, standard deviation, and variance.}\n\\]\n\nHeight &lt;- c(177, 186, 153, 168, 172) #vector\nmean(Height)\n\n[1] 171.2\n\nsqrt(var(Height))\n\n[1] 12.19426\n\nvar(Height)\n\n[1] 148.7\n\n\n\nRemark\n\nmean \\(\\left[ \\mu\\right]\\) and variance \\(\\left[ \\sigma^2 = \\frac{1}{n}\\sum_{i=1}^{n}(x_i-\\mu)^2\\right]\\)\n\n\n\nmean(), var(), and sqrt()"
+  },
+  {
+    "objectID": "presentation/Presentation2024summer.html#packages",
+    "href": "presentation/Presentation2024summer.html#packages",
+    "title": "Basic Statistical Analysis with R",
+    "section": "Packages",
+    "text": "Packages\n\ninstall.packages()\n\n\ninstall.packages(\"dplyr\")\n\n\n\nlibrary()\n\n\nlibrary(dplyr)# use package"
   }
 ]

@@ -9,16 +9,19 @@ format:
     theme: simple
     logo: https://upload.wikimedia.org/wikipedia/commons/d/d0/RStudio_logo_flat.svg
 author: "*Yi-Hsin Lu*"
-date: "2024-07-15"
+date: "2024-07-24"
 ---
 
 # R can?
 
 ## Swiss Bank
 
-```{r echo=TRUE}
-library(MixGHD)
-data('banknote')
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+load("Rdata/202407016.RData")
+```
+
+```{r}
+swissbank_pca
 ```
 
 ## Outline
@@ -29,7 +32,7 @@ data('banknote')
 - Stat. with R
 
 ::: footer
-[R tutorial](https://yihsinlu.github.io/2024R.io/R_tutorial2024.html)
+[R tutorial](https://yihsinlu.github.io/2024R.io/docs/Rtutorial.html)
 :::
 
 # R
@@ -37,3 +40,80 @@ data('banknote')
 - [R-4.4.1](https://cran.r-project.org/bin/windows/base/)
 - [RStudio](https://posit.co/downloads/)
 - [R online compiler](https://www.mycompiler.io/new/r)
+
+## Get Start
+
+![](fig/Rstudio_start.jpg)
+
+## Example 1
+
+$$
+\small\text{Let } x = \pi,\;y=10,\text{ then evaluate }x+y,\;x-y,\;xy,\text{ and }\frac{x}{y}.
+$$
+
+```{r include=FALSE, message=FALSE, warning=FALSE}
+library(dplyr)
+```
+
+```{r echo=TRUE}
+x <- pi
+y <- 10
+x+y
+x-y
+x*y
+x/y
+```
+
+:::footer
+binary operation ($+,-,\times,\div$)
+:::
+
+## Example 2
+
+$$
+\small\text{Let } f(x)=e^{-x^2/2},\;\forall x\in(-2,2). \text{ Sketch the curve of } f.
+$$
+```{r echo=TRUE}
+f <- function(x){exp(-x^2/2)}
+curve(f, from = -2, to = 2)
+```
+
+::: footer
+`function()` and `curve()`
+:::
+
+## Example 3
+
+$$
+\small\text{Find the mean, standard deviation, and variance.}
+$$
+
+```{r echo=TRUE}
+Height <- c(177, 186, 153, 168, 172) #vector
+mean(Height)
+sqrt(var(Height))
+var(Height)
+```
+
+- Remark
+  + mean $\left[ \mu\right]$ and variance $\left[ \sigma^2 = \frac{1}{n}\sum_{i=1}^{n}(x_i-\mu)^2\right]$
+
+:::footer
+`mean()`, `var()`, and `sqrt()`
+:::
+
+## Packages
+
+- `install.packages()`
+
+```{r eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE}
+install.packages("dplyr")
+```
+
+![](fig/InstallPackage.jpg)
+
+- `library()`
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+library(dplyr)# use package
+```
