@@ -6,13 +6,11 @@ format:
     chalkboard: 
       buttons: false
     preview-links: auto
-    theme: simple
+    theme: serif
     logo: https://upload.wikimedia.org/wikipedia/commons/d/d0/RStudio_logo_flat.svg
 author: "*Yi-Hsin Lu*"
 date: "2024-07-24"
 ---
-
-# R can?
 
 ## Swiss Bank
 
@@ -21,6 +19,7 @@ library(kableExtra)
 library(dplyr)
 load("Rdata/202407016.RData")
 ```
+
 ```{r}
 banknote%>%
   kable()%>%
@@ -85,6 +84,8 @@ ggplot(banknote, aes(Diagonal, Bottom, colour = Status)) +
 - Data with R
 - Stat. with R
 
+![](fig/R.png){.absolute top="10px" right="20px" width="500px"}
+
 ::: footer
 [R tutorial](https://yihsinlu.github.io/2024R.io/docs/Rtutorial.html)
 :::
@@ -99,75 +100,151 @@ ggplot(banknote, aes(Diagonal, Bottom, colour = Status)) +
 
 ![](fig/Rstudio_start.jpg)
 
-## Example 1
+## Variables
 
-$$
-\small\text{Let } x = \pi,\;y=10,\text{ then evaluate }x+y,\;x-y,\;xy,\text{ and }\frac{x}{y}.
-$$
 
-```{r include=FALSE, message=FALSE, warning=FALSE}
-library(dplyr)
+* Integer
+
+```{r echo=TRUE}
+x <- 10
+x
+```
+
+* Character / String
+
+```{r echo=TRUE}
+x <- "test"
+x
+```
+
+* Logic (`TRUE` / `FALSE`)
+
+```{r echo=TRUE}
+x <- TRUE
+x
+```
+
+****
+
+### Vector
+
+```{r echo=TRUE}
+x <- c(1,2,3,4)
+x
 ```
 
 ```{r echo=TRUE}
-x <- pi
-y <- 10
-x+y
-x-y
-x*y
-x/y
+x <- c(1:10)
+x
 ```
-
-:::footer
-binary operation ($+,-,\times,\div$)
-:::
-
-## Example 2
-
-$$
-\small\text{Let } f(x)=e^{-x^2/2},\;\forall x\in(-2,2). \text{ Sketch the curve of } f.
-$$
-```{r echo=TRUE}
-f <- function(x){exp(-x^2/2)}
-curve(f, from = -2, to = 2)
-```
-
-::: footer
-`function()` and `curve()`
-:::
-
-## Example 3
-
-$$
-\small\text{Find the mean, standard deviation, and variance.}
-$$
 
 ```{r echo=TRUE}
-Height <- c(177, 186, 153, 168, 172) #vector
-mean(Height)
-sqrt(var(Height))
-var(Height)
+x <- c("a", "b", "c", "d")
+x
 ```
 
-- Remark
-  + mean $\left[ \mu\right]$ and variance $\left[ \sigma^2 = \frac{1}{n}\sum_{i=1}^{n}(x_i-\mu)^2\right]$
-
-:::footer
-`mean()`, `var()`, and `sqrt()`
-:::
-
-## Packages
-
-- `install.packages()`
-
-```{r eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE}
-install.packages("dplyr")
+```{r echo=TRUE}
+x <- c(1, "b", 3, "d", 5)
+x
 ```
 
-![](fig/InstallPackage.jpg)
+* fourth
 
-- `library()`
-
-```{r echo=TRUE, message=FALSE, warning=FALSE}
-library(dplyr)# use package
+```{r echo=TRUE}
+x[4]
 ```
+
+****
+
+### Function
+
+```{r echo=TRUE}
+f <- function(x){
+  return(x^2)
+}
+
+f(15)
+```
+
+```{r echo=TRUE}
+f <- function(x,y){
+  return(x^2+y^2)
+}
+
+f(1,4)
+```
+
+```{r echo=TRUE}
+f <- function(x,y){
+  (x-7*y)^2/3
+}
+
+f(1,4)
+```
+
+****
+
+### Matrix
+
+```{r echo=TRUE}
+M1 <- matrix(c(1,2,1,
+               0,2,7),
+             ncol = 3,nrow = 2,byrow = T)
+M1
+```
+
+```{r echo=TRUE}
+M1[1,]
+```
+
+```{r echo=TRUE}
+M1[2,3]
+```
+
+* transpose
+
+```{r echo=TRUE}
+t(M1)
+```
+
+****
+
+### Data Frame
+
+```{r echo=TRUE}
+df <- data.frame(Name = c("Sam", "Yuji", "Lan", "Elaine"),
+                 Age = c(28,24,NA,NA),
+                 Height = c(177, 187, 159, 164),
+                 Gender = factor(c("M", "M", "F", "F")))
+df
+```
+
+```{r echo=TRUE}
+df$Name
+```
+
+```{r echo=TRUE}
+df$Name[3]
+```
+
+****
+
+### List
+
+```{r echo=TRUE}
+List1 <- list(integer1 = 10,
+              character1 = "ten",
+              vector1 = c(1:10))
+
+List1
+```
+
+```{r echo=TRUE}
+List1$integer1
+```
+
+```{r echo=TRUE}
+List1[[3]]
+```
+
+

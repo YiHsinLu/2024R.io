@@ -228,7 +228,7 @@
     "href": "presentation/Presentation2024summer.html#outline",
     "title": "Basic Statistical Analysis with R",
     "section": "Outline",
-    "text": "Outline\n\nR\nProb. and Stat.\nData with R\nStat. with R\n\n\nR tutorial"
+    "text": "Outline\n\nR\nProb. and Stat.\nData with R\nStat. with R\n\n\n\nR tutorial"
   },
   {
     "objectID": "presentation/Presentation2024summer.html#swiss-banknote",
@@ -285,5 +285,19 @@
     "title": "Basic Statistical Analysis with R",
     "section": "Swiss Bank",
     "text": "Swiss Bank"
+  },
+  {
+    "objectID": "presentation/Presentation2024summer.html#rules",
+    "href": "presentation/Presentation2024summer.html#rules",
+    "title": "Basic Statistical Analysis with R",
+    "section": "Rules",
+    "text": "Rules\n\nx &lt;- 10\nx &lt;- 20\nx\n\n[1] 20\n\n\n\ndirection:"
+  },
+  {
+    "objectID": "presentation/Presentation2024summer.html#variables",
+    "href": "presentation/Presentation2024summer.html#variables",
+    "title": "Basic Statistical Analysis with R",
+    "section": "Variables",
+    "text": "Variables\n\nInteger\n\n\nx &lt;- 10\nx\n\n[1] 10\n\n\n\nCharacter / String\n\n\nx &lt;- \"test\"\nx\n\n[1] \"test\"\n\n\n\nLogic (TRUE / FALSE)\n\n\nx &lt;- TRUE\nx\n\n[1] TRUE"
   }
 ]
