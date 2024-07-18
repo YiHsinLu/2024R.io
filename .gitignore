@@ -3,4 +3,7 @@
 .RData
 .Ruserdata
 
+*.html linguist-vendored
+*.css linguist-vendored
+
 /.quarto/
