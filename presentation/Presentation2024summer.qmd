@@ -100,151 +100,453 @@ ggplot(banknote, aes(Diagonal, Bottom, colour = Status)) +
 
 ![](fig/Rstudio_start.jpg)
 
-## Variables
+# Variables
 
+* integer
+  + function (operation)
+* character
+* vector
+* factor
+* matrix
+* data frame
+* list
 
-* Integer
+## Integers
 
 ```{r echo=TRUE}
 x <- 10
-x
+y <- 3
 ```
 
-* Character / String
+* operation ($x+y$ , $x-y$ , $x\times y$ , $\frac{x}{y}$ , and $x^y$)
 
 ```{r echo=TRUE}
-x <- "test"
-x
-```
-
-* Logic (`TRUE` / `FALSE`)
-
-```{r echo=TRUE}
-x <- TRUE
-x
-```
-
-****
-
-### Vector
-
-```{r echo=TRUE}
-x <- c(1,2,3,4)
-x
+x+y
 ```
 
 ```{r echo=TRUE}
-x <- c(1:10)
-x
+x-y
 ```
 
 ```{r echo=TRUE}
-x <- c("a", "b", "c", "d")
-x
+x*y
 ```
 
 ```{r echo=TRUE}
-x <- c(1, "b", 3, "d", 5)
-x
+x/y
 ```
 
-* fourth
-
 ```{r echo=TRUE}
-x[4]
+x^y
 ```
 
-****
 
-### Function
+## Function
+
+* `function(...){...}`
 
 ```{r echo=TRUE}
-f <- function(x){
-  return(x^2)
+f <- function(x){return(x^2+2)}
+f(6)
+```
+
+```{r echo=TRUE}
+f <- function(x, y){x^2+y^2}
+f(1, 3)
+```
+
+```{r echo=TRUE}
+f <- function(x, y, z){
+  x^2+2*y+z^3
+}
+f(1, 3, 2)
+```
+
+## Character
+
+```{r echo=TRUE}
+chr <- "a"
+chr
+```
+
+* string
+
+```{r echo=TRUE}
+chr <- "characters"
+chr
+```
+
+* sentence
+
+```{r echo=TRUE}
+chr <- "I am a character."
+chr
+```
+
+## Vector
+
+* `c(...)`
+
+```{r echo=TRUE}
+vec <- c(1, 2, 3, 4, 8, 9)
+vec
+```
+
+```{r echo=TRUE}
+vec <- c(0:6)
+vec
+```
+
+```{r echo=TRUE}
+vec <- c("a", "b", "c")
+vec
+```
+
+```{r echo=TRUE}
+vec <- c(1, 2, 3, "one", "two", "three")
+vec
+```
+
+## Factor
+
+* `factor(vector)`
+
+```{r echo=TRUE}
+fac <- factor(c("a", "b", "a", "b", "b", "c"))
+fac
+```
+
+* numeric
+
+```{r echo=TRUE}
+fac <- factor(c(1, 2, 5, 3, 5, 2, 1))
+fac
+```
+
+## Matrix
+
+* `matrix(vector, ncol, nrow, byrow)`
+
+```{r echo=TRUE}
+m1 <- matrix(c(1,0,0,
+               0,1,1), ncol = 3, nrow = 2, byrow = TRUE)
+m1
+```
+
+```{r echo=TRUE}
+m2 <- matrix(c(1,0,0,
+               0,1,1,
+               1,5,2), ncol = 3, nrow = 3, byrow = FALSE)
+m2
+```
+
+## List 
+
+```{r echo=TRUE}
+List1 <- list(integer1 = x,
+              function1 = f,
+              character1 = chr,
+              vector1 = vec,
+              factor1 = fac,
+              matrix1 = m1)
+
+List1$character1
+```
+
+* element
+
+```{r echo=TRUE}
+List1$matrix1
+```
+
+# if else
+
+* `if(.){...}`
+* `if(.){...}else{...}`
+* `if(.){...}else if(.){...}else{...}`
+
+## how?
+
+```{r echo=TRUE}
+x <- 1
+y <- 2
+```
+
+* `TRUE` / `FALSE`
+
+```{r echo=TRUE}
+x==y
+```
+
+```{r echo=TRUE}
+x!=y
+```
+
+* Is $x=y$ ?
+
+```{r echo=TRUE}
+if(x==y){"Yes, x is equal to y."}else{"No, x is not equal to y."}
+
+```
+
+# for loop
+
+* `for(. in ..){...}`
+
+## how?
+
+```{r echo=TRUE}
+sum1 <- 0
+
+for(i in 1:10){
+  sum1 <- sum1+i
 }
 
-f(15)
+sum1
 ```
 
 ```{r echo=TRUE}
-f <- function(x,y){
-  return(x^2+y^2)
+a <- c(1, 2, 3, 4, 7, 2, 4, 1, 1, 4)
+
+for(i in 1:10){
+  a[i] <- a[i]+i
 }
 
-f(1,4)
+a
+```
+
+# Packages
+
+* `install.packages("dplyr")`
+
+* lower right window: `Packages` > `Install` > type `dplyr`
+
+![](fig/InstallPackage.jpg)
+
+* `library(dplyr)` to use
+
+
+# Probabilities and Statisics
+
+* suppose
+* observe
+* prove
+
+## Probabilities
+
+$$
+0\leq P(A)\leq 1,\;\forall A
+$$
+
+* rainy
+* winning
+* survival
+
+
+## Random variable and Distribution
+
+* denoted by:
+
+$$
+X\sim \text{Distribution(.)}
+$$
+
+* discrete
+  + Bernoulli
+  
+* continuous
+  + normal
+  + t distribution
+
+## Bernoulli
+
+$$
+X\sim B(p)
+$$
+
+* $p$: probability
+* $x\in\{0,1\}$
+* $P(X=1) = p$
+* $P(X=0) = 1-p$
+
+
+
+## Normal
+
+$$
+X\sim N(\mu, \sigma^2)
+$$
+
+* $\mu$: mean
+* $\sigma$: standard deviation
+  + $\small P(X=x) = 0$
+  + $\small P(X\leq x) = \int_{-\infty}^xf(x)dx$
+  + $\small f(x)=\frac{1}{\sqrt{2\pi}\sigma}\exp(-\frac{(x-\mu)^2}{2\sigma^2})$, $x\in(-\infty,\infty)$
+
+
+## t distribution
+
+* $X\sim t_n=N(0,1)$ (as $n\rightarrow\infty$)
+
+```{r}
+curve(dt(x,df=1),from=-4,to=4,col="#000000",ylim=c(0,0.4) )
+curve(dt(x,df=2),from=-4,to=4,col="#240000",add=T)
+curve(dt(x,df=3),from=-4,to=4,col="#460000",add=T)
+curve(dt(x,df=4),from=-4,to=4,col="#690000",add=T)
+curve(dt(x,df=5),from=-4,to=4,col="#800000",add=T)
+curve(dt(x,df=8),from=-4,to=4,col="#990000",add=T)
+curve(dt(x,df=10),from=-4,to=4,col="#bb0000",add=T)
+curve(dt(x,df=50),from=-4,to=4,col="#cc0000",add=T)
+curve(dt(x,df=91),from=-4,to=4,col="#dd0000",add=T)
+curve(dt(x,df=100),from=-4,to=4,col="#ee0000",add=T)
+curve(dnorm(x,0,1),from=-4,to=4,col="#ff0000",add=T)
+```
+
+# Data with R
+
+## Import csv
+
+* `read.csv()`
+
+```{r message=FALSE, warning=FALSE}
+library(kableExtra)
+```
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+df <- read.csv(file = "csv/df.csv", fileEncoding = "Big5")
+```
+
+```{r message=FALSE, warning=FALSE}
+kable(df)
+```
+
+## Data frame 1
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+library(randomNames)
+set.seed(19970608)
+New_df.M <- data.frame(Name = randomNames(n = 68, gender = 0, which.names = "first"),
+                       Height = rnorm(68, 175, 10),# 68 from N(175,10)
+                       Weight = rnorm(68, 70, 10),# 68 from N(70,10)
+                       Gender = rep("M", 68),
+                       Age = sample(20:40, size = 68, replace = TRUE))
+New_df.M
+```
+
+
+## Data frame 2
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+New_df.F <- data.frame(Name = randomNames(n = 28, gender = 1, which.names = "first"),
+                       Height = rnorm(28, 160, 10),# 28 from N(160,10)
+                       Weight = rnorm(28, 50, 10),# 28 from N(50,10)
+                       Gender = rep("F", 28),
+                       Age = sample(20:40, size = 28, replace = TRUE))
+New_df.F
+```
+
+
+## Combine
+
+* `rbind` and `cbind`
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+New_df <- rbind(df, New_df.M, New_df.F) #cbind()
+New_df
+```
+
+
+## Add / Edit
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+library(dplyr)
+New_df <- New_df%>%
+  mutate(BMI = Weight/(Height/100)^2)%>%
+  transform(Gender = as.factor(Gender),
+            BMI = round(BMI, digits = 1))
+New_df
+```
+
+## Filter
+
+```{r echo=TRUE}
+New_df%>%filter(BMI<13)
 ```
 
 ```{r echo=TRUE}
-f <- function(x,y){
-  (x-7*y)^2/3
-}
-
-f(1,4)
-```
-
-****
-
-### Matrix
-
-```{r echo=TRUE}
-M1 <- matrix(c(1,2,1,
-               0,2,7),
-             ncol = 3,nrow = 2,byrow = T)
-M1
+New_df%>%filter(Height>190)
 ```
 
 ```{r echo=TRUE}
-M1[1,]
+New_df%>%filter(Age==28)
+```
+
+
+# Statistics in R
+
+## Statistical computing
+
+* mean
+
+```{r echo=TRUE}
+mean(New_df$BMI)
+```
+
+* variance
+
+```{r echo=TRUE}
+var(New_df$BMI)
+```
+
+* correlation
+
+```{r echo=TRUE}
+cor(New_df$Weight, New_df$BMI)
+```
+
+## Summarize
+
+```{r echo=TRUE}
+summary(New_df)
+```
+
+## Student's t Test
+
+$$
+H_0: \mu=170 \;\text{ vs } \;H_1: \mu\neq 170
+$$
+
+```{r echo=TRUE}
+t.test(New_df$Height, mu=170)
+```
+
+
+## One-sample t Test
+
+$$
+H_0: \mu>170\;\text{ vs }\;H_1: \mu\leq 170
+$$
+
+```{r echo=TRUE}
+t.test(New_df$Height, mu=170, alternative = "greater") #alternative = "less", when H_0:\mu<170
+```
+
+
+## Two-sample t Test
+
+$$
+H_0: \mu_1<\mu_2\;\text{ vs }\;H_1: \mu_1\geq\mu_2
+$$
+
+```{r}
+BMI_M <- New_df%>%filter(Gender=="M")
+BMI_M <- sample(BMI_M$BMI, 30, replace = F)
+BMI_F <- New_df%>%filter(Gender=="F")
+BMI_F <- BMI_F$BMI 
 ```
 
 ```{r echo=TRUE}
-M1[2,3]
+t.test(BMI_M, BMI_F, alternative = "less")
 ```
 
-* transpose
-
-```{r echo=TRUE}
-t(M1)
-```
-
-****
-
-### Data Frame
-
-```{r echo=TRUE}
-df <- data.frame(Name = c("Sam", "Yuji", "Lan", "Elaine"),
-                 Age = c(28,24,NA,NA),
-                 Height = c(177, 187, 159, 164),
-                 Gender = factor(c("M", "M", "F", "F")))
-df
-```
-
-```{r echo=TRUE}
-df$Name
-```
-
-```{r echo=TRUE}
-df$Name[3]
-```
-
-****
-
-### List
-
-```{r echo=TRUE}
-List1 <- list(integer1 = 10,
-              character1 = "ten",
-              vector1 = c(1:10))
-
-List1
-```
-
-```{r echo=TRUE}
-List1$integer1
-```
-
-```{r echo=TRUE}
-List1[[3]]
-```
-
-
+# Thanks for your Attention!

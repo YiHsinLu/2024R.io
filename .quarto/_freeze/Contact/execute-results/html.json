@@ -1,0 +1,12 @@
+{
+  "hash": "e911a406eb0530977cf9887846c3bdf7",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"**Contact Me**\"\noutput:\n  html_document:\n  toc: true\n  toc_float: true\n  df_print: paged\n---\n\n****\n\n\n```{css echo = FALSE}\np{\n  font-size: 30pt;\n}\n```\n\n\n<p>Yi-Hsin Lu</p>\n\n",
+    "supporting": [
+      "Contact_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

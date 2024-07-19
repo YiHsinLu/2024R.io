@@ -16,7 +16,7 @@ output:
 
 ****
 
-In this tutorial, we start with simple R code, and we then introduce basic statistics and probabilities. Utilizing R code and packages to learn statistics methods is the core of this webpage. (here's the [presentation](https://yihsinlu.github.io/2024R.io/presentation/RStat_tutorial.html))
+In this tutorial, we start with simple R code, and we then introduce basic statistics and probabilities. Utilizing R code and packages to learn statistics methods is the core of this webpage. (here's the [presentation](https://yihsinlu.github.io/2024R.io/docs/presentation/Presentation2024summer.html))
 
 -   R
 
@@ -47,7 +47,7 @@ Start with [install R](https://cran.r-project.org/bin/windows/base/) and its com
 
 ## **1.1 Get Start**
 
-The R studio page display 4 windows unless nav-bar, The upper left window is the opening file, I prefer utilize `.Rmd` file (R markdown). As FIG 1, we code between the area and see the result below. You also could type the code behind the `>` on lower left window, and click enter to run the code. Two right windows illustrate the variable, function, and packages, we will introduce how they work later.
+The R studio page display 4 windows unless nav-bar, The upper left window is the opening file, I prefer using `.Rmd` file (R markdown). As FIG 1, we code between the area and see the result below. You also could type the code behind the `>` on lower left window, and click enter to run the code. Two right windows illustrate the variable, function, and packages, we will introduce how they work later.
 
 ![**FIG 1**](fig/Rstudio_start.jpg)
 
@@ -284,7 +284,7 @@ $$
 $$
 
 $$
-f_X(x) = \cfrac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}},\;\forall\;x\in\mathbb``` {r class.output="code-output"}
+f_X(x) = \cfrac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}},\;\forall\;x\in\mathbb{R}
 $$
 
 ------------------------------------------------------------------------
