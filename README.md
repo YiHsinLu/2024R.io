@@ -13,5 +13,39 @@
 ## 為什麼要用R？
 
    其實你只要搜尋資料就會發現，最多人推薦的是python，原因其實很簡單，因為R大多數是給統計專長的人作使用的，所以大多數的使用者都有統計和機率的背景，跑出的很多報表和圖表都需要用統計的角度和原理解釋，統計這個領域對於一般人來說並不有趣，光看到今年總統大選前藍白合的民調讓3%問題，就可以理解為什麼統計並不受大眾喜愛了！
-   
+
    說到統計這個學科，從最簡單的說出觀察到的事情到各種估計方法、假設檢定、回歸分析等等都是統計領域的範疇，對於R語言來說，除了內建就有個各種統計工具之外，有著大量分析類的Package可以使用，再加上各種視覺化的工具 (像是 python 移植過來 R 的 plotly 、時間序列的 highcharter 和 R 獨有的 ggplot)，必定可以跑出令人滿意的圖形。
+
+## R 基礎使用教學
+
+* [教學簡報](https://yihsinlu.github.io/2024R.io/docs/presentation/Presentation2024summer.html) 、  [教學網頁]([https://yihsinlu.github.io/2024R.io/docs/presentation/Presentation2024summer.html](https://yihsinlu.github.io/2024R.io/docs/Rtutorial.html))
+
+各位好，我是呂一昕，接下來的幾個章節就是以逐字稿的方式去教學，如果覺得字太多太麻煩，那就點擊上方的`教學網頁`去看看程式碼的教學，下面就對照著我給的連結去吸收吧！
+
+### 前言
+
+在正式進入正題之前，我們先來看一個例子( [Swiss Banknote](https://yihsinlu.github.io/2024R.io/docs/presentation/Presentation2024summer.html#/swiss-bank) )，這是一個在分析上很簡單也很經典的例子，資料顯示的是瑞士的銀行他們好奇說有沒有辦法使用鈔票的各項數據去分辨真假鈔，他們抽樣了各100張的真假鈔，共200張來進行數據測量，量每張鈔票的長度、上下左右的寬度和對角線，共6組數據。
+
+* [各項數據的長條圖](https://yihsinlu.github.io/2024R.io/docs/presentation/Presentation2024summer.html#/swiss-bank-1) 
+
+其中，我們發現底部的寬度好像有差異性，對角線更是如此，看來就像兩群。
+
+* [底部的寬度 vs 對角線 (真假鈔上色)](https://yihsinlu.github.io/2024R.io/docs/presentation/Presentation2024summer.html#/swiss-bank-2) 
+
+好奇之下，我們下了這張散布圖，並用鈔票的真假去上色，果不其然跟我們猜想的一樣，單單靠這兩項數據既可以分別真假鈔了，這個舊最簡單使用R去看資料的方式。
+
+### R
+
+R是語言，是我們跟電腦溝通的語言，電腦也必須有R語言，雖然R原本就內建跑程式的Compiler，但是因為是原始的工具，所以介面、功能等都非常陽春，所以我建議使用R Studio，除了介面簡單易懂，功能完整且強大。
+
+* [下載R和R Studio教學](https://yihsinlu.github.io/2024R.io/docs/Rtutorial.html#r)
+
+R Studio 的介面可以自由調整，顏色、主題、字體大小等等，扣除上方的控制欄位，主要分成四個區塊，左上是開啟的檔案 (一打開R Studio是不會有的)、左下是程式運行的區塊，右上就是儲存的空間，只要你所有設定過的變數都會出現，也可以將它儲存成 .Rdata，最後是右下的視窗大部分是來下載Package或是搜尋你需要的內容。
+
+* [R Studio 介面](https://yihsinlu.github.io/2024R.io/docs/presentation/Presentation2024summer.html#/get-start)
+
+### R 基礎語法
+
+#### 變數
+
+設定變數是第一步，任何程式語言都是從這開始的，這裡可以注意到
