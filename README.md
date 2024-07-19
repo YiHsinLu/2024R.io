@@ -24,15 +24,19 @@
 
 ### 前言
 
-在正式進入正題之前，我們先來看一個例子( [Swiss Banknote](https://yihsinlu.github.io/2024R.io/docs/presentation/Presentation2024summer.html#/swiss-bank) )，這是一個在分析上很簡單也很經典的例子，資料顯示的是瑞士的銀行他們好奇說有沒有辦法使用鈔票的各項數據去分辨真假鈔，他們抽樣了各100張的真假鈔，共200張來進行數據測量，量每張鈔票的長度、上下左右的寬度和對角線，共6組數據。
+在正式進入正題之前，我們先來看一個例子，這是一個在分析上很簡單也很經典的例子，資料顯示的是瑞士的銀行他們好奇說有沒有辦法使用鈔票的各項數據去分辨真假鈔，他們抽樣了各100張的真假鈔，共200張來進行數據測量，量每張鈔票的長度、上下左右的寬度和對角線，共6組數據。
 
-* [各項數據的長條圖](https://yihsinlu.github.io/2024R.io/docs/presentation/Presentation2024summer.html#/swiss-bank-1) 
+![](https://raw.githubusercontent.com/YiHsinLu/2024R.io/main/fig/ppt/0-1.jpg)
+
+![](https://raw.githubusercontent.com/YiHsinLu/2024R.io/main/fig/ppt/0-2.jpg)
+
+![](https://raw.githubusercontent.com/YiHsinLu/2024R.io/main/fig/ppt/0-3.jpg)
 
 其中，我們發現底部的寬度好像有差異性，對角線更是如此，看來就像兩群。
 
-* [底部的寬度 vs 對角線 (真假鈔上色)](https://yihsinlu.github.io/2024R.io/docs/presentation/Presentation2024summer.html#/swiss-bank-2) 
+![](https://raw.githubusercontent.com/YiHsinLu/2024R.io/main/fig/ppt/0-4.jpg)
 
-好奇之下，我們下了這張散布圖，並用鈔票的真假去上色，果不其然跟我們猜想的一樣，單單靠這兩項數據既可以分別真假鈔了，這個舊最簡單使用R去看資料的方式。
+好奇之下，我們畫了這張散布圖，並用鈔票的真假去上色，果不其然跟我們猜想的一樣，單單靠這兩項數據既可以分別真假鈔了，這個舊最簡單使用R去看資料的方式。
 
 ### R
 
@@ -40,6 +44,10 @@ R是語言，是我們跟電腦溝通的語言，電腦也必須有R語言，雖
 
 * [下載R和R Studio教學](https://yihsinlu.github.io/2024R.io/docs/Rtutorial.html#r)
 
+![](https://raw.githubusercontent.com/YiHsinLu/2024R.io/main/fig/ppt/1-1.jpg)
+
 R Studio 的介面可以自由調整，顏色、主題、字體大小等等，扣除上方的控制欄位，主要分成四個區塊，左上是開啟的檔案 (一打開R Studio是不會有的)、左下是程式運行的區塊，右上就是儲存的空間，只要你所有設定過的變數都會出現，也可以將它儲存成 .Rdata，最後是右下的視窗大部分是來下載Package或是搜尋你需要的內容。
 
-* [R Studio 介面](https://yihsinlu.github.io/2024R.io/docs/presentation/Presentation2024summer.html#/get-start)
+### R 基礎語法
+
+#### 變數
