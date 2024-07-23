@@ -70,25 +70,7 @@ int <- 10
 int
 ```
 
-### **1.2.2 character**
-
-```{r class.output="code-output"}
-chr <- "I am a character"
-chr
-```
-
-### **1.2.3 vector**
-
-Be careful the variable name, such as c is a function fro creating vectors.
-
-```{r class.output="code-output"}
-V1 <- c(1:10)
-V2 <- c("2", 2)
-V1
-V2
-```
-
-### **1.2.4 function**
+### **1.2.2 function**
 
 $$
 f(x)=x^2+2x+1\text{, and find } f(\pi).
@@ -100,6 +82,26 @@ f(pi)
 ```
 
 Using `?function_name` to see detail in th function.
+
+### **1.2.3 character**
+
+```{r class.output="code-output"}
+chr <- "I am a character"
+chr
+```
+
+### **1.2.4 vector**
+
+Be careful the variable name, such as c is a function fro creating vectors.
+
+```{r class.output="code-output"}
+V1 <- c(1:10)
+V2 <- c("2", 2)
+V1
+V2
+```
+
+
 
 ### **1.2.5 factor**
 
