@@ -193,20 +193,21 @@ $$
 1. $0\leq P(A)\leq 1, \text{ for any event} A.$
 
 2. $P(S)=1$
-3.$\sum_{i=1}^n P(A_i) = P(\bigcup_{i=1}^n A_i), \text{ for all } A_i\cap A_j = \varnothing. (i\neq j)$
+
+3. $\sum_{i=1}^n P(A_i) = P(\bigcup_{i=1}^n A_i), \text{ for all } A_i\cap A_j = \varnothing. (i\neq j)$
 
 機率必須符合上面這三條規則，機率不會有負的，也不會超過百分之百；所有事件的機率是1；互斥的事件的機率之間可以直接相加。
 
 ### 2.3 random variable
 
-隨機變數就是記錄所有可能出現的數值，舉例來說：我有一個變數$X$是投擲10次硬幣出現正面的次數，那$X=10$就是10次全是正面的事件，有事件就有機率那我們也知道出現10次正面的機率就是$P(X=10)=(\frac{1}{2})^10$。
+隨機變數就是記錄所有可能出現的數值，舉例來說：我有一個變數 $X$ 是投擲10次硬幣出現正面的次數，那 $X=10$ 就是10次全是正面的事件，有事件就有機率那我們也知道出現10次正面的機率就是 $P(X=10)=(\frac{1}{2})^10$ 。
 
-這裡要特別說的是隨機變數會記成大寫的$X$，數值才會寫成小寫的$x$，以剛剛的來說，出現x次正面的機率就是$P(X=x)$。
+這裡要特別說的是隨機變數會記成大寫的 $X$ ，數值才會寫成小寫的$x$，以剛剛的來說，出現x次正面的機率就是 $P(X=x)$ 。
 
-可能的數值又分兩種，所以隨機變數也分為兩種，離散型和連續型，他們有不一樣的機率運算方式，這裡就會用**分配**來說明這些數值分布的情形，這些分配的資訊就會用期望值 (expactation value / mean)和變異數 (variance)去代表，後面會慢慢再介紹。
+可能的數值又分兩種，所以隨機變數也分為兩種，離散型和連續型，他們有不一樣的機率運算方式，這裡就會用`分配`來說明這些數值分布的情形，這些分配的資訊就會用期望值 (expactation value / mean)和變異數 (variance)去代表，後面會慢慢再介紹。
 
 * 期望值：$E(X)$，隨機變數才會有期望值，如果是數值的期望值依然相同。
-	+ $X, Y$是隨機變數，$a, b$是數值
+	+ $X, Y$ 是隨機變數， $a, b$ 是數值
 	+ $E(a) = a$
 	+ $E(aX+b) = aE(x)+b$
 	+ $E(aX-bY) = aE(X)-bE(Y)$
@@ -220,8 +221,17 @@ $$
 
 離散型通常就是指可以從1、2、3開始數的，像是個數、次數等等，這類屬得出來的，用 probability mess function (f / pmf)計算事件的機率。
 
-* 期望值：$E(X) = \sum_{x=1}^nx_if(x) = \mu$
-* 變異數：$Var(X) = \sum_{x=1}^n(x-\mu)^2f(x)= E(X-E(X))^2=E(X^2)-(E(X))^2$
+* 期望值：
+
+$$
+E(X) = \sum_{x=1}^nx_if(x)
+$$
+
+* 變異數： 
+
+$$
+Var(X) = \sum_{x=1}^n(x-\mu)^2f(x)= E(X-E(X))^2=E(X^2)-(E(X))^2
+$$
 
 下面來介紹離散型隨機變數的分配：
 
@@ -231,7 +241,7 @@ $$
 X\sim Ber(p)
 $$
 
-這類事件比較簡單，$X=1$有發生，反之$X=0$是沒發生，比如說X是硬幣出現正面，$X=1$就是正面，反之$X=0$是反面。
+這類事件比較簡單， $X=1$ 有發生，反之 $X=0$ 是沒發生，比如說X是硬幣出現正面， $X=1$ 就是正面，反之 $X=0$ 是反面。
 
 * $P(X=1) = p$
 * $P(X=0) = 1-p = q$
@@ -244,7 +254,7 @@ $$
 X\sim Bin(n,p)
 $$
 
-它的原型就是Bernoulli distribution，Bernoulli作$n$次就是binomial。
+它的原型就是Bernoulli distribution，Bernoulli作 $n$ 次就是binomial。
 
 * pmf：
 
@@ -252,47 +262,56 @@ $$
 P(X=x)=f(x) = \binom{n}{x}\;p^xq^{n-x},\;\forall x = 1, \cdots, n
 $$
 
-* $E(X) = np$
-* $Var(X)=npq$
+*  $E(X) = np$ 
+*  $Var(X)=npq$ 
 
 
 #### 2.3.2 continuous random variable
 
 連續型的可能值通常是一個範圍，像是假如隨機變數說的是身高，從小嬰兒的40公分到金氏世界紀錄的251公分都是可能值，又或是像時間，秒下面有微秒、毫秒，沒辦法抓出一個精準的位置，這類就是連續型。這類隨機變數的機率計算就使用 probability density function (f / pdf)。
 
-* 期望值：$E(X) = \int_\mathbb {r class.output="code-output"}xf_X(x)dx = \mu$
-* 變異數：$Var(X) = \int_\mathbb {r class.output="code-output"}(x-\mu)^2f_X(x)dx = E(X-E(X))^2=E(X^2)-(E(X))^2$
+* 期望值： $E(X) = \int_\mathbb {R}xf_X(x)dx$ 
+* 變異數： $Var(X) = \int_\mathbb {R}(x-\mu)^2f_X(x)dx = E(X-E(X))^2=E(X^2)-(E(X))^2$ 
 
 不過因為連續型的隨機變數也非常的多，所以我也挑三個最相關也最常見的來作介紹。
 
 ##### 2.3.2.1 exponential distribution
 
-* $X\sim\exp(\lambda)$
-* $f(x) = \lambda e^{-\lambda x},\; x>0$
-* $E(X) = \frac{1}{\lambda}$
-* $Var(X)=\frac{1}{\lambda^2}$
+$$
+X\sim\exp(\lambda)
+$$
+
+*  $f(x) = \lambda e^{-\lambda x},\; x>0$ 
+*  $E(X) = \frac{1}{\lambda}$ 
+*  $Var(X)=\frac{1}{\lambda^2}$ 
 
 ![](https://raw.githubusercontent.com/YiHsinLu/2024R.io/main/fig/ppt/exp.png)
 
 這張圖是不同的$\lambda$：
 
-* 綠色：$\lambda=0.5$ 
-* 黑色：$\lambda=1$ 
-* 紅色：$\lambda=2$ 
+* 綠色： $\lambda=0.5$  
+* 黑色： $\lambda=1$  
+* 紅色： $\lambda=2$  
 
 ##### 2.3.2.2 normal distribution
 
-* $X\sim N(\mu,\sigma^2)$
-* $f(x) = \cfrac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}},\;\forall\;x\in\mathbb{R}$
-* $E(X) = \mu$
-* $Var(X)=\sigma^2$
+$$
+X\sim N(\mu,\sigma^2)
+$$
+
+*  $f(x) = \cfrac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2} {2\sigma^2}},\;\forall\;x\in\mathbb{R}$
+*  $E(X) = \mu$ 
+*  $Var(X)=\sigma^2$ 
 
 
 ##### 2.3.2.3 t-distribution
 
-* $X\sim t_n$
-* 當$n$非常大，趨近於無窮大的時候，它的分配就會跟$N(0,1)$一樣，我們稱$N(0,1)$標準常態 (standard normal distribution)
-* 下方的圖形，曲線越紅代表$n$越大，紅色則是$N(0,1)$。
+$$
+X\sim t_n
+$$
+
+* 當 $n$ 非常大，趨近於無窮大的時候，它的分配就會跟 $N(0,1)$ 一樣，我們稱 $N(0,1)$ 標準常態 (standard normal distribution)
+* 下方的圖形，曲線越紅代表 $n$ 越大，紅色則是 $N(0,1)$ 。
 
 ![](https://raw.githubusercontent.com/YiHsinLu/2024R.io/main/fig/ppt/t.png)
 
