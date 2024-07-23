@@ -27,9 +27,10 @@
 
 # R 基礎使用教學
 
-* [教學網頁](https://yihsinlu.github.io/2024R.io/docs/presentation/Presentation2024summer.html)
+各位好，我是呂一昕，接下來的幾個章節就是以逐字稿的方式去教學，如果覺得字太多太麻煩，那就點擊下方的`教學網頁`去看看程式碼的教學！或是如果看完之後還有興趣去學更深的內容就下方的`R cookbook`。
 
-各位好，我是呂一昕，接下來的幾個章節就是以逐字稿的方式去教學，如果覺得字太多太麻煩，那就點擊上方的`教學網頁`去看看程式碼的教學！
+* [教學網頁](https://yihsinlu.github.io/2024R.io/docs/presentation/Presentation2024summer.html)
+* [R cookbook](https://rc2e.com/)
 
 ## 0 前言
 
@@ -162,3 +163,35 @@ R Studio 的介面可以自由調整，顏色、主題、字體大小等等，�
 * `package`無法下載，這個就必須去網路上下載`package`，通常會找到`package_name.tar.gz`和`package_name.zip`可以下載，載完之後。(R Studio的介面右下角，有一個`Packages`的欄位，點擊之後會看到下方出現很多`package`，右下視窗的左上角又一個`Install`的按鈕，按下之後會跳出新的視窗 (上方圖))，在`Install from`的欄位選擇`Packages Archive File(.zip, .tar.gz)`，會跳出資料夾，找到剛下載的`package_name`，再按`Install`即可完成下載。 
 
 ## 2 機率與統計
+
+這個章節主要是機率和統計的介紹，以我來說，我是應用數學系畢業的學生，大學部時期會修習一學期的基礎機率、一學期的統計學、一學期的機率論和兩學期的數理統計學，其中必須有一些微積分和集合論的概念。
+
+以基礎R語言的使用和分析，可能不需要更艱深的數學和統計知識，這邊我大概只會初步的介紹，像是機率的基本概念、隨機變數等，如果真的有興趣可以參考課本([A Modern Introduction to Probability and Statistics](https://cis.temple.edu/~latecki/Courses/CIS2033-Spring13/Modern_intro_probability_statistics_Dekking05.pdf))。
+
+### 2.1 probability space
+
+在日常生活中有非常多的事件 (events)，所有可能發生的事件組成一個樣本空間 (sample space $S$)，為了知道這些事件發生的機率，所以我們創造出機率 (probability measure $P$)也是機率測度，結合樣本空間和機率就成了機率空間 (probability space)：
+
+$$
+(S, P)
+$$
+
+這裡作一些小小集合論的介紹，以防可能數學式會看不懂。在樣本空間的這些事件都都可以交集、聯集，實際上可以說交集就是兩個事件同時發生，聯集就是任一個事件發生。舉例而言，
+
+### 2.2 probability axioms (3)
+
+1. 
+$$
+0\leq P(A)\leq 1, \text{ for any event} A.
+$$
+2. 
+$$
+P(S)=1
+$$
+3. 
+$$
+\sum_{i=1}^n P(A_i) = P(\bigcup_{i=1}^n A_i), \text{ for all } A_i\cap A_j = \varnothing. (i\neq j)
+$$
+
+機率必須符合上面這三條規則，機率不會有負的，也不會超過百分之百；所有事件的機率是1；互斥的事件的機率之間可以直接相加。
+
