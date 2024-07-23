@@ -181,12 +181,10 @@ Textbook: [A Modern Introduction to Probability and Statistics](https://cis.temp
 ## **2.1 Probability Space**
 
 $$
-\Large (\Omega, \mathscr{F}, P)
+\Large (S, P)
 $$
 
--   $\Omega$: Sample space, all of the occurring events.
-
--   $\mathscr{F}$: $\sigma$-algebra, hard to explained, simply define $\Omega\in\mathscr{F}$, fixed the math.
+-   $S$: Sample space, all of the occurring events.
 
 -   $P$: probability measure, the value of the occurring event, and between 0 and 1.
 
@@ -196,7 +194,7 @@ $$
 
 Probability space of tossing a fair coin, then:
 
--   $\Omega = \{H,T\}$
+-   $S = \{H,T\}$
 
 -   $P(\{H\})=P(\{T\})=\frac{1}{2}$
 
@@ -204,7 +202,7 @@ Probability space of tossing a fair coin, then:
 
 Probability space of tossing a fair dice, then:
 
--   $\Omega = \{$ <i class="fa-solid fa-dice-one"></i> $,$ <i class="fa-solid fa-dice-two"></i> $,$ <i class="fa-solid fa-dice-three"></i> $,$ <i class="fa-solid fa-dice-four"></i> $,$ <i class="fa-solid fa-dice-five"></i> $,$ <i class="fa-solid fa-dice-six"></i> $\}$
+-   $S = \{$ <i class="fa-solid fa-dice-one"></i> $,$ <i class="fa-solid fa-dice-two"></i> $,$ <i class="fa-solid fa-dice-three"></i> $,$ <i class="fa-solid fa-dice-four"></i> $,$ <i class="fa-solid fa-dice-five"></i> $,$ <i class="fa-solid fa-dice-six"></i> $\}$
 
 -   $P(\{$ <i class="fa-solid fa-dice-one"></i> $\})=$ $P(\{$ <i class="fa-solid fa-dice-two"></i> $\})=$ $P(\{$ <i class="fa-solid fa-dice-three"></i> $\})=$ $P(\{$ <i class="fa-solid fa-dice-four"></i> $\})=$ $P(\{$ <i class="fa-solid fa-dice-five"></i> $\})=$ $P(\{$ <i class="fa-solid fa-dice-six"></i> $\})=$ $\frac{1}{6}$
 
@@ -214,7 +212,7 @@ Probability space of tossing a fair dice, then:
 
     -   $0\leq P(A)\leq 1,\;\forall A$
 
-    -   $P(\Omega) = 1$
+    -   $P(S) = 1$
 
     -   $P(\bigcup_{i=1}^n A_i)=\sum_{i=1}^n P(A_i), \text{where }A_i\cap A_j=\varnothing,\;\forall i,j$
 
