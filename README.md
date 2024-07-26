@@ -194,7 +194,7 @@ $$
 
 2. $P(S)=1$
 
-3. $\sum P(A_i) = P(cup A_i), \text{ for all } A_i\cap A_j = \varnothing. (i\neq j)$
+3. $Sigma P(A_i) = P(\cup A_i), \text{ for all } A_i\cap A_j = \varnothing. (i\neq j)$
 
 機率必須符合上面這三條規則，機率不會有負的，也不會超過百分之百；所有事件的機率是1；互斥的事件的機率之間可以直接相加。
 
@@ -259,7 +259,7 @@ $$
 * pmf：
 
 $$
-P(X=x)=f(x) = \binom{n}{x}\;p^xq^{n-x},\;\forall x = 1, \cdots, n
+P(X=x)=f(x) = \binom{n}{x}p^xq^{n-x},\forall x = 1, \cdots, n
 $$
 
 *  $E(X) = np$ 
@@ -280,7 +280,7 @@ $$
 
 $$
 Var(X) = \int_\mathbb {R}(x-\mu)^2f_X(x)dx = E(X-E(X))^2=E(X^2)-(E(X))^2
-$$ 
+$$
 
 不過因為連續型的隨機變數也非常的多，所以我也挑三個最相關也最常見的來作介紹。
 
@@ -330,3 +330,77 @@ $$
 ![](https://raw.githubusercontent.com/YiHsinLu/2024R.io/main/fig/ppt/t.png)
 
 基本的機率統計就先停在這裡，當然還有很多特別的分配和統計的內容，如果有興趣的可以去看課本的介紹。
+
+## 3 資料資料處理
+
+資料處理是資料分析的第一步，同時有可能是最花時間的工程，資料的格式、型態等等都會讓分析起來比較困難，通常資料取得時可能不會像我們自己蒐集的資料這麼乾淨，我們就需要靠R來協助處理。
+
+### 3.1 資料匯入
+
+想要在R中使用資料，除了用`package`或原本就內建的資料表之外，還有兩個方式：
+
+* 匯入`.xlsx`、`.csv`、`.txt`...
+* 自行建立資料
+
+![](https://raw.githubusercontent.com/YiHsinLu/2024R.io/main/fig/ppt/4-1.jpg)
+
+我們用`read.csv()`這個函數，參數要注意的是：
+
+* 檔案的位置，有兩個方式：
+	+ 把你的程式和`.csv`放在同一個資料夾，`read.csv("file_name.csv")`
+	+ `read.csv("C:/.../file_name.csv")`至接用完整路徑
+
+* `fileEncoding`在一般情況下，是不需要的，當你的`.csv`，可能有中文或特殊字元等其他原因才需要，可以查一下。
+* `read.csv()`可以跑`.csv`，如果要跑其他的檔案可以試試看用`read.table()`。
+
+### 3.2 資料建立
+
+另一個方式就是自行建立資料 (data frame)，用`data.frame()`一行一行建立，在資料中，我們稱每一行叫變數 (variables)或特徵值 (features)， $n\times p$ 的 資料矩陣中，就會有 $n$ 列、 $p$ 行 (或是 $n$ 筆資料 $p$ 個變數)。
+
+![](https://raw.githubusercontent.com/YiHsinLu/2024R.io/main/fig/ppt/4-1.jpg)
+
+這個資料表就有4筆資料5個變數。
+
+![](https://raw.githubusercontent.com/YiHsinLu/2024R.io/main/fig/ppt/4-2.jpg)
+
+注意，每一行的個數都必須一樣。
+
+### 3.3 資料合併
+
+![](https://raw.githubusercontent.com/YiHsinLu/2024R.io/main/fig/ppt/4-3.jpg)
+
+`rbind()`縱向合併資料，變數數量必須一樣，目的為增加資料數量；使用`cbind()`進行橫向合併。
+
+接下來，我們會使用資料處理最優秀的`package`，`dplyr`是文字探勘和資料分析很常見的工具，我們主要利用`%>%`疊加的功能，來實現資料的快速整理，基本概念就是，資料後加上`%>%`和想要做的函數，就會把資料放入函數中處理，實現較乾淨的程式碼。
+
+### 3.4 增加、調整資料
+
+![](https://raw.githubusercontent.com/YiHsinLu/2024R.io/main/fig/ppt/4-4.jpg)
+
+`mutate()`增加變數、`transform()`則依條件去改變變數。
+
+### 3.5 資料選取
+
+![](https://raw.githubusercontent.com/YiHsinLu/2024R.io/main/fig/ppt/4-5.jpg)
+
+`filter()`中放入篩選條件，取得符合條件的資料。
+
+## 4 Basic Statistics with R
+
+![](https://raw.githubusercontent.com/YiHsinLu/2024R.io/main/fig/ppt/5-1.jpg)
+
+在第二章機率和統計的介紹就提到過，可以運用一些數據去代表資料大致上的分布情形，平均數(期望值)`mean()`和變異數(標準差平方)`var()`呈現資料分布，相關係數`cor()`說明兩組資料之間的關係。
+
+![](https://raw.githubusercontent.com/YiHsinLu/2024R.io/main/fig/ppt/5-2.jpg)
+
+最初步的方式就是利用`summary()`直接地去看整體的情況，最大、最小、平均數、中位數等。
+
+### 4.1 Students' t-Test
+
+假設檢定 (Hypothesis Test)是統計學裡，非常重要的一個篇章，這裡只會提基本概念和最基礎的t-test。
+
+![](https://raw.githubusercontent.com/YiHsinLu/2024R.io/main/fig/ppt/6-1.jpg)
+
+![](https://raw.githubusercontent.com/YiHsinLu/2024R.io/main/fig/ppt/6-2.jpg)
+
+![](https://raw.githubusercontent.com/YiHsinLu/2024R.io/main/fig/ppt/6-3.jpg)

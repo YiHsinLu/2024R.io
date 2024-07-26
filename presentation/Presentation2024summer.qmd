@@ -326,7 +326,7 @@ a
 * `library(dplyr)` to use
 
 
-# Probabilities and Statisics
+# Probabilities and Statistics
 
 * suppose
 * observe
