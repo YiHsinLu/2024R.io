@@ -397,9 +397,11 @@ $$
 
 ### 4.1 Students' t-Test
 
-假設檢定 (Hypothesis Test)是統計學裡，非常重要的一個篇章，這裡只會提基本概念和最基礎的t-test。
+假設檢定 (Hypothesis Test)是統計學裡，非常重要的一個篇章，不過這邊只教在R上怎麼作使用有興趣的就可以去看[課本](https://cis.temple.edu/~latecki/Courses/CIS2033-Spring13/Modern_intro_probability_statistics_Dekking05.pdf)的第25章。想法就是假設一個預期的情況，在用統計量去檢定這個假設是否成立。
 
 ![](https://raw.githubusercontent.com/YiHsinLu/2024R.io/main/fig/ppt/6-1.jpg)
+
+舉例而言，我在上個章節有一個100人的資料，我好奇平均身高是不是170公分。
 
 ![](https://raw.githubusercontent.com/YiHsinLu/2024R.io/main/fig/ppt/6-2.jpg)
 
