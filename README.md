@@ -194,7 +194,7 @@ $$
 
 2. $P(S)=1$
 
-3. $Sigma P(A_i) = P(\cup A_i), \text{ for all } A_i\cap A_j = \varnothing. (i\neq j)$
+3. $\sum_{i=1}^n P(A_i) = P(\bigcup_{i=1}^n A_i), \text{ for all } A_i\cap A_j = \varnothing. (i\neq j)$
 
 機率必須符合上面這三條規則，機率不會有負的，也不會超過百分之百；所有事件的機率是1；互斥的事件的機率之間可以直接相加。
 
