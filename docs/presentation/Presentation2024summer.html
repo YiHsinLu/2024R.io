@@ -392,6 +392,24 @@
 
   <link href="../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
+  <link href="../site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+
+  <script src="../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+
+  <script src="../site_libs/plotly-binding-4.10.4/plotly.js"></script>
+
+  <script src="../site_libs/typedarray-0.1/typedarray.min.js"></script>
+
+  <script src="../site_libs/jquery-3.5.1/jquery.min.js"></script>
+
+  <link href="../site_libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
+
+  <script src="../site_libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+
+  <link href="../site_libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+
+  <script src="../site_libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -2646,7 +2664,7 @@ Levels: 1 2 3 5</code></pre>
 <h1>Packages</h1>
 <ul>
 <li><p><code>install.packages("dplyr")</code></p></li>
-<li><p>lower right window: <code>Packages</code> &gt; <code>Install</code> &gt; type <code>dplyr</code></p></li>
+<li><p><code>Packages</code> &gt; <code>Install</code> &gt; <code>dplyr</code> &gt; <code>Install</code></p></li>
 </ul>
 
 <img data-src="fig/InstallPackage.jpg" class="r-stretch"><ul>
@@ -2675,7 +2693,7 @@ Levels: 1 2 3 5</code></pre>
 </ul>
 </section>
 <section id="random-variable-and-distribution" class="slide level2">
-<h2>Random variable and Distribution</h2>
+<h2>Random Variable and Distribution</h2>
 <ul>
 <li>denoted by:</li>
 </ul>
@@ -2685,29 +2703,40 @@ X\sim \text{Distribution(.)}
 <ul>
 <li>discrete
 <ul>
-<li>Bernoulli</li>
+<li>Bernoulli / binomial distribution</li>
 </ul></li>
 <li>continuous
 <ul>
-<li>normal</li>
+<li>normal distribution</li>
 <li>t distribution</li>
 </ul></li>
 </ul>
 </section>
-<section id="bernoulli" class="slide level2">
-<h2>Bernoulli</h2>
+<section id="bernoulli-distribution" class="slide level2">
+<h2>Bernoulli Distribution</h2>
 <p><span class="math display">\[
 X\sim B(p)
 \]</span></p>
 <ul>
-<li><span class="math inline">\(p\)</span>: probability</li>
+<li><span class="math inline">\(p\)</span></li>
 <li><span class="math inline">\(x\in\{0,1\}\)</span></li>
 <li><span class="math inline">\(P(X=1) = p\)</span></li>
 <li><span class="math inline">\(P(X=0) = 1-p\)</span></li>
 </ul>
 </section>
-<section id="normal" class="slide level2">
-<h2>Normal</h2>
+<section id="binomial-distribution" class="slide level2">
+<h2>Binomial Distribution</h2>
+<p><span class="math display">\[
+X\sim B(n,p)
+\]</span></p>
+<ul>
+<li><span class="math inline">\(p\)</span></li>
+<li><span class="math inline">\(x\in\{0,1,2,\cdots,n\}\)</span></li>
+<li><span class="math inline">\(P(X=x) = \binom{n}{x}p^xq^{n-x}\)</span></li>
+</ul>
+</section>
+<section id="normal-distribution" class="slide level2">
+<h2>Normal Distribution</h2>
 <p><span class="math display">\[
 X\sim N(\mu, \sigma^2)
 \]</span></p>
@@ -2722,7 +2751,7 @@ X\sim N(\mu, \sigma^2)
 </ul>
 </section>
 <section id="t-distribution" class="slide level2">
-<h2>t distribution</h2>
+<h2>t Distribution</h2>
 <ul>
 <li><span class="math inline">\(X\sim t_n=N(0,1)\)</span> (as <span class="math inline">\(n\rightarrow\infty\)</span>)</li>
 </ul>
@@ -3233,20 +3262,42 @@ X\sim N(\mu, \sigma^2)
 </div>
 </div>
 </section>
+<section id="visualization-histogram" class="slide level2">
+<h2>Visualization (histogram)</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a></a><span class="fu">hist</span>(New_df<span class="sc">$</span>Age, <span class="at">main =</span> <span class="st">"Age of New_df"</span>, <span class="at">xlab =</span> <span class="st">"age"</span>, <span class="at">ylab =</span> <span class="st">"N"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="Presentation2024summer_files/figure-revealjs/unnamed-chunk-53-1.png" width="960" class="r-stretch"></section>
+<section id="visualization-scatter" class="slide level2">
+<h2>Visualization (scatter)</h2>
+
+<img data-src="Presentation2024summer_files/figure-revealjs/unnamed-chunk-54-1.png" width="960" class="r-stretch"></section>
+<section id="visualization-scatter-3d" class="slide level2">
+<h2>Visualization (scatter-3d)</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a></a><span class="fu">library</span>(plotly)</span>
+<span id="cb79-2"><a></a><span class="fu">plot_ly</span>(<span class="at">data =</span> New_df, <span class="at">x =</span> <span class="sc">~</span>Height, <span class="at">y =</span> <span class="sc">~</span>Weight, <span class="at">z =</span> <span class="sc">~</span>BMI, <span class="at">color =</span> New_df<span class="sc">$</span>Gender)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-7ce7fbf398cde9c409f9" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-7ce7fbf398cde9c409f9">{"x":{"visdat":{"29ec41c93495":["function () ","plotlyVisDat"]},"cur_data":"29ec41c93495","attrs":{"29ec41c93495":{"x":{},"y":{},"z":{},"color":["M","F","M","F","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","M","F","F","F","F","F","F","F","F","F","F","F","F","F","F","F","F","F","F","F","F","F","F","F","F","F","F","F","F"],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20]}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"xaxis":{"title":"Height"},"yaxis":{"title":"Weight"},"zaxis":{"title":"BMI"}},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[159,164,178.66612522914207,168.51528233751773,168.60178894389531,162.16817717460461,156.3733097785269,165.2029536057579,163.89405368622991,151.98780681123807,166.69211709486743,169.82903368341277,152.12087192613225,159.42358190309253,172.02414200757161,161.96093475729651,161.56884227439315,163.90075134129694,154.02985319270971,154.06917448729828,163.59659095967862,169.82202380162155,172.69888105679203,156.0197405389784,156.16506930919422,174.33453804113282,169.98694137220986,177.27162091757822,157.30655237363558,163.16045316657207],"y":[45,53,65.405732768968363,31.719372593719321,38.100687800468805,51.729679806779458,49.911131997271667,57.356725370317989,61.434584174301726,66.865392003436341,37.359464692592042,80.100720263604714,68.361883826832283,48.3604523275419,30.524253958472457,26.223727657101456,33.950522638427756,44.949908428354171,40.129854248672345,61.451854566787475,35.881879437979229,39.825594056965592,62.206020638184214,43.62154039414731,41.938631025888284,46.518121919836013,32.573845087298693,54.573280046394103,50.289483104705596,46.864866020284758],"z":[17.800000000000001,19.699999999999999,20.5,11.199999999999999,13.4,19.699999999999999,20.399999999999999,21,22.899999999999999,28.899999999999999,13.4,27.800000000000001,29.5,19,10.300000000000001,10,13,16.699999999999999,16.899999999999999,25.899999999999999,13.4,13.800000000000001,20.899999999999999,17.899999999999999,17.199999999999999,15.300000000000001,11.300000000000001,17.399999999999999,20.300000000000001,17.600000000000001],"type":"scatter3d","mode":"markers","name":"F","marker":{"color":"rgba(102,194,165,1)","line":{"color":"rgba(102,194,165,1)"}},"textfont":{"color":"rgba(102,194,165,1)"},"error_y":{"color":"rgba(102,194,165,1)"},"error_x":{"color":"rgba(102,194,165,1)"},"line":{"color":"rgba(102,194,165,1)"},"frame":null},{"x":[177,187,169.0641420284604,161.50811347387724,156.87905811689788,162.55166081315184,183.20028397341835,180.68109306135187,166.06150504694079,164.81901406542121,165.74435686398562,168.96658582350881,151.24884746625696,172.08688244587432,178.2968855424208,181.54903469239264,164.68293083760187,181.82771806747172,173.35510834640115,169.30244250279958,174.18577923597476,181.49945373432601,177.48322142655644,190.43904381443096,163.95452720169334,170.49739248172941,168.40809275004091,171.72169972494726,180.18596198385475,174.53923764936556,194.50532695855844,178.99810231760651,163.90132137664827,177.88062658277025,182.97575514686071,172.9407165423861,172.89699339108842,178.37331197989926,198.75933433179631,193.82530729541955,176.45363558246862,175.07938418672322,166.30764654522355,185.59820204444884,166.57959637868174,175.19157761979324,158.82539952029305,188.46333823431976,179.91281650644936,179.41494363509238,153.03403329352656,165.55939872087086,192.04603300757319,176.05756136613473,170.92675685017934,172.16399491794996,179.70925295995613,169.6817566467241,185.68642063809807,165.10971192168196,178.39618628823627,179.96377657864323,169.28917619990176,182.30908846798366,181.64797908260462,178.18939184210492,173.0565759211772,172.98888288311306,175.47287508561504,163.45611508536396],"y":[82,89,71.252599092181995,72.954876483756038,63.201193099467616,71.094091108829943,80.625682328234305,57.208702482802934,76.050737109042373,65.834159292909064,60.00731190394103,70.291656768381529,59.514508263360966,54.966649998413402,84.394110863633003,62.288191456249571,58.116023028630281,66.930429744984053,53.779957109445014,81.055584433326402,68.84616735974987,60.890210196982274,58.766395594139716,73.409464286355899,75.140236125735086,57.16677425873133,65.171941626845268,81.852841865755451,61.184638795306704,73.940882117351592,60.688602435645649,52.595002896981633,70.353740127756353,58.911154363010624,60.636310139153849,72.859162592621232,70.931852514476091,72.747766821196521,67.425544250146572,64.827680255206317,84.590205075927656,64.068048478232882,59.144882970503502,60.734559251596153,56.398373178251411,62.626652130901348,65.185502024778344,66.238094093122697,86.126387554703015,83.415024827956259,56.79889747373803,80.757420285613762,76.517323672050409,63.678792659214487,53.698647721136325,69.998096741558555,70.252521968771433,96.975412561936324,90.818307756024723,85.747589446215187,66.907124577802321,80.339597362549142,73.404760710566023,76.556159665357427,71.254102072391063,84.616177971157384,79.72134791982478,60.292807882472843,63.458748402900113,58.072252196169991],"z":[26.199999999999999,25.5,24.899999999999999,28,25.699999999999999,26.899999999999999,24,17.5,27.600000000000001,24.199999999999999,21.800000000000001,24.600000000000001,26,18.600000000000001,26.5,18.899999999999999,21.399999999999999,20.199999999999999,17.899999999999999,28.300000000000001,22.699999999999999,18.5,18.699999999999999,20.199999999999999,28,19.699999999999999,23,27.800000000000001,18.800000000000001,24.300000000000001,16,16.399999999999999,26.199999999999999,18.600000000000001,18.100000000000001,24.399999999999999,23.699999999999999,22.899999999999999,17.100000000000001,17.300000000000001,27.199999999999999,20.899999999999999,21.399999999999999,17.600000000000001,20.300000000000001,20.399999999999999,25.800000000000001,18.600000000000001,26.600000000000001,25.899999999999999,24.300000000000001,29.5,20.699999999999999,20.5,18.399999999999999,23.600000000000001,21.800000000000001,33.700000000000003,26.300000000000001,31.5,21,24.800000000000001,25.600000000000001,23,21.600000000000001,26.600000000000001,26.600000000000001,20.100000000000001,20.600000000000001,21.699999999999999],"type":"scatter3d","mode":"markers","name":"M","marker":{"color":"rgba(141,160,203,1)","line":{"color":"rgba(141,160,203,1)"}},"textfont":{"color":"rgba(141,160,203,1)"},"error_y":{"color":"rgba(141,160,203,1)"},"error_x":{"color":"rgba(141,160,203,1)"},"line":{"color":"rgba(141,160,203,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
 <section id="students-t-test" class="slide level2">
 <h2>Student’s t Test</h2>
 <p><span class="math display">\[
-H_0: \mu=170 \;\text{ vs } \;H_1: \mu\neq 170
+H_0: \mu=165 \;\text{ vs } \;H_1: \mu\neq 165
 \]</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a></a><span class="fu">t.test</span>(New_df<span class="sc">$</span>Height, <span class="at">mu=</span><span class="dv">170</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a></a><span class="fu">t.test</span>(New_df<span class="sc">$</span>Height, <span class="at">mu=</span><span class="dv">165</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     One Sample t-test
 
 data:  New_df$Height
-t = 1.3206, df = 99, p-value = 0.1897
-alternative hypothesis: true mean is not equal to 170
+t = 6.2205, df = 99, p-value = 1.191e-08
+alternative hypothesis: true mean is not equal to 165
 95 percent confidence interval:
  169.3228 173.3724
 sample estimates:
@@ -3258,19 +3309,41 @@ mean of x
 <section id="one-sample-t-test" class="slide level2">
 <h2>One-sample t Test</h2>
 <p><span class="math display">\[
-H_0: \mu&gt;170\;\text{ vs }\;H_1: \mu\leq 170
+H_0: \mu=165\;\text{ vs }\;H_1: \mu&gt; 165
 \]</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a></a><span class="fu">t.test</span>(New_df<span class="sc">$</span>Height, <span class="at">mu=</span><span class="dv">170</span>, <span class="at">alternative =</span> <span class="st">"greater"</span>) <span class="co">#alternative = "less", when H_0:\mu&lt;170</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a></a><span class="fu">t.test</span>(New_df<span class="sc">$</span>Height, <span class="at">mu=</span><span class="dv">165</span>, <span class="at">alternative =</span> <span class="st">"greater"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     One Sample t-test
 
 data:  New_df$Height
-t = 1.3206, df = 99, p-value = 0.09484
-alternative hypothesis: true mean is greater than 170
+t = 6.2205, df = 99, p-value = 5.954e-09
+alternative hypothesis: true mean is greater than 165
 95 percent confidence interval:
  169.6533      Inf
+sample estimates:
+mean of x 
+ 171.3476 </code></pre>
+</div>
+</div>
+</section>
+<section id="one-sample-t-test-1" class="slide level2">
+<h2>One-sample t Test</h2>
+<p><span class="math display">\[
+H_0: \mu=165\;\text{ vs }\;H_1: \mu&lt; 165
+\]</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a></a><span class="fu">t.test</span>(New_df<span class="sc">$</span>Height, <span class="at">mu=</span><span class="dv">165</span>, <span class="at">alternative =</span> <span class="st">"less"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    One Sample t-test
+
+data:  New_df$Height
+t = 6.2205, df = 99, p-value = 1
+alternative hypothesis: true mean is less than 165
+95 percent confidence interval:
+     -Inf 173.0419
 sample estimates:
 mean of x 
  171.3476 </code></pre>
@@ -3280,25 +3353,54 @@ mean of x
 <section id="two-sample-t-test" class="slide level2">
 <h2>Two-sample t Test</h2>
 <p><span class="math display">\[
-H_0: \mu_1&lt;\mu_2\;\text{ vs }\;H_1: \mu_1\geq\mu_2
+H_0: \mu_1=\mu_2\;\text{ vs }\;H_1: \mu_1 &lt; \mu_2
 \]</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a></a><span class="fu">t.test</span>(BMI_M, BMI_F, <span class="at">alternative =</span> <span class="st">"less"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a></a><span class="fu">t.test</span>(BMI_M, BMI_F, <span class="at">alternative =</span> <span class="st">"less"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Welch Two Sample t-test
 
 data:  BMI_M and BMI_F
-t = 3.6305, df = 52.555, p-value = 0.9997
+t = 4.3923, df = 51.016, p-value = 1
 alternative hypothesis: true difference in means is less than 0
 95 percent confidence interval:
-     -Inf 6.283122
+     -Inf 7.059032
 sample estimates:
 mean of x mean of y 
- 22.40333  18.10333 </code></pre>
+ 23.21333  18.10333 </code></pre>
 </div>
 </div>
-</section></section>
+</section>
+<section id="two-sample-t-test-1" class="slide level2">
+<h2>Two-sample t Test</h2>
+<p><span class="math display">\[
+H_0: \mu_1=\mu_2\;\text{ vs }\;H_1: \mu_1 &gt; \mu_2
+\]</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a></a><span class="fu">t.test</span>(BMI_M, BMI_F, <span class="at">alternative =</span> <span class="st">"greater"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Welch Two Sample t-test
+
+data:  BMI_M and BMI_F
+t = 4.3923, df = 51.016, p-value = 2.838e-05
+alternative hypothesis: true difference in means is greater than 0
+95 percent confidence interval:
+ 3.160968      Inf
+sample estimates:
+mean of x mean of y 
+ 23.21333  18.10333 </code></pre>
+</div>
+</div>
+</section>
+<section id="barplot" class="slide level2">
+<h2>Barplot</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a></a><span class="fu">boxplot</span>(<span class="fu">data.frame</span>(BMI_F,BMI_M), <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="Presentation2024summer_files/figure-revealjs/unnamed-chunk-62-1.png" width="960" class="r-stretch"></section></section>
 <section id="thanks-for-your-attention" class="title-slide slide level1 center">
 <h1>Thanks for your Attention!</h1>
 

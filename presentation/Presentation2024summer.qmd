@@ -319,7 +319,7 @@ a
 
 * `install.packages("dplyr")`
 
-* lower right window: `Packages` > `Install` > type `dplyr`
+* `Packages` > `Install` > `dplyr` > `Install`
 
 ![](fig/InstallPackage.jpg)
 
@@ -343,7 +343,7 @@ $$
 * survival
 
 
-## Random variable and Distribution
+## Random Variable and Distribution
 
 * denoted by:
 
@@ -352,26 +352,36 @@ X\sim \text{Distribution(.)}
 $$
 
 * discrete
-  + Bernoulli
+  + Bernoulli / binomial distribution
   
 * continuous
-  + normal
+  + normal distribution
   + t distribution
 
-## Bernoulli
+## Bernoulli Distribution
 
 $$
 X\sim B(p)
 $$
 
-* $p$: probability
+* $p$
 * $x\in\{0,1\}$
 * $P(X=1) = p$
 * $P(X=0) = 1-p$
 
 
+## Binomial Distribution
 
-## Normal
+$$
+X\sim B(n,p)
+$$
+
+* $p$
+* $x\in\{0,1,2,\cdots,n\}$
+* $P(X=x) = \binom{n}{x}p^xq^{n-x}$
+
+
+## Normal Distribution
 
 $$
 X\sim N(\mu, \sigma^2)
@@ -384,7 +394,7 @@ $$
   + $\small f(x)=\frac{1}{\sqrt{2\pi}\sigma}\exp(-\frac{(x-\mu)^2}{2\sigma^2})$, $x\in(-\infty,\infty)$
 
 
-## t distribution
+## t Distribution
 
 * $X\sim t_n=N(0,1)$ (as $n\rightarrow\infty$)
 
@@ -510,37 +520,68 @@ cor(New_df$Weight, New_df$BMI)
 summary(New_df)
 ```
 
+
+## Visualization (histogram)
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+hist(New_df$Age, main = "Age of New_df", xlab = "age", ylab = "N")
+```
+
+## Visualization (scatter)
+
+```{r message=FALSE, warning=FALSE}
+plot(New_df$Height, New_df$Weight, col = New_df$Gender, pch = 19, xlab = "height", ylab = "weight")
+legend("bottomright", legend = paste("Group", c("M","F")), col = New_df$Gender, pch = 19, bty = "n")
+```
+
+## Visualization (scatter-3d)
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+library(plotly)
+plot_ly(data = New_df, x = ~Height, y = ~Weight, z = ~BMI, color = New_df$Gender)
+```
+
 ## Student's t Test
 
 $$
-H_0: \mu=170 \;\text{ vs } \;H_1: \mu\neq 170
+H_0: \mu=165 \;\text{ vs } \;H_1: \mu\neq 165
 $$
 
 ```{r echo=TRUE}
-t.test(New_df$Height, mu=170)
+t.test(New_df$Height, mu=165)
 ```
 
 
 ## One-sample t Test
 
 $$
-H_0: \mu>170\;\text{ vs }\;H_1: \mu\leq 170
+H_0: \mu=165\;\text{ vs }\;H_1: \mu> 165
 $$
 
 ```{r echo=TRUE}
-t.test(New_df$Height, mu=170, alternative = "greater") #alternative = "less", when H_0:\mu<170
+t.test(New_df$Height, mu=165, alternative = "greater")
+```
+
+## One-sample t Test
+
+$$
+H_0: \mu=165\;\text{ vs }\;H_1: \mu< 165
+$$
+
+```{r echo=TRUE}
+t.test(New_df$Height, mu=165, alternative = "less")
 ```
 
 
 ## Two-sample t Test
 
 $$
-H_0: \mu_1<\mu_2\;\text{ vs }\;H_1: \mu_1\geq\mu_2
+H_0: \mu_1=\mu_2\;\text{ vs }\;H_1: \mu_1 < \mu_2
 $$
 
 ```{r}
 BMI_M <- New_df%>%filter(Gender=="M")
-BMI_M <- sample(BMI_M$BMI, 30, replace = F)
+BMI_M <- BMI_M$BMI[1:30]
 BMI_F <- New_df%>%filter(Gender=="F")
 BMI_F <- BMI_F$BMI 
 ```
@@ -548,5 +589,22 @@ BMI_F <- BMI_F$BMI
 ```{r echo=TRUE}
 t.test(BMI_M, BMI_F, alternative = "less")
 ```
+
+## Two-sample t Test
+
+$$
+H_0: \mu_1=\mu_2\;\text{ vs }\;H_1: \mu_1 > \mu_2
+$$
+
+```{r echo=TRUE}
+t.test(BMI_M, BMI_F, alternative = "greater")
+```
+
+## Barplot
+
+```{r echo=TRUE}
+boxplot(data.frame(BMI_F,BMI_M), col = c("red", "blue"))
+```
+
 
 # Thanks for your Attention!

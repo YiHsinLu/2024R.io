@@ -25,14 +25,14 @@
     "href": "Rtutorial.html#variables",
     "title": "Basic Statistical Analysis with R",
     "section": "1.2 Variables",
-    "text": "1.2 Variables\nFor the problem of using &lt;- or =, we will see the same result for setting variables but my suggestion is &lt;-.\n\nx &lt;- 100\nx = 100\nx\n\n[1] 100\n\n\n\n1.2.1 integer\n\nint &lt;- 10\nint\n\n[1] 10\n\n\n\n\n1.2.2 character\n\nchr &lt;- \"I am a character\"\nchr\n\n[1] \"I am a character\"\n\n\n\n\n1.2.3 vector\nBe careful the variable name, such as c is a function fro creating vectors.\n\nV1 &lt;- c(1:10)\nV2 &lt;- c(\"2\", 2)\nV1\n\n [1]  1  2  3  4  5  6  7  8  9 10\n\nV2\n\n[1] \"2\" \"2\"\n\n\n\n\n1.2.4 function\n\\[\nf(x)=x^2+2x+1\\text{, and find } f(\\pi).\n\\]\n\nf &lt;- function(x){ x^2+2*x+1 }\nf(pi)\n\n[1] 17.15279\n\n\nUsing ?function_name to see detail in th function.\n\n\n1.2.5 factor\n\nF1 &lt;- factor(c(1,0,1,1,0,1))\nF1\n\n[1] 1 0 1 1 0 1\nLevels: 0 1\n\n\n\n\n1.2.6 list\n\nList1 &lt;- list(integer1 = int,\n              character1 = chr,\n              vector1 = V1,\n              function1 = f,\n              factor1 = F1)\n\nList1\n\n$integer1\n[1] 10\n\n$character1\n[1] \"I am a character\"\n\n$vector1\n [1]  1  2  3  4  5  6  7  8  9 10\n\n$function1\nfunction(x){ x^2+2*x+1 }\n\n$factor1\n[1] 1 0 1 1 0 1\nLevels: 0 1\n\n\n\n\n1.2.7 matrix\n\nM1 &lt;- matrix(c(1,2,1,\n               0,2,7),\n             ncol = 3,nrow = 2,byrow = T)\nM1\n\n     [,1] [,2] [,3]\n[1,]    1    2    1\n[2,]    0    2    7\n\n\n\nM2 &lt;- matrix(c(1,0,0,\n               0,1,0,\n               0,0,1), ncol = 3, nrow = 3, byrow = T)\nM2\n\n     [,1] [,2] [,3]\n[1,]    1    0    0\n[2,]    0    1    0\n[3,]    0    0    1\n\n\n\nM1%*%M2\n\n     [,1] [,2] [,3]\n[1,]    1    2    1\n[2,]    0    2    7\n\n\n\n\n1.2.8 data frame\n\ndf &lt;- data.frame(Name = c(\"Sam\", \"Yuji\", \"Lan\", \"Elaine\"),\n                 Age = c(28,24,NA,NA),\n                 Height = c(177, 187, 159, 164),\n                 Gender = factor(c(\"M\", \"M\", \"F\", \"F\")))\ndf\n\n    Name Age Height Gender\n1    Sam  28    177      M\n2   Yuji  24    187      M\n3    Lan  NA    159      F\n4 Elaine  NA    164      F"
+    "text": "1.2 Variables\nFor the problem of using &lt;- or =, we will see the same result for setting variables but my suggestion is &lt;-.\n\nx &lt;- 100\nx = 100\nx\n\n[1] 100\n\n\n\n1.2.1 integer\n\nint &lt;- 10\nint\n\n[1] 10\n\n\n\n\n1.2.2 function\n\\[\nf(x)=x^2+2x+1\\text{, and find } f(\\pi).\n\\]\n\nf &lt;- function(x){ x^2+2*x+1 }\nf(pi)\n\n[1] 17.15279\n\n\nUsing ?function_name to see detail in th function.\n\n\n1.2.3 character\n\nchr &lt;- \"I am a character\"\nchr\n\n[1] \"I am a character\"\n\n\n\n\n1.2.4 vector\nBe careful the variable name, such as c is a function fro creating vectors.\n\nV1 &lt;- c(1:10)\nV2 &lt;- c(\"2\", 2)\nV1\n\n [1]  1  2  3  4  5  6  7  8  9 10\n\nV2\n\n[1] \"2\" \"2\"\n\n\n\n\n1.2.5 factor\n\nF1 &lt;- factor(c(1,0,1,1,0,1))\nF1\n\n[1] 1 0 1 1 0 1\nLevels: 0 1\n\n\n\n\n1.2.6 list\n\nList1 &lt;- list(integer1 = int,\n              character1 = chr,\n              vector1 = V1,\n              function1 = f,\n              factor1 = F1)\n\nList1\n\n$integer1\n[1] 10\n\n$character1\n[1] \"I am a character\"\n\n$vector1\n [1]  1  2  3  4  5  6  7  8  9 10\n\n$function1\nfunction(x){ x^2+2*x+1 }\n\n$factor1\n[1] 1 0 1 1 0 1\nLevels: 0 1\n\n\n\n\n1.2.7 matrix\n\nM1 &lt;- matrix(c(1,2,1,\n               0,2,7),\n             ncol = 3,nrow = 2,byrow = T)\nM1\n\n     [,1] [,2] [,3]\n[1,]    1    2    1\n[2,]    0    2    7\n\n\n\nM2 &lt;- matrix(c(1,0,0,\n               0,1,0,\n               0,0,1), ncol = 3, nrow = 3, byrow = T)\nM2\n\n     [,1] [,2] [,3]\n[1,]    1    0    0\n[2,]    0    1    0\n[3,]    0    0    1\n\n\n\nM1%*%M2\n\n     [,1] [,2] [,3]\n[1,]    1    2    1\n[2,]    0    2    7\n\n\n\n\n1.2.8 data frame\n\ndf &lt;- data.frame(Name = c(\"Sam\", \"Yuji\", \"Lan\", \"Elaine\"),\n                 Age = c(28,24,NA,NA),\n                 Height = c(177, 187, 159, 164),\n                 Gender = factor(c(\"M\", \"M\", \"F\", \"F\")))\ndf\n\n    Name Age Height Gender\n1    Sam  28    177      M\n2   Yuji  24    187      M\n3    Lan  NA    159      F\n4 Elaine  NA    164      F"
   },
   {
     "objectID": "Rtutorial.html#probability-space",
     "href": "Rtutorial.html#probability-space",
     "title": "Basic Statistical Analysis with R",
     "section": "2.1 Probability Space",
-    "text": "2.1 Probability Space\n\\[\n\\Large (\\Omega, \\mathscr{F}, P)\n\\]\n\n\\(\\Omega\\): Sample space, all of the occurring events.\n\\(\\mathscr{F}\\): \\(\\sigma\\)-algebra, hard to explained, simply define \\(\\Omega\\in\\mathscr{F}\\), fixed the math.\n\\(P\\): probability measure, the value of the occurring event, and between 0 and 1.\n\n\n\n2.1.1 example\nProbability space of tossing a fair coin, then:\n\n\\(\\Omega = \\{H,T\\}\\)\n\\(P(\\{H\\})=P(\\{T\\})=\\frac{1}{2}\\)\n\n\n\n2.1.2 another example\nProbability space of tossing a fair dice, then:\n\n\\(\\Omega = \\{\\)  \\(,\\)  \\(,\\)  \\(,\\)  \\(,\\)  \\(,\\)  \\(\\}\\)\n\\(P(\\{\\)  \\(\\})=\\) \\(P(\\{\\)  \\(\\})=\\) \\(P(\\{\\)  \\(\\})=\\) \\(P(\\{\\)  \\(\\})=\\) \\(P(\\{\\)  \\(\\})=\\) \\(P(\\{\\)  \\(\\})=\\) \\(\\frac{1}{6}\\)\n\n\n\n2.1.3 Probability Measure\n\nThree Axiom\n\n\\(0\\leq P(A)\\leq 1,\\;\\forall A\\)\n\\(P(\\Omega) = 1\\)\n\\(P(\\bigcup_{i=1}^n A_i)=\\sum_{i=1}^n P(A_i), \\text{where }A_i\\cap A_j=\\varnothing,\\;\\forall i,j\\)"
+    "text": "2.1 Probability Space\n\\[\n\\Large (S, P)\n\\]\n\n\\(S\\): Sample space, all of the occurring events.\n\\(P\\): probability measure, the value of the occurring event, and between 0 and 1.\n\n\n\n2.1.1 example\nProbability space of tossing a fair coin, then:\n\n\\(S = \\{H,T\\}\\)\n\\(P(\\{H\\})=P(\\{T\\})=\\frac{1}{2}\\)\n\n\n\n2.1.2 another example\nProbability space of tossing a fair dice, then:\n\n\\(S = \\{\\)  \\(,\\)  \\(,\\)  \\(,\\)  \\(,\\)  \\(,\\)  \\(\\}\\)\n\\(P(\\{\\)  \\(\\})=\\) \\(P(\\{\\)  \\(\\})=\\) \\(P(\\{\\)  \\(\\})=\\) \\(P(\\{\\)  \\(\\})=\\) \\(P(\\{\\)  \\(\\})=\\) \\(P(\\{\\)  \\(\\})=\\) \\(\\frac{1}{6}\\)\n\n\n\n2.1.3 Probability Measure\n\nThree Axiom\n\n\\(0\\leq P(A)\\leq 1,\\;\\forall A\\)\n\\(P(S) = 1\\)\n\\(P(\\bigcup_{i=1}^n A_i)=\\sum_{i=1}^n P(A_i), \\text{where }A_i\\cap A_j=\\varnothing,\\;\\forall i,j\\)"
   },
   {
     "objectID": "Rtutorial.html#discrete-random-variable",
@@ -123,14 +123,14 @@
     "href": "Rtutorial.html#one-sample-students-t-test-1",
     "title": "Basic Statistical Analysis with R",
     "section": "4.2 One-sample Student’s t Test",
-    "text": "4.2 One-sample Student’s t Test\n\\[\nH_0: \\mu&gt;170\n\\]\n\\[\nH_1: \\mu\\leq 170\n\\]\n\nt.test(New_df$Height, mu=170, alternative = \"greater\") #alternative = \"less\", when H_0:\\mu&lt;170\n\n\n    One Sample t-test\n\ndata:  New_df$Height\nt = 0.9556, df = 99, p-value = 0.1708\nalternative hypothesis: true mean is greater than 170\n95 percent confidence interval:\n 169.2163      Inf\nsample estimates:\nmean of x \n 171.0625"
+    "text": "4.2 One-sample Student’s t Test\n\\[\nH_0: \\mu=170\n\\]\n\\[\nH_1: \\mu&gt; 170\n\\]\n\nt.test(New_df$Height, mu=170, alternative = \"greater\") #alternative = \"less\", when H_0:\\mu&lt;170\n\n\n    One Sample t-test\n\ndata:  New_df$Height\nt = 0.9556, df = 99, p-value = 0.1708\nalternative hypothesis: true mean is greater than 170\n95 percent confidence interval:\n 169.2163      Inf\nsample estimates:\nmean of x \n 171.0625"
   },
   {
     "objectID": "Rtutorial.html#two-sample-students-t-test",
     "href": "Rtutorial.html#two-sample-students-t-test",
     "title": "Basic Statistical Analysis with R",
     "section": "4.3 Two-sample Student’s t Test",
-    "text": "4.3 Two-sample Student’s t Test\n\\[\nH_0: \\mu_1&lt;\\mu_2\n\\]\n\\[\nH_1: \\mu_1\\geq\\mu_2\n\\]\n\nBMI_M &lt;- New_df%&gt;%filter(Gender==\"M\")\nBMI_M &lt;- sample(BMI_M$BMI, 30, replace = F)\nBMI_F &lt;- New_df%&gt;%filter(Gender==\"F\")\nBMI_F &lt;- BMI_F$BMI \n\n#test\nt.test(BMI_M, BMI_F, alternative = \"less\")\n\n\n    Welch Two Sample t-test\n\ndata:  BMI_M and BMI_F\nt = 3.7572, df = 57.764, p-value = 0.9998\nalternative hypothesis: true difference in means is less than 0\n95 percent confidence interval:\n     -Inf 5.818209\nsample estimates:\nmean of x mean of y \n 22.17333  18.14667"
+    "text": "4.3 Two-sample Student’s t Test\n\\[\nH_0: \\mu_1=\\mu_2\n\\]\n\\[\nH_1: \\mu_1&lt;\\mu_2\n\\]\n\nBMI_M &lt;- New_df%&gt;%filter(Gender==\"M\")\nBMI_M &lt;- sample(BMI_M$BMI, 30, replace = F)\nBMI_F &lt;- New_df%&gt;%filter(Gender==\"F\")\nBMI_F &lt;- BMI_F$BMI \n\n#test\nt.test(BMI_M, BMI_F, alternative = \"less\")\n\n\n    Welch Two Sample t-test\n\ndata:  BMI_M and BMI_F\nt = 3.7572, df = 57.764, p-value = 0.9998\nalternative hypothesis: true difference in means is less than 0\n95 percent confidence interval:\n     -Inf 5.818209\nsample estimates:\nmean of x mean of y \n 22.17333  18.14667"
   },
   {
     "objectID": "Rtutorial.html#linear-model",
@@ -199,8 +199,8 @@
     "objectID": "Rtutorial.html#loop",
     "href": "Rtutorial.html#loop",
     "title": "Basic Statistical Analysis with R",
-    "section": "1.3 Loop",
-    "text": "1.3 Loop\nWhen you repeat the same things many times.\n\n1.3.1 for\n\nbuliding &lt;- c()\n\nfor(Floor in 1:101){\n  buliding &lt;- rbind(Floor, buliding)\n}\n\nbuliding\n\n      [,1]\nFloor  101\nFloor  100\nFloor   99\nFloor   98\nFloor   97\nFloor   96\nFloor   95\nFloor   94\nFloor   93\nFloor   92\nFloor   91\nFloor   90\nFloor   89\nFloor   88\nFloor   87\nFloor   86\nFloor   85\nFloor   84\nFloor   83\nFloor   82\nFloor   81\nFloor   80\nFloor   79\nFloor   78\nFloor   77\nFloor   76\nFloor   75\nFloor   74\nFloor   73\nFloor   72\nFloor   71\nFloor   70\nFloor   69\nFloor   68\nFloor   67\nFloor   66\nFloor   65\nFloor   64\nFloor   63\nFloor   62\nFloor   61\nFloor   60\nFloor   59\nFloor   58\nFloor   57\nFloor   56\nFloor   55\nFloor   54\nFloor   53\nFloor   52\nFloor   51\nFloor   50\nFloor   49\nFloor   48\nFloor   47\nFloor   46\nFloor   45\nFloor   44\nFloor   43\nFloor   42\nFloor   41\nFloor   40\nFloor   39\nFloor   38\nFloor   37\nFloor   36\nFloor   35\nFloor   34\nFloor   33\nFloor   32\nFloor   31\nFloor   30\nFloor   29\nFloor   28\nFloor   27\nFloor   26\nFloor   25\nFloor   24\nFloor   23\nFloor   22\nFloor   21\nFloor   20\nFloor   19\nFloor   18\nFloor   17\nFloor   16\nFloor   15\nFloor   14\nFloor   13\nFloor   12\nFloor   11\nFloor   10\nFloor    9\nFloor    8\nFloor    7\nFloor    6\nFloor    5\nFloor    4\nFloor    3\nFloor    2\nFloor    1"
+    "section": "1.4 Loop",
+    "text": "1.4 Loop\nWhen you repeat the same things many times.\n\n1.4.1 for\n\nbuliding &lt;- c()\n\nfor(Floor in 1:101){\n  buliding &lt;- rbind(Floor, buliding)\n}\n\nbuliding\n\n      [,1]\nFloor  101\nFloor  100\nFloor   99\nFloor   98\nFloor   97\nFloor   96\nFloor   95\nFloor   94\nFloor   93\nFloor   92\nFloor   91\nFloor   90\nFloor   89\nFloor   88\nFloor   87\nFloor   86\nFloor   85\nFloor   84\nFloor   83\nFloor   82\nFloor   81\nFloor   80\nFloor   79\nFloor   78\nFloor   77\nFloor   76\nFloor   75\nFloor   74\nFloor   73\nFloor   72\nFloor   71\nFloor   70\nFloor   69\nFloor   68\nFloor   67\nFloor   66\nFloor   65\nFloor   64\nFloor   63\nFloor   62\nFloor   61\nFloor   60\nFloor   59\nFloor   58\nFloor   57\nFloor   56\nFloor   55\nFloor   54\nFloor   53\nFloor   52\nFloor   51\nFloor   50\nFloor   49\nFloor   48\nFloor   47\nFloor   46\nFloor   45\nFloor   44\nFloor   43\nFloor   42\nFloor   41\nFloor   40\nFloor   39\nFloor   38\nFloor   37\nFloor   36\nFloor   35\nFloor   34\nFloor   33\nFloor   32\nFloor   31\nFloor   30\nFloor   29\nFloor   28\nFloor   27\nFloor   26\nFloor   25\nFloor   24\nFloor   23\nFloor   22\nFloor   21\nFloor   20\nFloor   19\nFloor   18\nFloor   17\nFloor   16\nFloor   15\nFloor   14\nFloor   13\nFloor   12\nFloor   11\nFloor   10\nFloor    9\nFloor    8\nFloor    7\nFloor    6\nFloor    5\nFloor    4\nFloor    3\nFloor    2\nFloor    1"
   },
   {
     "objectID": "Rtutorial.html#error",
@@ -374,8 +374,8 @@
     "objectID": "presentation/Presentation2024summer.html#random-variable-and-distribution",
     "href": "presentation/Presentation2024summer.html#random-variable-and-distribution",
     "title": "Basic Statistical Analysis with R",
-    "section": "Random variable and Distribution",
-    "text": "Random variable and Distribution\n\ndenoted by:\n\n\\[\nX\\sim \\text{Distribution(.)}\n\\]\n\ndiscrete\n\nBernoulli\n\ncontinuous\n\nnormal\nt distribution"
+    "section": "Random Variable and Distribution",
+    "text": "Random Variable and Distribution\n\ndenoted by:\n\n\\[\nX\\sim \\text{Distribution(.)}\n\\]\n\ndiscrete\n\nBernoulli / binomial distribution\n\ncontinuous\n\nnormal distribution\nt distribution"
   },
   {
     "objectID": "presentation/Presentation2024summer.html#normal",
@@ -410,14 +410,14 @@
     "href": "presentation/Presentation2024summer.html#bernoulli",
     "title": "Basic Statistical Analysis with R",
     "section": "Bernoulli",
-    "text": "Bernoulli\n\\[\nX\\sim B(p)\n\\]\n\n\\(p\\): probability\n\\(x\\in\\{0,1\\}\\)\n\\(P(X=1) = p\\)\n\\(P(X=0) = 1-p\\)"
+    "text": "Bernoulli\n\\[\nX\\sim B(p)\n\\]\n\n\\(p\\)\n\\(x\\in\\{0,1\\}\\)\n\\(P(X=1) = p\\)\n\\(P(X=0) = 1-p\\)"
   },
   {
     "objectID": "presentation/Presentation2024summer.html#t-distribution",
     "href": "presentation/Presentation2024summer.html#t-distribution",
     "title": "Basic Statistical Analysis with R",
-    "section": "t distribution",
-    "text": "t distribution\n\n\\(X\\sim t_n=N(0,1)\\) (as \\(n\\rightarrow\\infty\\))"
+    "section": "t Distribution",
+    "text": "t Distribution\n\n\\(X\\sim t_n=N(0,1)\\) (as \\(n\\rightarrow\\infty\\))"
   },
   {
     "objectID": "presentation/Presentation2024summer.html#import-csv",
@@ -494,20 +494,97 @@
     "href": "presentation/Presentation2024summer.html#students-t-test",
     "title": "Basic Statistical Analysis with R",
     "section": "Student’s t Test",
-    "text": "Student’s t Test\n\\[\nH_0: \\mu=170 \\;\\text{ vs } \\;H_1: \\mu\\neq 170\n\\]\n\nt.test(New_df$Height, mu=170)\n\n\n    One Sample t-test\n\ndata:  New_df$Height\nt = 1.3206, df = 99, p-value = 0.1897\nalternative hypothesis: true mean is not equal to 170\n95 percent confidence interval:\n 169.3228 173.3724\nsample estimates:\nmean of x \n 171.3476"
+    "text": "Student’s t Test\n\\[\nH_0: \\mu=165 \\;\\text{ vs } \\;H_1: \\mu\\neq 165\n\\]\n\nt.test(New_df$Height, mu=165)\n\n\n    One Sample t-test\n\ndata:  New_df$Height\nt = 6.2205, df = 99, p-value = 1.191e-08\nalternative hypothesis: true mean is not equal to 165\n95 percent confidence interval:\n 169.3228 173.3724\nsample estimates:\nmean of x \n 171.3476"
   },
   {
     "objectID": "presentation/Presentation2024summer.html#one-sample-t-test",
     "href": "presentation/Presentation2024summer.html#one-sample-t-test",
     "title": "Basic Statistical Analysis with R",
     "section": "One-sample t Test",
-    "text": "One-sample t Test\n\\[\nH_0: \\mu&gt;170\\;\\text{ vs }\\;H_1: \\mu\\leq 170\n\\]\n\nt.test(New_df$Height, mu=170, alternative = \"greater\") #alternative = \"less\", when H_0:\\mu&lt;170\n\n\n    One Sample t-test\n\ndata:  New_df$Height\nt = 1.3206, df = 99, p-value = 0.09484\nalternative hypothesis: true mean is greater than 170\n95 percent confidence interval:\n 169.6533      Inf\nsample estimates:\nmean of x \n 171.3476"
+    "text": "One-sample t Test\n\\[\nH_0: \\mu=165\\;\\text{ vs }\\;H_1: \\mu&gt; 165\n\\]\n\nt.test(New_df$Height, mu=165, alternative = \"greater\")\n\n\n    One Sample t-test\n\ndata:  New_df$Height\nt = 6.2205, df = 99, p-value = 5.954e-09\nalternative hypothesis: true mean is greater than 165\n95 percent confidence interval:\n 169.6533      Inf\nsample estimates:\nmean of x \n 171.3476"
   },
   {
     "objectID": "presentation/Presentation2024summer.html#two-sample-t-test",
     "href": "presentation/Presentation2024summer.html#two-sample-t-test",
     "title": "Basic Statistical Analysis with R",
     "section": "Two-sample t Test",
-    "text": "Two-sample t Test\n\\[\nH_0: \\mu_1&lt;\\mu_2\\;\\text{ vs }\\;H_1: \\mu_1\\geq\\mu_2\n\\]\n\nt.test(BMI_M, BMI_F, alternative = \"less\")\n\n\n    Welch Two Sample t-test\n\ndata:  BMI_M and BMI_F\nt = 3.6305, df = 52.555, p-value = 0.9997\nalternative hypothesis: true difference in means is less than 0\n95 percent confidence interval:\n     -Inf 6.283122\nsample estimates:\nmean of x mean of y \n 22.40333  18.10333"
+    "text": "Two-sample t Test\n\\[\nH_0: \\mu_1=\\mu_2\\;\\text{ vs }\\;H_1: \\mu_1 &lt; \\mu_2\n\\]\n\nt.test(BMI_M, BMI_F, alternative = \"less\")\n\n\n    Welch Two Sample t-test\n\ndata:  BMI_M and BMI_F\nt = 4.3923, df = 51.016, p-value = 1\nalternative hypothesis: true difference in means is less than 0\n95 percent confidence interval:\n     -Inf 7.059032\nsample estimates:\nmean of x mean of y \n 23.21333  18.10333"
+  },
+  {
+    "objectID": "presentation/Presentation2024summer.html#barplot",
+    "href": "presentation/Presentation2024summer.html#barplot",
+    "title": "Basic Statistical Analysis with R",
+    "section": "Barplot",
+    "text": "Barplot\n\nboxplot(data.frame(BMI_F,BMI_M), col = c(\"red\", \"blue\"))"
+  },
+  {
+    "objectID": "presentation/Presentation2024summer.html#binomial",
+    "href": "presentation/Presentation2024summer.html#binomial",
+    "title": "Basic Statistical Analysis with R",
+    "section": "Binomial",
+    "text": "Binomial\n\\[\nX\\sim B(n,p)\n\\]\n\n\\(p\\)\n\\(x\\in\\{0,1,2,\\cdots,n\\}\\)\n\\(P(X=x) = \\binom{n}{x}p^xq^{n-x}\\)"
+  },
+  {
+    "objectID": "presentation/Presentation2024summer.html#bernoulli-distribution",
+    "href": "presentation/Presentation2024summer.html#bernoulli-distribution",
+    "title": "Basic Statistical Analysis with R",
+    "section": "Bernoulli Distribution",
+    "text": "Bernoulli Distribution\n\\[\nX\\sim B(p)\n\\]\n\n\\(p\\)\n\\(x\\in\\{0,1\\}\\)\n\\(P(X=1) = p\\)\n\\(P(X=0) = 1-p\\)"
+  },
+  {
+    "objectID": "presentation/Presentation2024summer.html#binomial-distribution",
+    "href": "presentation/Presentation2024summer.html#binomial-distribution",
+    "title": "Basic Statistical Analysis with R",
+    "section": "Binomial Distribution",
+    "text": "Binomial Distribution\n\\[\nX\\sim B(n,p)\n\\]\n\n\\(p\\)\n\\(x\\in\\{0,1,2,\\cdots,n\\}\\)\n\\(P(X=x) = \\binom{n}{x}p^xq^{n-x}\\)"
+  },
+  {
+    "objectID": "presentation/Presentation2024summer.html#normal-distribution",
+    "href": "presentation/Presentation2024summer.html#normal-distribution",
+    "title": "Basic Statistical Analysis with R",
+    "section": "Normal Distribution",
+    "text": "Normal Distribution\n\\[\nX\\sim N(\\mu, \\sigma^2)\n\\]\n\n\\(\\mu\\): mean\n\\(\\sigma\\): standard deviation\n\n\\(\\small P(X=x) = 0\\)\n\\(\\small P(X\\leq x) = \\int_{-\\infty}^xf(x)dx\\)\n\\(\\small f(x)=\\frac{1}{\\sqrt{2\\pi}\\sigma}\\exp(-\\frac{(x-\\mu)^2}{2\\sigma^2})\\), \\(x\\in(-\\infty,\\infty)\\)"
+  },
+  {
+    "objectID": "Rtutorial.html#if",
+    "href": "Rtutorial.html#if",
+    "title": "Basic Statistical Analysis with R",
+    "section": "1.3 If",
+    "text": "1.3 If\n\n1.3.1 Logic\n\nTRUE\nFALSE\n\n\nIs \\(a=b\\) ?\n\na &lt;- 2\nb &lt;- 1\n\na==b\n\n[1] FALSE\n\n\n\n\nIs \\(a\\neq b\\) ?\n\na!=b\n\n[1] TRUE\n\n\n\n\nIs \\(a\\geq b\\) ?\n\na&gt;=b\n\n[1] TRUE\n\n\n\n\n\n1.3.2 If Else\n\na &lt;- 148\n\nif(a%%2==0){\n  \"a is divided by 2.\"\n}else{\n  \"a is not divided by 2.\"\n}\n\n[1] \"a is divided by 2.\"\n\n\n\na &lt;- 148\n\nif(a%%2==0 & a%%3==0){\n  \"a is divided by 2 and 3.\"\n}else if(a%%2==0){\n  \"a is only divided by 2.\"\n}else if(a%%3==0){\n  \"a is only divided by 3.\"\n}else{\n  \"a is not divided by 2 or 3.\"\n}\n\n[1] \"a is only divided by 2.\""
+  },
+  {
+    "objectID": "presentation/Presentation2024summer.html#visualization-scatter",
+    "href": "presentation/Presentation2024summer.html#visualization-scatter",
+    "title": "Basic Statistical Analysis with R",
+    "section": "Visualization (scatter)",
+    "text": "Visualization (scatter)"
+  },
+  {
+    "objectID": "presentation/Presentation2024summer.html#visualization-histogram",
+    "href": "presentation/Presentation2024summer.html#visualization-histogram",
+    "title": "Basic Statistical Analysis with R",
+    "section": "Visualization (histogram)",
+    "text": "Visualization (histogram)\n\nhist(New_df$Age, main = \"Age of New_df\", xlab = \"age\", ylab = \"N\")"
+  },
+  {
+    "objectID": "presentation/Presentation2024summer.html#visualization-scatter-3d",
+    "href": "presentation/Presentation2024summer.html#visualization-scatter-3d",
+    "title": "Basic Statistical Analysis with R",
+    "section": "Visualization (scatter-3d)",
+    "text": "Visualization (scatter-3d)\n\nlibrary(plotly)\nplot_ly(data = New_df, x = ~Height, y = ~Weight, z = ~BMI, color = New_df$Gender)"
+  },
+  {
+    "objectID": "presentation/Presentation2024summer.html#one-sample-t-test-1",
+    "href": "presentation/Presentation2024summer.html#one-sample-t-test-1",
+    "title": "Basic Statistical Analysis with R",
+    "section": "One-sample t Test",
+    "text": "One-sample t Test\n\\[\nH_0: \\mu=165\\;\\text{ vs }\\;H_1: \\mu&lt; 165\n\\]\n\nt.test(New_df$Height, mu=165, alternative = \"less\")\n\n\n    One Sample t-test\n\ndata:  New_df$Height\nt = 6.2205, df = 99, p-value = 1\nalternative hypothesis: true mean is less than 165\n95 percent confidence interval:\n     -Inf 173.0419\nsample estimates:\nmean of x \n 171.3476"
+  },
+  {
+    "objectID": "presentation/Presentation2024summer.html#two-sample-t-test-1",
+    "href": "presentation/Presentation2024summer.html#two-sample-t-test-1",
+    "title": "Basic Statistical Analysis with R",
+    "section": "Two-sample t Test",
+    "text": "Two-sample t Test\n\\[\nH_0: \\mu_1=\\mu_2\\;\\text{ vs }\\;H_1: \\mu_1 &gt; \\mu_2\n\\]\n\nt.test(BMI_M, BMI_F, alternative = \"greater\")\n\n\n    Welch Two Sample t-test\n\ndata:  BMI_M and BMI_F\nt = 4.3923, df = 51.016, p-value = 2.838e-05\nalternative hypothesis: true difference in means is greater than 0\n95 percent confidence interval:\n 3.160968      Inf\nsample estimates:\nmean of x mean of y \n 23.21333  18.10333"
   }
 ]

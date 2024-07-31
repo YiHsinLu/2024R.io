@@ -154,11 +154,67 @@ df
 
 ------------------------------------------------------------------------
 
-## **1.3 Loop**
+## **1.3 If**
+
+### **1.3.1 Logic**
+
+* `TRUE`
+* `FALSE`
+
+#### Is $a=b$ ?
+
+```{r class.output="code-output"}
+a <- 2
+b <- 1
+
+a==b
+```
+
+#### Is $a\neq b$ ?
+
+```{r class.output="code-output"}
+a!=b
+```
+
+#### Is $a\geq b$ ?
+
+```{r class.output="code-output"}
+a>=b
+```
+
+### **1.3.2 If Else**
+
+```{r class.output="code-output"}
+a <- 148
+
+if(a%%2==0){
+  "a is divided by 2."
+}else{
+  "a is not divided by 2."
+}
+```
+
+```{r class.output="code-output"}
+a <- 148
+
+if(a%%2==0 & a%%3==0){
+  "a is divided by 2 and 3."
+}else if(a%%2==0){
+  "a is only divided by 2."
+}else if(a%%3==0){
+  "a is only divided by 3."
+}else{
+  "a is not divided by 2 or 3."
+}
+```
+
+------------------------------------------------------------------------
+
+## **1.4 Loop**
 
 When you repeat the same things many times.
 
-### **1.3.1 for**
+### **1.4.1 for**
 
 ```{r class.output="code-output"}
 buliding <- c()
@@ -447,11 +503,11 @@ t.test(New_df$Height, mu=170)
 ## **4.2 One-sample Student's t Test**
 
 $$
-H_0: \mu>170
+H_0: \mu=170
 $$
 
 $$
-H_1: \mu\leq 170
+H_1: \mu> 170
 $$
 
 ```{r class.output="code-output"}
@@ -463,11 +519,11 @@ t.test(New_df$Height, mu=170, alternative = "greater") #alternative = "less", wh
 ## **4.3 Two-sample Student's t Test**
 
 $$
-H_0: \mu_1<\mu_2
+H_0: \mu_1=\mu_2
 $$
 
 $$
-H_1: \mu_1\geq\mu_2
+H_1: \mu_1<\mu_2
 $$
 
 ```{r class.output="code-output"}
