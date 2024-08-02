@@ -6,18 +6,25 @@ website:
   title: "Yi-Hsin"
   navbar:
     left:
-      - href: index.qmd
-        text: Home
       - href: https://yihsinlu.github.io/yhlu.io/Website/index.html
-        text: YiHsin's Page
-      - href: Contact.qmd
-        text: Contact Me
-      - href: https://github.com/YiHsinLu
-        text: Github
-      - href: diary.qmd
-        text: Diary
-      - href: Rtutorial.qmd
-        text: R tutorial
+        text: Home
+      - text: About Me
+        menu: 
+          - href: Contact.qmd
+            text: Contact Me
+          - href: https://github.com/YiHsinLu
+            text: Github
+          - href: diary.qmd
+            text: Working Diary
+      
+      - text: R tutorial
+        menu: 
+          - href: Rtutorial.qmd
+            text: 0 Basic R
+          - href: Data.qmd
+            text: 1 Data Processing
+          - href: Visual.qmd
+            text: 2 Data Visualization
 
     
 
