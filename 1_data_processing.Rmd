@@ -1,0 +1,216 @@
+---
+title: "**【Data Processing】**"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    df_print: paged
+---
+
+```{css echo = FALSE}
+/*-- scss:defaults --*/
+
+body{
+  color:#7CA8BF;
+  background-color:#ffe4e1;
+  font-size: 16px;
+}
+
+a{
+  color: #ffa9d8;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+    background-color:rgba(255, 192, 203, 0.183)
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #7CA8BF;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    width: 40px;
+    background-color: #fbcac4;
+}
+
+hr{
+  border-top: 1px solid #bdcfda;
+}
+
+caption {
+  display: table-caption;
+  text-align: center;
+  font-size: 16px;
+}
+
+.dataframe{
+    width: 100%;
+    height: 130px;
+    border: 5px solid #bdcfda;
+    border-collapse: collapse;
+    font-size: 18px;
+}
+
+.dataframe tr, .dataframe tr td{
+    border: 2px solid #bdcfda;
+    align-items: center;
+}
+
+.dataframe tr th{
+    border: 2px solid #bdcfda;
+}
+
+tbody{
+  border: 5px solid #bdcfda;
+}
+
+.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
+    z-index: 2;
+    color: #ffe4e1;
+    background-color: #7CA8BF;
+    border-color: #7CA8BF;
+}
+
+.code-output{
+  color:#ffe4e1;
+  background-color:#7CA8BF;
+}
+
+```
+
+****
+
+## **0 Data**
+
+```{r message=FALSE, warning=FALSE}
+df <- read.csv("csv/20240805基本資料_retrospective.csv",
+               na.strings = c("", "NA"),
+               fileEncoding = "Big5")
+
+df
+```
+
+### 0.1 variables
+
+```{r message=FALSE, warning=FALSE}
+summary(df)
+```
+
+### 0.2 variable names
+
+```{r message=FALSE, warning=FALSE}
+colnames(df)
+```
+
+### 0.3 rename
+
+```{r}
+colnames(df) <- c("編號", "性別", "慢性病用藥狀況", "Comorbidity", "醫院代碼", "術前主述", "Biopsy_date_確診日期", "Biopsy_method", "Cell_Type", "多發性", "切片檢體腫瘤惡性度", "病理分期", "危險因子", "合併膀胱腫瘤", "合併CIS", "surgical_margin", "左右側", "腫瘤位置", "腫瘤大小", "完整檢體腫瘤惡性度", "pathological_stage", "術前水腎", "Lymphovascular_invasion", "Tumor_Necrosis", "有無針對UTUC化療", "針對UTUC化療型態", "化療處方", "NxUx_date", "NxUx_Access_method", "Bladder_cuff_resection", "other_bladder_cuff_method", "Lymphadenectomy_位置", "simultaneously_ipsilateral_adrenalectomy", "Post_operation_intravesical_CT_instillation", "Endoscopic_resection_date", "Endoscopic_Access_method", "Endoscopic_Energy_device", "endoscopic_ablation_次數", "post_ablation_Intra_cavitary_CT", "Salvage_Nephroureterectomy", "date_of_salvage_NU", "date_of_segmental_resection", "Segmental_resection_Access_method", "salvage_Nephroureterectomy", "Date_of_salvage_NU", "Clavien_Dindo_classification", "complication_list", "術後住院天數_天", "Residual_bladder_cuff", "Date_of_last_cystoscopy", "Bladder_UC_after_NUx_or_Endoscopic_or_Segmental_resection", "Date_of_Bladder_UC_recurrence_after_NUx_or_Endoscopic_or_Segmental_resection", "患側Upper_ureter_or_renal_pelvis_local_recurrence", "Date_of_Upper_ureter_or_renal_pelvis_recurrence", "患側Lower_ureter_or_bladder_cuff_local_recurrence", "Date_of_Lower_ureter_or_bladder_cuff_recurrence", "淋巴轉移及位置", "Date_of_LN_mets", "遠端轉移", "Date_of_distant_mets", "Disease_free", "Mortality", "Date_of_mortality", "長期_Complication", "手術到死亡間隔時間_月", "Post_OP_1_month_eGFR", "last_eGFR", "Lost_follow_up", "Longest_follow_up_month_for_BDFS_DFS", "Longest_follow_up_month_for_OS_CSS", "死亡檔最後追蹤日期", "死亡檔最長追蹤時間_月", "ECOG", "ASA", "身高", "體重", "生日", "診斷年紀", "術前Cr_level_mg_dl")
+```
+
+0.4 drop missing rows
+
+```{r}
+n_missing <- c()
+
+for(i in 1:6345){
+  if(sum(1*is.na(df[i,]))>50){
+    n_missing <- c(n_missing, i)
+  }
+}
+
+
+df1 <- df[-n_missing,]
+```
+
+****
+
+## **1 Variable Selection**
+
+### 1.1 pckage
+
+```{r message=FALSE, warning=FALSE}
+library(dplyr)
+```
+
+### 1.2 `select()`
+
+```{r}
+df1 <- df1%>%
+  dplyr::select(編號, 性別, ECOG, 身高, 體重, 生日, Comorbidity, 腫瘤位置, 腫瘤大小, pathological_stage, Mortality, Date_of_mortality, 術前Cr_level_mg_dl, Post_OP_1_month_eGFR, 死亡檔最長追蹤時間_月)
+
+df1
+```
+
+****
+
+## **2 Data Type**
+
+### 2.1 factors
+
+```{r}
+df1 <- df1%>%
+  transform(性別 = as.factor(性別))%>%
+  transform(ECOG = as.factor(ECOG))%>%
+  transform(Comorbidity = as.factor(Comorbidity))%>%
+  transform(腫瘤位置 = as.factor(腫瘤位置))%>%
+  transform(腫瘤大小 = as.factor(腫瘤大小))%>%
+  transform(pathological_stage = as.factor(pathological_stage))%>%
+  transform(Mortality = as.factor(Mortality))
+
+df1%>%
+  dplyr::select(性別, ECOG, Comorbidity, 腫瘤位置, pathological_stage, Mortality)
+```
+
+### 2.2 numeric
+
+```{r}
+df1 <- df1%>%
+  transform(身高 = as.numeric(身高))%>%
+  transform(體重 = as.numeric(體重))%>%
+  transform(術前Cr_level_mg_dl = as.numeric(術前Cr_level_mg_dl))%>%
+  transform(Post_OP_1_month_eGFR = as.numeric(Post_OP_1_month_eGFR))%>%
+  transform(死亡檔最長追蹤時間_月 = as.numeric(死亡檔最長追蹤時間_月))
+
+df1%>%
+  dplyr::select(身高, 體重, 術前Cr_level_mg_dl, Post_OP_1_month_eGFR, 死亡檔最長追蹤時間_月)
+```
+
+### 2.3 date
+
+```{r}
+df1 <- df1%>%
+  transform(生日 = as.Date(生日, "%m/%d/%Y"))%>%
+  transform(Date_of_mortality = as.Date(Date_of_mortality, "%m/%d/%Y"))
+
+df1%>%
+  select(生日, Date_of_mortality)
+```
+
+
+### **2.4 recap**{.tabset}
+
+#### data frame
+
+```{r}
+df1
+```
+
+#### `summary()`
+
+```{r}
+summary(df1)
+```
+
+****
+
+## **3 ** 

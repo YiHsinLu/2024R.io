@@ -21,7 +21,7 @@ website:
         menu: 
           - href: Rtutorial.qmd
             text: 0 Basic R
-          - href: Data.qmd
+          - href: 1_data_processing.html
             text: 1 Data Processing
           - href: Visual.qmd
             text: 2 Data Visualization
