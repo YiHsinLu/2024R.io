@@ -134,7 +134,7 @@ df1 <- df[-n_missing,]
 
 ****
 
-## **1 Variable Selection**
+## **1 Selection**
 
 ### 1.1 pckage
 
@@ -145,72 +145,365 @@ library(dplyr)
 ### 1.2 `select()`
 
 ```{r}
-df1 <- df1%>%
+df2 <- df1%>%
   dplyr::select(編號, 性別, ECOG, 身高, 體重, 生日, Comorbidity, 腫瘤位置, 腫瘤大小, pathological_stage, Mortality, Date_of_mortality, 術前Cr_level_mg_dl, Post_OP_1_month_eGFR, 死亡檔最長追蹤時間_月)
 
-df1
+df2
 ```
 
 ****
 
-## **2 Data Type**
-
-### 2.1 factors
+## **2 Type**
 
 ```{r}
-df1 <- df1%>%
+df3 <- df2%>%
+  transform(性別 = as.factor(性別))%>%
+  transform(ECOG = as.factor(ECOG))%>%
+  transform(身高 = as.numeric(身高))%>%
+  transform(體重 = as.numeric(體重))%>%
+  transform(生日 = as.Date(生日, "%m/%d/%Y"))%>%
+  transform(Comorbidity = as.factor(Comorbidity))%>%
+  transform(腫瘤位置 = as.factor(腫瘤位置))%>%
+  transform(腫瘤大小 = as.factor(腫瘤大小))%>%
+  transform(pathological_stage = as.factor(pathological_stage))%>%
+  transform(Mortality = as.factor(Mortality))%>%
+  transform(Date_of_mortality = as.Date(Date_of_mortality, "%m/%d/%Y"))%>%
+  transform(術前Cr_level_mg_dl = as.numeric(術前Cr_level_mg_dl))%>%
+  transform(Post_OP_1_month_eGFR = as.numeric(Post_OP_1_month_eGFR))%>%
+  transform(死亡檔最長追蹤時間_月 = as.numeric(死亡檔最長追蹤時間_月))
+
+df3
+```
+
+### 2.1 Factor
+
+```{r}
+df2%>%
   transform(性別 = as.factor(性別))%>%
   transform(ECOG = as.factor(ECOG))%>%
   transform(Comorbidity = as.factor(Comorbidity))%>%
   transform(腫瘤位置 = as.factor(腫瘤位置))%>%
   transform(腫瘤大小 = as.factor(腫瘤大小))%>%
   transform(pathological_stage = as.factor(pathological_stage))%>%
-  transform(Mortality = as.factor(Mortality))
-
-df1%>%
+  transform(Mortality = as.factor(Mortality))%>%
   dplyr::select(性別, ECOG, Comorbidity, 腫瘤位置, pathological_stage, Mortality)
 ```
 
-### 2.2 numeric
+### 2.2 Numeric
 
 ```{r}
-df1 <- df1%>%
+df2%>%
   transform(身高 = as.numeric(身高))%>%
   transform(體重 = as.numeric(體重))%>%
   transform(術前Cr_level_mg_dl = as.numeric(術前Cr_level_mg_dl))%>%
   transform(Post_OP_1_month_eGFR = as.numeric(Post_OP_1_month_eGFR))%>%
-  transform(死亡檔最長追蹤時間_月 = as.numeric(死亡檔最長追蹤時間_月))
-
-df1%>%
+  transform(死亡檔最長追蹤時間_月 = as.numeric(死亡檔最長追蹤時間_月))%>%
   dplyr::select(身高, 體重, 術前Cr_level_mg_dl, Post_OP_1_month_eGFR, 死亡檔最長追蹤時間_月)
 ```
 
-### 2.3 date
+### 2.3 Date
 
 ```{r}
-df1 <- df1%>%
+df2%>%
   transform(生日 = as.Date(生日, "%m/%d/%Y"))%>%
-  transform(Date_of_mortality = as.Date(Date_of_mortality, "%m/%d/%Y"))
-
-df1%>%
+  transform(Date_of_mortality = as.Date(Date_of_mortality, "%m/%d/%Y"))%>%
   select(生日, Date_of_mortality)
 ```
 
 
-### **2.4 recap**{.tabset}
+****
+
+### **2.4 Recap**{.tabset}
 
 #### data frame
 
 ```{r}
-df1
+df3
 ```
 
 #### `summary()`
 
 ```{r}
-summary(df1)
+summary(df3)
 ```
 
 ****
 
-## **3 ** 
+## **3 Detail** 
+
+```{r}
+df4 <- df3%>%
+  mutate(BMI = factor(ifelse(is.na(身高)|is.na(體重),
+                             NA,
+                             ifelse(體重/(身高/100)^2<25,
+                                    "0 Normal", "1 Overweight"))),
+         .after = 體重)%>%
+  dplyr::select(-身高, -體重)%>%
+  mutate(Comorbidity = as.factor(
+    ifelse(is.na(Comorbidity), NA,
+                              ifelse(grepl("5 HTN", Comorbidity),
+                                     "1 HTN",
+                                     "0 No HTN"))
+  ))%>%
+  mutate(腫瘤位置 = as.factor(
+    ifelse(is.na(腫瘤位置), "5 無法識別",
+           ifelse(腫瘤位置=="0 non-visible", "0 non-visible",
+                       ifelse(腫瘤位置=="1 腎盂", "1 腎盂",
+                          ifelse(腫瘤位置=="2 上輸尿管"|
+                                   腫瘤位置=="3 中輸尿管"|
+                                   腫瘤位置=="4 下輸尿管"|
+                                   腫瘤位置=="6 Urerter, unknown site", "2 輸尿管",
+                                 ifelse(腫瘤位置=="5 膀胱袖口", "3 膀胱袖口",
+                                        ifelse(腫瘤位置=="7 Not available", "5 無法識別",
+                                               "4 多個位置"))))))
+  ))%>%
+  mutate(腫瘤大小 = as.factor(
+    ifelse(is.na(腫瘤大小)|腫瘤大小=="Not available", "0 Not available",
+           ifelse(grepl(3,腫瘤大小)|grepl(4,腫瘤大小), "2 >=2cm", "1 <2cm"))
+  ))%>%
+  mutate(pT = as.factor(
+    ifelse(is.na(pathological_stage), NA,
+                     ifelse(grepl("T0", pathological_stage)|
+                              grepl("Tis", pathological_stage)|
+                              grepl("Ta", pathological_stage), "1 T0/Tis/Ta",
+                            ifelse(grepl("T1", pathological_stage), "2 T1",
+                                   ifelse(grepl("T2", pathological_stage), "3 T2",
+                                          ifelse(grepl("T3", pathological_stage), "4 T3",
+                                                 ifelse(grepl("T4", pathological_stage), "5 T4", "0 None"))))))
+  ),
+         .after = pathological_stage)%>%
+  mutate(pN = as.factor(
+    ifelse(is.na(pathological_stage), NA,
+                     ifelse(grepl("9 ", pathological_stage), "1 Nx",
+                            ifelse(grepl("6 ", pathological_stage), "2 N0",
+                                   ifelse(grepl("7 ", pathological_stage), "3 N1",
+                                          ifelse(grepl("8 ", pathological_stage), "4 N2", "0 None")))))
+  ),
+         .after = pT)%>%
+  mutate(pM = as.factor(
+    ifelse(is.na(pathological_stage), NA,
+                     ifelse(grepl("12 ", pathological_stage), "1 M0",
+                            ifelse(grepl("11 ", pathological_stage), "2 M1", "0 None")))
+  ),
+         .after = pN)%>%
+  dplyr::select(-pathological_stage)%>%
+  mutate(Mortality = as.factor(
+    ifelse(is.na(Mortality),
+           NA,
+           ifelse(grepl(0, Mortality),
+                  "0 No",
+                  ifelse(grepl(1, Mortality),
+                         "1 UTUC related",
+                         ifelse(grepl(2, Mortality),
+                                "2 Non-UTUC related",
+                                ifelse(grepl(3, Mortality),
+                                       "3 死因不明",
+                                       ifelse(grepl(4, Mortality),
+                                              "4 Surgery related", NA))))))
+  ))%>%
+  mutate(Age_of_Mortality = ifelse(is.na(Date_of_mortality)|is.na(生日), NA,
+                                   as.numeric(difftime(Date_of_mortality,
+                                                       生日))),
+         .after = Date_of_mortality)%>%
+  mutate(Age_of_Mortality = round(Age_of_Mortality/365, 0))
+
+df4
+```
+
+### 3.1 Functions
+
+* `mutate()`
+* `ifelse()`
+  + `is.na()`
+  + `grepl()`
+* `round()`
+
+****
+
+### 3.2 Variables
+
+****
+
+#### 3.2.1 BMI
+
+```{r}
+df3%>%
+  mutate(BMI = round(體重/(身高/100)^2, digits = 2),
+         .after = 體重)%>%
+  mutate(BMI.group = factor(ifelse(is.na(身高)|is.na(體重),
+                             NA,
+                             ifelse(體重/(身高/100)^2<25,
+                                    "Normal", "Overweight"))),
+         .after = BMI)%>%
+  dplyr::select(身高, 體重, BMI, BMI.group)
+```
+
+#### 3.2.2 Comorbidity
+
+```{r}
+df3%>%
+  mutate(Comorbidity.HTN = as.factor(
+    ifelse(is.na(Comorbidity), NA,
+                              ifelse(grepl("5 HTN", Comorbidity),
+                                     "1 HTN",
+                                     "0 No HTN"))
+  ))%>%
+  dplyr::select(Comorbidity, Comorbidity.HTN)
+```
+
+
+#### 3.2.3 腫瘤位置
+
+```{r}
+df3%>%
+  mutate(腫瘤位置.group = as.factor(
+    ifelse(is.na(腫瘤位置), "5 無法識別",
+           ifelse(腫瘤位置=="0 non-visible", "0 non-visible",
+                       ifelse(腫瘤位置=="1 腎盂", "1 腎盂",
+                          ifelse(腫瘤位置=="2 上輸尿管"|
+                                   腫瘤位置=="3 中輸尿管"|
+                                   腫瘤位置=="4 下輸尿管"|
+                                   腫瘤位置=="6 Urerter, unknown site", "2 輸尿管",
+                                 ifelse(腫瘤位置=="5 膀胱袖口", "3 膀胱袖口",
+                                        ifelse(腫瘤位置=="7 Not available", "5 無法識別",
+                                               "4 多個位置"))))))
+  ))%>%
+  dplyr::select(腫瘤位置, 腫瘤位置.group)
+```
+
+#### 3.2.4 腫瘤大小
+
+```{r}
+df3%>%
+  mutate(腫瘤大小.2cm = as.factor(
+    ifelse(is.na(腫瘤大小)|腫瘤大小=="Not available", "0 Not available",
+           ifelse(grepl(3,腫瘤大小)|grepl(4,腫瘤大小), "2 >=2cm", "1 <2cm"))
+  ))%>%
+  dplyr::select(腫瘤大小, 腫瘤大小.2cm)
+```
+
+
+#### 3.2.5 Pathological Stage
+
+```{r}
+df3%>%
+  mutate(pT = as.factor(
+    ifelse(is.na(pathological_stage), NA,
+                     ifelse(grepl("T0", pathological_stage)|
+                              grepl("Tis", pathological_stage)|
+                              grepl("Ta", pathological_stage), "T0/Tis/Ta",
+                            ifelse(grepl("T1", pathological_stage), "T1",
+                                   ifelse(grepl("T2", pathological_stage), "T2",
+                                          ifelse(grepl("T3", pathological_stage), "T3",
+                                                 ifelse(grepl("T4", pathological_stage), "T4", "None"))))))
+  ),
+         .after = pathological_stage)%>%
+  mutate(pN = as.factor(
+    ifelse(is.na(pathological_stage), NA,
+                     ifelse(grepl("9 ", pathological_stage), "Nx",
+                            ifelse(grepl("6 ", pathological_stage), "N0",
+                                   ifelse(grepl("7 ", pathological_stage), "N1",
+                                          ifelse(grepl("8 ", pathological_stage), "N2", "None")))))
+  ),
+         .after = pT)%>%
+  mutate(pM = as.factor(
+    ifelse(is.na(pathological_stage), NA,
+                     ifelse(grepl("12 ", pathological_stage), "M0",
+                            ifelse(grepl("11 ", pathological_stage), "M1", "None")))
+  ),
+         .after = pN)%>%
+  dplyr::select(pathological_stage, pT, pN, pM)
+```
+
+#### 3.2.6 Mortality
+
+```{r}
+df3%>%
+  mutate(Mortality.na = as.factor(
+    ifelse(is.na(Mortality),
+           NA,
+           ifelse(grepl(0, Mortality),
+                  "0 No",
+                  ifelse(grepl(1, Mortality),
+                         "1 UTUC related",
+                         ifelse(grepl(2, Mortality),
+                                "2 Non-UTUC related",
+                                ifelse(grepl(3, Mortality),
+                                       "3 死因不明",
+                                       ifelse(grepl(4, Mortality),
+                                              "4 Surgery related", NA))))))
+  ))%>%
+  dplyr::select(Mortality, Mortality.na)
+```
+
+#### 3.2.7 Age of Mortality
+
+```{r}
+df3%>%
+  mutate(Age_of_Mortality = ifelse(is.na(Date_of_mortality)|is.na(生日), NA,
+                                   as.numeric(difftime(Date_of_mortality,
+                                                       生日))),
+         .after = Date_of_mortality)%>%
+  mutate(Age_of_Mortality = round(Age_of_Mortality/365, 0))%>%
+  dplyr::select(生日, Date_of_mortality, Age_of_Mortality)
+```
+
+## **4 Missing value**
+
+```{r}
+df5 <- df4%>%
+  filter(if_all(everything(), ~ !is.na(.)))
+
+df5
+```
+
+## **5 **
+
+```{r}
+df6 <- df5%>%
+  select(編號, 性別, ECOG, BMI, Comorbidity, 腫瘤位置, 腫瘤大小, pT, pN, pM, Mortality, 死亡檔最長追蹤時間_月)%>%
+  mutate(編號 = as.numeric(gsub(".*?([0-9]+).*", "\\1", 編號)))%>%
+  mutate(性別 = as.numeric(gsub(".*?([0-9]+).*", "\\1", 性別)))%>%
+  mutate(ECOG = as.numeric(gsub(".*?([0-9]+).*", "\\1", ECOG)))%>%
+  mutate(BMI = as.numeric(gsub(".*?([0-9]+).*", "\\1", BMI)))%>%
+  mutate(Comorbidity = as.numeric(gsub(".*?([0-9]+).*", "\\1", Comorbidity)))%>%
+  mutate(腫瘤位置 = as.numeric(gsub(".*?([0-9]+).*", "\\1", 腫瘤位置)))%>%
+  mutate(腫瘤大小 = as.numeric(gsub(".*?([0-9]+).*", "\\1", 腫瘤大小)))%>%
+  mutate(pT = as.numeric(gsub(".*?([0-9]+).*", "\\1", pT)))%>%
+  mutate(pN = as.numeric(gsub(".*?([0-9]+).*", "\\1", pN)))%>%
+  mutate(pM = as.numeric(gsub(".*?([0-9]+).*", "\\1", pM)))%>%
+  mutate(Mortality = as.numeric(gsub(".*?([0-9]+).*", "\\1", Mortality)))%>%
+  mutate(死亡檔最長追蹤時間_月 = as.numeric(gsub(".*?([0-9]+).*", "\\1", 死亡檔最長追蹤時間_月)))
+
+df6
+```
+
+## **6 Results**
+
+### 6.1 data frame{.tabset}
+
+#### table
+
+```{r}
+df5
+```
+
+#### `summary()`
+
+```{r}
+summary(df5)
+```
+
+### 6.2 numerical data frame{.tabset}
+
+#### table
+
+```{r}
+df6
+```
+
+#### `summary()`
+
+```{r}
+summary(df6)
+```
