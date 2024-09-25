@@ -423,7 +423,7 @@ $$
 資料處理對於分析來說是第一步，也是最重要的一步，完整乾淨的處理好待分析的資料表是很重要的，我們也把這個動作稱作資料清洗 (data cleaning)。
 
 $$
-\mathcal{X} = (x_1, x_2, \cdots, x_n)^T \text{ , } \forall\; x_i\in \mathbb{R}^p
+\Large\mathcal{X} = (x_1, x_2, \cdots, x_n)^T \text{ , } \forall\; x_i\in \mathbb{R}^p
 $$
 
 通常數據的資料矩陣會用 $\mathcal{X}$ 標示，以上述微例，這個資料有 $n$ 位病患、 $p$ 個變數。當然，變數的內容不只有數據而已：
