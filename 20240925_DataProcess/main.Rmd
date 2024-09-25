@@ -1,0 +1,270 @@
+#0
+#read.csv
+#data import
+#data frame
+```{r}
+UTUCdb <- read.csv("csv/20240903基本資料_retrospective.csv",
+               na.strings = c("", "NA"),
+               fileEncoding = "Big5")
+```
+
+#data frame
+```{r} 
+UTUCdb
+```
+
+#variables
+```{r}
+summary(UTUCdb)
+```
+
+#variable names
+```{r}
+colnames(UTUCdb)
+```
+
+
+
+# pckages
+```{r message=FALSE, warning=FALSE, include=FALSE}
+library(dplyr)
+```
+
+#variable selection
+```{r}
+UTUCdb1 <- UTUCdb%>%
+  dplyr::select(編號,
+                性別,
+                身高..公分.,
+                體重..公斤.,
+                生日,
+                腫瘤位置.多選.,
+                腫瘤大小,
+                pathological.stage,
+                Mortality,
+                Date.of.mortality,
+                Longest.follow.up.month.for.OS.CSS)
+```
+
+#delete n 
+```{r}
+
+n_missing <- c()
+
+for(i in 1:6335){
+  if(sum(1*is.na(UTUCdb1[i,]))>0){
+    n_missing <- c(n_missing, i)
+  }
+}
+
+
+UTUCdb2 <- UTUCdb1 #[-n_missing,]
+```
+
+#rename the variables
+```{r}
+colnames(UTUCdb2) <- c("ID",
+                       "Gender",
+                       "Height",
+                       "Weight",
+                       "Birthday",
+                       "Location",
+                       "Size",
+                       "pT_Stage",
+                       "Mortality",
+                       "Date_of_mortality",
+                       "Followup_OS.CSS")
+```
+
+#wieght and height -> BMI
+```{r}
+UTUCdb3 <- UTUCdb2%>%
+  transform(Gender = as.factor(Gender),
+            Height = as.numeric(Height),
+            Weight = as.numeric(Weight),
+            Birthday = as.Date(Birthday, "%m/%d/%Y"),
+            Location = as.factor(Location),
+            Size = as.factor(Size),
+            pT_Stage = as.factor(pT_Stage),
+            Mortality = as.factor(Mortality),
+            Date_of_mortality = as.Date(Date_of_mortality, "%m/%d/%Y"))%>%
+  mutate(BMI = factor(ifelse(is.na(Height)|is.na(Weight),
+                             NA,
+                             ifelse(Weight/(Height/100)^2<25,
+                                    "1 Normal", "2 Overweight"))),
+         .after = Weight)%>%
+  dplyr::select(-Height, -Weight)
+
+
+UTUCdb3
+```
+
+
+
+```{r}
+UTUCdb4 <- UTUCdb3%>%
+  mutate(Gender = as.factor(
+    ifelse(grepl(1, Gender), "1 Male", "2 Female")
+  ),
+    Location = as.factor(
+    ifelse(is.na(Location), "5 Not available",
+           ifelse(Location=="0 non-visible", "0 non-visible",
+                       ifelse(Location=="1 腎盂", "1 Renal pelvis",
+                          ifelse(Location=="2 上輸尿管"|
+                                   Location=="3 中輸尿管"|
+                                   Location=="4 下輸尿管"|
+                                   Location=="6 Urerter, unknown site", "2 Ureter",
+                                 ifelse(Location=="5 膀胱袖口", "3 Bladder cuff",
+                                        ifelse(Location=="7 Not available", "5 Not available",
+                                               "4 Multiple"))))))
+  ),
+  Size = as.factor(
+    ifelse(is.na(Size)|Size=="Not available", "0 Not available",
+           ifelse(grepl(3,Size)|grepl(4,Size), "2 >=2cm", "1 <2cm"))
+  ))%>%
+  mutate(pT = as.factor(
+    ifelse(is.na(pT_Stage), NA,
+                     ifelse(grepl("0 ", pT_Stage)|
+                              grepl("1 ", pT_Stage)|
+                              grepl("10 ", pT_Stage), "0 T0/Tis/Ta",
+                            ifelse(grepl("2 ", pT_Stage), "1 T1",
+                                   ifelse(grepl("3 ", pT_Stage), "2 T2",
+                                          ifelse(grepl("4 ", pT_Stage), "3 T3",
+                                                 ifelse(grepl("5 ", pT_Stage), "4 T4", "0 None"))))))
+  ),
+         .after = pT_Stage)%>%
+  mutate(pN = as.factor(
+    ifelse(is.na(pT_Stage), NA,
+                     ifelse(grepl("9 ", pT_Stage), "5 Nx",
+                            ifelse(grepl("6 ", pT_Stage), "6 N0",
+                                   ifelse(grepl("7 ", pT_Stage), "7 N1",
+                                          ifelse(grepl("8 ", pT_Stage), "8 N2", "0 None")))))
+  ),
+         .after = pT)%>%
+  mutate(pM = as.factor(
+    ifelse(is.na(pT_Stage), NA,
+                     ifelse(grepl("12 ", pT_Stage), "9 M0",
+                            ifelse(grepl("11 ", pT_Stage), "10 M1", "0 None")))
+  ),
+         .after = pN)%>%
+  dplyr::select(-pT_Stage)%>%
+  mutate(Mortality = as.factor(
+    ifelse(is.na(Mortality),
+           NA,
+           ifelse(grepl(0, Mortality),
+                  "0 No",
+                  ifelse(grepl(1, Mortality),
+                         "1 Yes",
+                         ifelse(grepl(2, Mortality),
+                                "1 Yes",
+                                ifelse(grepl(3, Mortality),
+                                       "1 Yes",
+                                       ifelse(grepl(4, Mortality),
+                                              "1 Yes", NA))))))
+  ))%>%
+  mutate(Age_of_Mortality = ifelse(is.na(Date_of_mortality)|is.na(Birthday), NA,
+                                   as.numeric(difftime(Date_of_mortality,
+                                                       Birthday))),
+         .after = Date_of_mortality)%>%
+  mutate(Age_of_Mortality = round(Age_of_Mortality/365, 0))%>%
+  dplyr::select(-Birthday, -Date_of_mortality)
+
+UTUCdb4
+
+
+UTUCdb_factor <- UTUCdb4[, -1]
+UTUCdb_factor
+```
+
+
+
+
+```{r}
+UTUCdb_numeric <- UTUCdb_factor%>%
+  mutate(
+    Gender = as.numeric(gsub(".*?([0-9]+).*", "\\1", Gender)),
+    BMI = as.numeric(gsub(".*?([0-9]+).*", "\\1", BMI)),
+    Location = as.numeric(gsub(".*?([0-9]+).*", "\\1", Location)),
+    Size = as.numeric(gsub(".*?([0-9]+).*", "\\1", Size)),
+    pT = as.numeric(gsub(".*?([0-9]+).*", "\\1", pT)),
+    pN = as.numeric(gsub(".*?([0-9]+).*", "\\1", pN)),
+    pM = as.numeric(gsub(".*?([0-9]+).*", "\\1", pM)),
+    Mortality = as.numeric(gsub(".*?([0-9]+).*", "\\1", Mortality)))
+
+
+UTUCdb_numeric
+```
+
+#missing value
+```{r}
+matrixplot_missing(UTUCdb_factor)
+```
+
+#mice
+```{r}
+library(mice)
+mice_impute <- mice(UTUCdb_numeric, m = 5, maxit = 5)
+```
+
+```{r}
+UTUCdb_NoMiss <- UTUCdb_numeric
+
+
+for(j in 1:10){
+  if(length(mice_impute$imp[[j]][,5])!=0){
+    M <- as.numeric(rownames(mice_impute$imp[[j]]))
+    Nmissing <- length(M)
+    
+    for(m in 1:Nmissing){
+      UTUCdb_NoMiss[M[m], j] <- mice_impute$imp[[j]][m, 5]
+    }
+  }
+}
+
+UTUCdb_NoMiss
+```
+
+```{r}
+UTUCdatabase <- UTUCdb_NoMiss%>%
+  mutate(Gender = as.factor(
+    ifelse(grepl(1, Gender), "1 Male", "2 Female")
+  ),BMI = as.factor(
+    ifelse(grepl(1, BMI), "1 Normal", "2 Overweight")
+  ),
+    Location = as.factor(
+    ifelse(grepl(0 ,Location), "0 non-visible",
+           ifelse(grepl(1 ,Location), "1 Renal pelvis",
+                  ifelse(grepl(2 ,Location), "2 Ureter",
+                         ifelse(grepl(3 ,Location), "3 Bladder cuff",
+                                ifelse(grepl(4 ,Location), "4 Multiple", "5 Not available")))))
+  ),
+  Size = as.factor(
+    ifelse(grepl(1,Size), "1 <2cm", "2 >=2cm")
+  ))%>%
+  mutate(pT = as.factor(
+    ifelse(grepl("0 ", pT), "0 T0/Tis/Ta",
+           ifelse(grepl("1", pT), "1 T1",
+                  ifelse(grepl("2", pT), "2 T2",
+                         ifelse(grepl("3", pT), "3 T3", "4 T4"))))
+  ))%>%
+  mutate(pN = as.factor(
+    ifelse(grepl("5 ", pN), "5 Nx",
+           ifelse(grepl("6 ", pN), "6 N0",
+                  ifelse(grepl("7 ", pN), "7 N1",
+                         ifelse(grepl("8 ", pN), "8 N2", "0 None"))))
+  ))%>%
+  mutate(pM = as.factor(
+    ifelse(grepl("9 ", pM), "9 M0",
+           ifelse(grepl("10 ", pM), "10 M1", "0 None"))
+  ))%>%
+  mutate(Mortality = as.factor(
+    ifelse(grepl(0, Mortality), "0 No", "1 Yes"))
+  )
+
+UTUCdatabase
+```
+
+```{r}
+write.csv(UTUCdatabase, "csv/UTUC_database.csv", row.names = F)
+```
+
