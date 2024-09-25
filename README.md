@@ -425,6 +425,7 @@ $$
 $$
 \mathcal{X} = (x_1, x_2, \cdots, x_n)^T \text{ , } \forall\; x_i\in \mathbb{R}^p
 $$
+
 通常數據的資料矩陣會用 $\mathcal{X}$ 標示，以上述微例，這個資料有 $n$ 位病患、 $p$ 個變數。當然，變數的內容不只有數據而已：
 
 * 數據型變數(numerical)：所有實數
